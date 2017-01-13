@@ -34,6 +34,7 @@ gem 'bootstrap-sass'
 gem 'pry'
 
 gem 'devise'
+gem 'devise-bootstrap-views'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
