@@ -7,4 +7,10 @@ class StaticController < ApplicationController
   def create
   end
 
+  def results
+  end
+
+  def test
+  end
+
 end
