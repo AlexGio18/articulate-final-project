@@ -6,7 +6,7 @@ class CreateDocEmotions < ActiveRecord::Migration[5.0]
       t.float :fear
       t.float :joy
       t.float :sadness
-      t.integer :result_id
+      t.integer :speech_result_id
 
       t.timestamps
     end

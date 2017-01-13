@@ -1,6 +1,7 @@
-class CreateResults < ActiveRecord::Migration[5.0]
+class CreateSpeechResults < ActiveRecord::Migration[5.0]
   def change
-    create_table :results do |t|
+    create_table :speech_results do |t|
+      t.text :transcript
       t.integer :user_id
 
       t.timestamps
