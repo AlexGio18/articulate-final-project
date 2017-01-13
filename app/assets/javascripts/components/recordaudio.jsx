@@ -29,10 +29,21 @@ componentDidMount(){
         container.appendChild(audio)
 
         let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
+        var reader  = new window.FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = function() {
+            var audio_base64 = reader.result;
+            $.ajax({
+              url: '/static',
+              method: 'POST',
+              data: {audio: audio_base64}
+            })
+            }
         chunks = []
         let audiosrc = window.URL.createObjectURL(blob)
         audio.setAttribute('src', audiosrc)
         audio.setAttribute('autoplay', '')
+
       }
 
       let button = document.getElementById('playcord')
