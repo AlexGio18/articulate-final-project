@@ -1,6 +1,10 @@
 class RecordAudio extends React.Component {
   handleClick(){
-    $("#playcord").text("Stop Recording")
+    if ($("#playcord").text() === "Start Recording"){
+      return($("#playcord").text("Stop Recording"))
+    }else{
+      return($("#playcord").text("Start Recording"))
+    }
   }
 
 componentDidMount(){
@@ -14,12 +18,12 @@ componentDidMount(){
       let mediaRecorder = new MediaRecorder(stream)
       let chunks = []
       mediaRecorder.ondataavailable = function(e) {
-          // chunks.push(e.data)
-          // $.ajax({
-          //   method: "POST",
-          //   url: ""
-          //   data: {blob: e.data}
-          // })
+          chunks.push(e.data)
+          $.ajax({
+            method: "POST",
+            url: "/static",
+            data: {blob: e.data}
+          })
       }
       let finishRecording = function() {
         mediaRecorder.stop()
@@ -29,7 +33,6 @@ componentDidMount(){
         container.appendChild(audio)
 
         let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
-        debugger
         chunks = []
         let audiosrc = window.URL.createObjectURL(blob)
         audio.setAttribute('src', audiosrc)
@@ -55,7 +58,7 @@ componentDidMount(){
   render(){
     return(
       <div>
-        <button id="playcord" onClick={this.handleClick.bind(this)}>Start Recording</button>
+        <button id="playcord" className="btn btn-primary btn-lg" onClick={this.handleClick.bind(this)}>Start Recording</button>
         <div id="audiocontainer"></div>
       </div>
     )
