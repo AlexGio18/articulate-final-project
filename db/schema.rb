@@ -10,10 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113162333) do
+ActiveRecord::Schema.define(version: 20170113181903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doc_emotions", force: :cascade do |t|
+    t.float    "anger"
+    t.float    "disgust"
+    t.float    "fear"
+    t.float    "joy"
+    t.float    "sadness"
+    t.integer  "speech_result_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "doc_language_tones", force: :cascade do |t|
+    t.float    "analytical"
+    t.float    "confident"
+    t.float    "tentative"
+    t.integer  "speech_result_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "doc_social_tones", force: :cascade do |t|
+    t.float    "openness"
+    t.float    "conscientiousness"
+    t.float    "extraversion"
+    t.float    "agreeableness"
+    t.float    "emotional_range"
+    t.integer  "speech_result_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string   "text"
+    t.string   "sentiment"
+    t.float    "relavance"
+    t.integer  "speech_result_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "speech_results", force: :cascade do |t|
+    t.text     "transcript"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taxonomies", force: :cascade do |t|
+    t.string   "label_heirarchy"
+    t.float    "score"
+    t.string   "confident"
+    t.integer  "speech_result_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             default: "", null: false
