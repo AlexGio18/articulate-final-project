@@ -1,0 +1,2 @@
+class DocEmotion < ApplicationRecord
+end

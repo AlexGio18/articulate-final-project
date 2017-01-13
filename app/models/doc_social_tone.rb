@@ -1,0 +1,2 @@
+class DocSocialTone < ApplicationRecord
+end
