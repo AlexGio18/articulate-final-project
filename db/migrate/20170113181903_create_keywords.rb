@@ -4,7 +4,7 @@ class CreateKeywords < ActiveRecord::Migration[5.0]
       t.string :text
       t.string :sentiment
       t.float :relavance
-      t.integer :speech_result_id
+      t.integer :speech_result_id, foreign_key: true
 
       t.timestamps
     end
