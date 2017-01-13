@@ -14,7 +14,7 @@ componentDidMount(){
       let mediaRecorder = new MediaRecorder(stream)
       let chunks = []
       mediaRecorder.ondataavailable = function(e) {
-          // chunks.push(e.data)
+          console.log(chunks.push(e.data))
           // $.ajax({
           //   method: "POST",
           //   url: ""
@@ -29,7 +29,6 @@ componentDidMount(){
         container.appendChild(audio)
 
         let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
-        debugger
         chunks = []
         let audiosrc = window.URL.createObjectURL(blob)
         audio.setAttribute('src', audiosrc)
@@ -44,7 +43,7 @@ componentDidMount(){
           mediaRecorder.start()
           window.setTimeout(function() {
             finishRecording()
-          }, 30000)
+          }, 10000)
         }
       })
     }, function(error) {
