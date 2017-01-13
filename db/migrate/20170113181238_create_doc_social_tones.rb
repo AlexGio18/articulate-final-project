@@ -6,7 +6,7 @@ class CreateDocSocialTones < ActiveRecord::Migration[5.0]
       t.float :extraversion
       t.float :agreeableness
       t.float :emotional_range
-      t.integer :speech_result_id
+      t.integer :speech_result_id, foreign_key: true
 
       t.timestamps
     end
