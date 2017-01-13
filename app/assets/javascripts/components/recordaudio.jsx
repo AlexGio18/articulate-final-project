@@ -19,10 +19,13 @@ componentDidMount(){
       let chunks = []
       mediaRecorder.ondataavailable = function(e) {
           chunks.push(e.data)
+          debugger
           $.ajax({
             method: "POST",
             url: "/static",
-            data: {blob: e.data}
+            dataType: "json",
+            processData: false,
+            data: e.data
           })
       }
       let finishRecording = function() {
