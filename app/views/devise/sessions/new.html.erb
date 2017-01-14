@@ -1,11 +1,10 @@
-<div class="container">
+<div class="container minimalist-form">
+  <h2 class="form-signin-heading minimalist-heading">Sign in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
     <%= devise_error_messages! %>
-    <h2 class="form-signin-heading">Sign in</h2>
-    <%= f.label :email, 'Email Address', class: 'sr-only' %>
+
     <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %>
 
-    <%= f.label :password, 'Password', class: 'sr-only' %>
     <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
 
     <% if devise_mapping.rememberable? %>
@@ -15,7 +14,6 @@
       </label>
     <% end %>
 
-    <%= f.button "Sign in", class: 'btn btn-lg btn-primary btn-block' %>
+    <%= f.button "Sign in", class: 'btn btn-secondary minimalist-button' %>
   <% end %>
 </div>
-<%= render "devise/shared/links" %>
