@@ -7,12 +7,13 @@ class Test extends React.Component {
       method: 'get',
       dataType: 'json'
     }).done(function(r) {
-      window.localStorage.setItem("watsonToken", r.token)
+      localStorage.setItem("watsonToken", r.token)
+    })
   }
 
   render() {
     return (
-      <button className="anything" onClick={this.handleClick.bind(this)} />
+      <button className="anything" onClick={this.handleClick.bind(this)} >Click</button>
     )
   }
 }
