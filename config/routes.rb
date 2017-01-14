@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   post "/static", to: "static#create"
   get "/get_token", to: "static#token"
   post "/results", to: "static#results"
+  
+  resources :users do
+    resources :speech_results
+  end
+
+  post "/static" => "static#create"
 end
