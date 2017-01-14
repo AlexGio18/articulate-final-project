@@ -3,23 +3,41 @@
 
 # WORKING FOR ALCHEMY CALLS
 
-require 'watson-api-client'
-
-# service = WatsonAPIClient::ToneAnalyzer.new(username: ENV["WATSON_TONE_USER_NAME"],
-#                                             password: ENV["WATSON_TONE_PASSWORD"],
-#                                             version: '2016-05-19')
-
 service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
                                                verify_ssl: OpenSSL::SSL::VERIFY_NONE)
 
-result = service.TextGetEmotion_get(text: "Hello i am some text", outputMode:"json")
+# Returns the big 5 emotions with their score as a hash (ex: {"anger"=>"0.353717", ...})
+def document_emotions(service, text)
+  result = service.TextGetEmotion_get(text: text, outputMode:"json")
 
-response = JSON.parse(result.body)
+  response = JSON.parse(result.body)
 
-# Returns the big 5 emotions with their score
-document_emotions = response["docEmotions"]
+  response["docEmotions"]
+end
 
+# Returns document keywords as an array, where each element is a hash ex: ( {"relevance"=>"0.914023", "text"=>"gray veil"} )
+def document_keywords(service, text)
+  result = service.TextGetRankedKeywords_get(text: text, outputMode:"json")
 
+  response = JSON.parse(result.body)
+
+  response["keywords"]
+end
+
+# Returns document taxonomies as an array, where each element is a hash
+# ex: ( {"label"=>"/health and fitness/disorders/mental disorder/depression", "score"=>"0.69369"} )
+# Warning: some versions have an extra key:value ("confident"=>"no")
+# These should likely not be included
+def document_taxonomies(service, text)
+  result = service.TextGetRankedTaxonomy_get(text: text, outputMode:"json")
+
+  response = JSON.parse(result.body)
+
+  taxonomies = response["taxonomy"]
+
+  # This next line will take out hierarchies the API is NOT confinent about:
+  # confident_hierarchies = taxonomies.reject {|hierarchy| hierarchy.has_key?("confident")}
+end
 
 # FOR TONE ANALYZER
 
