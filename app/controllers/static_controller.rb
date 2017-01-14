@@ -1,6 +1,11 @@
 require 'eventmachine'
 require 'websocket-client-simple'
 
+class File
+   def read_chunk(chunk_size=2000)
+       yield read(chunk_size) until eof?
+   end
+end
 
 class StaticController < ApplicationController
   include ApplicationHelper
@@ -15,17 +20,18 @@ class StaticController < ApplicationController
   def results
     settings = {
      'action'             => "start",
-     'content-type'       => "audio/wav",
+     'content-type'       => "audio/ogg;codecs=opus",
      'continuous'         => true,
-     'inactivity_timeout' => -1,
+     'inactivity_timeout' => 100,
      'interim_results'    => true
    }
 
-   watson_url = "wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=#{token.body}"
-   file_url = "./0001.wav"
+   watson_url = "wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=#{get_token}"
+   file_url = "../assets/audio/alex-test.ogg"
 
    init_message = settings.to_json
    ws = ''
+
 
    EM.run {
     ws = WebSocket::Client::Simple.connect watson_url
