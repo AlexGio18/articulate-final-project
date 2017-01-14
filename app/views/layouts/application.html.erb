@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
           </button>
           <% if user_signed_in? %>
-            <a class="navbar-brand" href="#"><%= "#{current_user.first_name} #{current_user.last_name}" %></a>
+            <a class="navbar-brand" href="#"><%= current_user.first_name %></a>
           <% else %>
             <a class="navbar-brand" href="#">Articulate</a>
           <% end %>
