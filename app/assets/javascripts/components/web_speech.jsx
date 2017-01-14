@@ -2,6 +2,10 @@ class WebSpeech extends React.Component {
 
   componentDidMount() {
 
+    let finalTranscript = ''
+    let resultsContainer = document.getElementById('resultsContainer')
+    let altsContainer = document.getElementById('altsContainer')
+
     var recognition = new webkitSpeechRecognition()
     recognition.continuous = true
     recognition.interimResults = true
@@ -14,23 +18,22 @@ class WebSpeech extends React.Component {
 
     recognition.onend = function() {
       console.log("stopped recording")
+      $(resultsContainer).text(finalTranscript)
     }
 
     recognition.onresult = function(event) {
-      let resultsContainer = document.getElementById('resultsContainer')
-      let altsContainer = document.getElementById('altsContainer')
       if (typeof(event.results) === 'undefined') {
         recognition.stop()
         console.log("something went wrong...")
       }
 
+      let interimTranscript = ''
       for (var i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
-          console.log("final results: " + event.results[i][0].transcript)
-          $(resultsContainer).append(event.results.transcript)
+          finalTranscript += event.results[i][0].transcript
+          console.log(finalTranscript)
         } else {
           console.log("results so far: " + event.results[i][0].transcript)
-          $(altsContainer).text(event.results[i][0].transcript)
         }
       }
     }
