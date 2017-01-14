@@ -17,7 +17,7 @@ class NavBar extends React.Component {
             <ul className="nav navbar-nav">
               <li className="onhover"><a href="/users/sign_in">Login</a></li>
               <li className="onhover"><a href="/users/sign_up">Register</a></li>
-              <li className="onhover"><a href="/static">Home</a></li>
+              <li className="onhover"><a href="/users/1">Home</a></li>
             </ul>
           </div>
         </div>
