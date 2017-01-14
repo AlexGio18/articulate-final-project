@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "/test", to: "static#test"
   post "/static", to: "static#create"
   get "/get_token", to: "static#token"
+  post "/results", to: "static#results"
 end
