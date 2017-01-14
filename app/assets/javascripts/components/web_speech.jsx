@@ -19,7 +19,6 @@ class WebSpeech extends React.Component {
     recognition.onend = function() {
       console.log("stopped recording")
       $(resultsContainer).text(finalTranscript)
-
     }
 
     recognition.onresult = function(event) {
