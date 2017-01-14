@@ -1,2 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.white-opacity {
+  background-color: white;
+  opacity: 0.8;
+}
+
+.onhover:hover  {
+  background-color: #D3D3D3;
+}
