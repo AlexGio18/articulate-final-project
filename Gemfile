@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'eventmachine'
 gem 'websocket-client-simple'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'pry'
+gem 'pry-rails', :group => :development
+gem 'watson-api-client'
 
 gem 'devise'
 gem 'devise-bootstrap-views'

@@ -63,6 +63,8 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.10)
+    domain_name (0.5.20161129)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -74,6 +76,8 @@ GEM
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -96,6 +100,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -105,6 +110,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (3.6.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -145,6 +152,10 @@ GEM
       tilt
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (2.0.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -175,8 +186,13 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     warden (1.2.6)
       rack (>= 1.0)
+    watson-api-client (0.0.7)
+      rest-client
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -205,6 +221,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   pry
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.1)
   react-rails
@@ -214,6 +231,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  watson-api-client
   web-console (>= 3.3.0)
   websocket-client-simple
 
