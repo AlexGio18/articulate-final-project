@@ -3,12 +3,12 @@ class Index extends React.Component {
 
     return(
       <div>
-      
+
         <div className="container">
 
           <div className="starter-template">
-            <h1>Upload Audio</h1>
-            <RecordAudio />
+            <h1>Just Press Start.</h1>
+            <WebSpeech />
           </div>
 
         </div>
