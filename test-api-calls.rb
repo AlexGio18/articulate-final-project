@@ -5,16 +5,19 @@
 
 require 'watson-api-client'
 
-service = WatsonAPIClient::ToneAnalyzer.new(username: ENV["WATSON_TONE_USER_NAME"],
-                                            password: ENV["WATSON_TONE_PASSWORD"],
-                                            version: '2016-05-19')
+# service = WatsonAPIClient::ToneAnalyzer.new(username: ENV["WATSON_TONE_USER_NAME"],
+#                                             password: ENV["WATSON_TONE_PASSWORD"],
+#                                             version: '2016-05-19')
 
 service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
                                                verify_ssl: OpenSSL::SSL::VERIFY_NONE)
 
 result = service.TextGetEmotion_get(text: "Hello i am some text", outputMode:"json")
 
-p JSON.parse(result.body)
+response = JSON.parse(result.body)
+
+# Returns the big 5 emotions with their score
+document_emotions = response["docEmotions"]
 
 
 
