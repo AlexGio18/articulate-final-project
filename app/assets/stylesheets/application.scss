@@ -3,7 +3,6 @@
 
 body {
   padding-top: 50px;
-  background-color: #FF6A6A;
 }
 .starter-template {
   padding: 40px 15px;
@@ -13,5 +12,8 @@ body {
 .white-opacity {
   background-color: white;
   opacity: 0.8;
-  padding-bottom: 25px;
+}
+
+.onhover:hover  {
+  background-color: #D3D3D3;
 }

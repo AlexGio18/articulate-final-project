@@ -15,9 +15,9 @@ class NavBar extends React.Component {
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
-              <li><a href="/users/sign_in">Login</a></li>
-              <li><a href="/users/sign_up">Register</a></li>
-              <li><a href="/static">Home</a></li>
+              <li className="onhover"><a href="/users/sign_in">Login</a></li>
+              <li className="onhover"><a href="/users/sign_up">Register</a></li>
+              <li className="onhover"><a href="/static">Home</a></li>
             </ul>
           </div>
         </div>
