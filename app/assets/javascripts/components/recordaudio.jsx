@@ -19,8 +19,8 @@ componentDidMount(){
       let chunks = []
       mediaRecorder.ondataavailable = function(e) {
           chunks.push(e.data)
-          console.log(chunks.push(e.data))
       }
+
       let finishRecording = function() {
         mediaRecorder.stop()
 
@@ -28,7 +28,8 @@ componentDidMount(){
         let container = document.getElementById('audiocontainer')
         container.appendChild(audio)
 
-        let blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
+        let blob = new Blob(chunks, { 'type' : 'audio/ogg;codecs=opus' })
+
         chunks = []
         let audiosrc = window.URL.createObjectURL(blob)
         audio.setAttribute('src', audiosrc)

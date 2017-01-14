@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: "static#index"
 
   post "/static" => "static#create"
+  post "/results", to: "static#results"
 end
