@@ -89,8 +89,6 @@ class SpeechResultsController < ApplicationController
     alchemy_response["keywords"].map do |keyword|
       Keyword.create(speech_result: @speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
     end
-
-    binding.pry
   end
 
 end
