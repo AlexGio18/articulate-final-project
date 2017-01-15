@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'custom'%>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
   </head>
 
@@ -23,11 +24,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-
             <% if user_signed_in? %>
-              <li class="onhover"><%= current_user.email %></li>
-              <li class="onhover"><a href="/users/<%= current_user.id %>">Home</a>
-              <li class="onhover"><a href="/users/<%= current_user.id %>/speech_results" >History</a></li>
+              <li class="right-align"><%= current_user.email %></li>
+              <li class="onhover"><a href="/profile">Home</a>
+              <li class="onhover"><a href="/profile/history" >History</a></li>
               <li class="onhover">
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
               </li>

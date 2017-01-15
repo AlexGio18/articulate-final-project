@@ -17,6 +17,7 @@ class TextForm extends React.Component {
   handleSubmit(event) {
     const textBox = this.refs.textBox;
     event.preventDefault();
+
     let transcript = textBox.value
     let userId = this.props.currentUser.id
     console.log(textBox.value)
@@ -28,7 +29,6 @@ class TextForm extends React.Component {
       console.log(response)
     })
   }
-
 
   render() {
     return (
