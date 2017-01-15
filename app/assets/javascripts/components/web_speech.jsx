@@ -11,7 +11,7 @@ class WebSpeech extends React.Component {
 
   componentDidMount() {
     let userId = this.props.currentUser.id
-    debugger
+    
     let finalTranscript = ''
     let resultsContainer = document.getElementById('resultsContainer')
     let altsContainer = document.getElementById('altsContainer')

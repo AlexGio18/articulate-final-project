@@ -1,10 +1,4 @@
 class History extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      history: []
-    }
-  }
 
   componentDidMount() {
     let url = window.location.pathname

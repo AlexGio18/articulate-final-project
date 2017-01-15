@@ -5,7 +5,11 @@ class SpeechResultsController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
-    render json: user.speech_results
+    respond_to do |format|
+      format.html
+      format.json { render json: user.speech_results}
+    end
+
   end
 
   def show
