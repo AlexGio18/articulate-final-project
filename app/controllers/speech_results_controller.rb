@@ -107,15 +107,15 @@ Five score years ago, a great American, in whose symbolic shadow we stand today,
         ]
       }
     }
-    
+
     speech_result = SpeechResult.find(:id)
     if authorized?(speech_result.user)
       respond_to do |format|
-      format.html #{ redirect_to 'index' }
-      format.json { render json: speech}
+        format.html #{ redirect_to 'index' }
+        format.json { render json: speech}
+      end
     else
       render json: { errors: "Forbidden" }, status: 403
-
     end
   end
 
