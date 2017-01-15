@@ -3,8 +3,7 @@
 
 # WORKING FOR ALCHEMY CALLS
 
-service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
-                                               verify_ssl: OpenSSL::SSL::VERIFY_NONE)
+service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"], verify_ssl: OpenSSL::SSL::VERIFY_NONE)
 
 # Returns the big 5 emotions with their score as a hash (ex: {"anger"=>"0.353717", ...})
 def document_emotions(service, text)
@@ -17,7 +16,7 @@ end
 
 # Returns document keywords as an array, where each element is a hash ex: ( {"relevance"=>"0.914023", "text"=>"gray veil"} )
 def document_keywords(service, text)
-  result = service.TextGetRankedKeywords_get(text: text, outputMode:"json")
+  result = service.TextGetRankedKeywords_get(text: text, outputMode:"json", sentiment:1)
 
   response = JSON.parse(result.body)
 
