@@ -1,5 +1,5 @@
 class SpeechResultSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :updated_at
+  attributes :id, :created_at, :updated_at, :transcript
   belongs_to :user
   has_many :taxonomies
   has_many :keywords
