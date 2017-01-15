@@ -19,11 +19,11 @@ class SpeechText extends React.Component{
     $("#speech-text").hide()
     var that = this
     $.ajax({
-      url: '/users/1/speech_results/1',
+      url: '/json_test',
       dataType: "json"
     }).done(function(response){
       that.setState({
-        speech: response.text.text
+        speech: response.transcript
       })
     })
 

@@ -18,13 +18,17 @@ class TextForm extends React.Component {
     const textBox = this.refs.textBox;
     event.preventDefault();
     console.log(textBox.value)
-    // $.ajax({
-    //   url: '/text-route',
-    //   method: 'post',
-    //   data: {
-    //     text: { textBox.value }
-    //   }
-  }
+    $.ajax({
+      url: '/users/3/speech_results',
+      method: 'post',
+      data: {
+        text: textBox.value
+        }
+      })
+      .done(function(r) {
+        console.log(r)
+      })
+    }
 
 
   render() {
