@@ -5,12 +5,20 @@ class SpeechResultsController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
-    render json: user.speech_results
+    if authorized?(user)
+      render json: user.speech_results
+    else
+      render json: { errors: "Forbidden" }, status: 403
+    end
   end
 
   def show
     speech_result = SpeechResult.find(:id)
-    render json: speech_result
+    if authorized?(speech_result.user)
+      render json: speech_result
+    else
+      render json: { errors: "Forbidden" }, status: 403
+    end
   end
 
   def create
@@ -56,9 +64,10 @@ class SpeechResultsController < ApplicationController
     render json: speech_result
   end
 
-  def test
-    user = User.find(1)
-    render json: user
-  end
+  protected
+
+    def authorized?(user)
+      user == current_user
+    end
 
 end
