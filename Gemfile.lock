@@ -56,10 +56,10 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    chart-js-rails (0.1.1)
-      railties (> 3.1)
     case_transform (0.2)
       activesupport
+    chart-js-rails (0.1.1)
+      railties (> 3.1)
     coderay (1.1.1)
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
