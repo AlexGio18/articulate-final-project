@@ -1,6 +1,6 @@
 module SpeechResultsHelper
 
-  def parse_result(array, target)
+  def parse_tone_result(array, target)
     array.map {|tone| target.write_attribute(tone["tone_name"].downcase.split.join('_').to_sym, tone["score"])}
   end
 
@@ -21,8 +21,6 @@ module SpeechResultsHelper
     response = JSON.parse(result.body)
 
     json["keywords"] = response["keywords"]
-
-    binding.pry
     json
   end
 
