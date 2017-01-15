@@ -29,7 +29,7 @@ class WebSpeech extends React.Component {
       let url = window.location.pathname
 
       $.ajax({
-        url: url + "/speech_results",
+        url: "/users/:id/speech_results",
         method: "POST",
         data: "text="+finalTranscript
       }).done(function(response){
