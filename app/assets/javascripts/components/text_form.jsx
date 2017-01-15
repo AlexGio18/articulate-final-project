@@ -17,7 +17,6 @@ class TextForm extends React.Component {
   handleSubmit(event) {
     const textBox = this.refs.textBox;
     event.preventDefault();
-    debugger
     console.log(textBox.value)
     // $.ajax({
     //   url: '/text-route',

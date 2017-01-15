@@ -50,7 +50,6 @@ class BubbleChart extends React.Component {
   }
 
   createChartAll(){
-    debugger
     var chart = new CanvasJS.Chart("chartContainer",
       {
     //    zoomEnabled: true,
