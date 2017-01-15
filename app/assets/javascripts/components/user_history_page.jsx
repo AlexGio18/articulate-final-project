@@ -24,6 +24,7 @@ class History extends React.Component {
 
     return (
       <div className="container">
+        <h1> Hey There </h1>
         <ul>
           {this.state.history.map((result, i) =>
             <Result result={result} key={result.id} />
