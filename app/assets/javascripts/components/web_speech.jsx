@@ -68,7 +68,6 @@ class WebSpeech extends React.Component {
     return (
       <div>
         <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-        <button className="btn btn-primary btn-lg" id="stopRec">Stop</button>
         <div id="altsContainer"></div>
         <div className="results" id="resultsContainer"></div>
       </div>
