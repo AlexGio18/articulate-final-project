@@ -20,9 +20,11 @@ class SpeechResultsController < ApplicationController
   end
 
   def test
-    text = "this is some text ok"
+    text = "so this is some test I'm speaking and generating text for the experimental program or trying to get speech to text in the browser then we're trying to get texts out of the browser and then we're trying to analyze the text using the Alchemy API very exciting stuff if you ask me but hey that's just my opinion"
     tone_response = get_tone(text)
     @speech_result = SpeechResult.new(transcript: text)
+
+    # Parsing tone analyzer
 
     @doc_emotion = DocEmotion.new(speech_result: @speech_result)
     emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
@@ -39,7 +41,12 @@ class SpeechResultsController < ApplicationController
     parse_result(social_tone_array, @doc_social_tone)
     @speech_result.doc_social_tone = @doc_social_tone
 
-    binding.pry
+    # Parsing Alchemy
+
+    alchemy_response = get_alchemy_results(text)
+
+
+
   end
 
 end

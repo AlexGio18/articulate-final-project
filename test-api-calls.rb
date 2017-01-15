@@ -3,9 +3,6 @@
 
 # WORKING FOR ALCHEMY CALLS
 
-service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
-                                               verify_ssl: OpenSSL::SSL::VERIFY_NONE)
-
 # Returns the big 5 emotions with their score as a hash (ex: {"anger"=>"0.353717", ...})
 def document_emotions(service, text)
   result = service.TextGetEmotion_get(text: text, outputMode:"json")
