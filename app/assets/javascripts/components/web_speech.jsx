@@ -1,5 +1,14 @@
 class WebSpeech extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      emotion_data: [],
+      language_data: [],
+      social_data: []
+    }
+  }
+
   componentDidMount() {
 
     let finalTranscript = ''
@@ -69,7 +78,7 @@ class WebSpeech extends React.Component {
       <div>
         <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
         <div id="altsContainer"></div>
-        <div className="results" id="resultsContainer"></div>
+        <div className="container results" id="resultsContainer"></div>
       </div>
     )
   }
