@@ -21,7 +21,14 @@ class User::RegistrationsController < Devise::RegistrationsController
       super
     end
 
+    protected
+
+    def sign_up_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
     def configure_account_update_params
       devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthday])
     end
+
 end
