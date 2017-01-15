@@ -1,0 +1,27 @@
+#chart{
+  margin-top: 2%;
+  margin-left: 10%;
+  width: 70%;
+  height: 400px;
+}
+#speech-container{
+  width: 80%;
+}
+#speech{
+  margin-left: 15%;
+  margin-top: 20px;
+}
+#speech-text{
+  margin-top: 10px;
+  border: 1px solid;
+  font-size: 22px;
+}
+/*.btn-primary{
+  margin-left: 40%;
+  width: 20%;
+}*/
+
+table {
+  border-collapse:separate;
+  border-spacing:10px 10px;
+}​​​​​​​​​​​​​
