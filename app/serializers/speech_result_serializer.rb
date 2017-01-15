@@ -1,5 +1,6 @@
 class SpeechResultSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :updated_at
+  belongs_to :user
   has_many :taxonomies
   has_many :keywords
   has_one :doc_emotion

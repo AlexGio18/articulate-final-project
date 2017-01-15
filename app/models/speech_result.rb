@@ -1,4 +1,5 @@
 class SpeechResult < ApplicationRecord
+  belongs_to :user
   has_many :keywords
   has_many :taxonomies
   has_one :doc_emotion
