@@ -8,8 +8,10 @@ class SpeechResultsController < ApplicationController
   end
 
   def create
+    text = "did you know it's pretty interesting how every time somebody asks you to talk with nothing to say and you have what everybody wants you to shut up you have everything to say I could keep talking all day long and then people get upset and then as soon as they text me first story my mind goes blank"
+
     @user = User.find(params[:user_id])
-    tone_response = get_tone(params[:text])
+    tone_response = get_tone(text)
     @speech_result = SpeechResult.new(transcript: text, user: @user)
     @speech_result.save
 
@@ -45,12 +47,13 @@ class SpeechResultsController < ApplicationController
       Keyword.create(speech_result: @speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
     end
 
-    # format JSON here
+
+
   end
 
-  protected
-    def speech_result_params
-      params.require(:speech_result).permit(:transcript)
-    end
+  def test
+    @speech_result = SpeechResult.find(1)
+    render json: @speech_result.to_json(:include =>[:taxonomies, :keywords])
+  end
 
 end
