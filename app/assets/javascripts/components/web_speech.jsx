@@ -1,5 +1,14 @@
 class WebSpeech extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      emotion_data: [],
+      language_data: [],
+      social_data: []
+    }
+  }
+
   componentDidMount() {
 
     let finalTranscript = ''
@@ -18,6 +27,16 @@ class WebSpeech extends React.Component {
 
     recognition.onend = function() {
       console.log("stopped recording")
+      let url = window.location.pathname
+
+      $.ajax({
+        url: url + "/speech_results",
+        method: "POST",
+        data: "text="+finalTranscript
+      }).done(function(response){
+        console.log(response)
+      })
+
       $(resultsContainer).text(finalTranscript)
     }
 
@@ -39,24 +58,27 @@ class WebSpeech extends React.Component {
     }
 
     let startButton = document.getElementById('startRec')
-    let stopButton = document.getElementById('stopRec')
 
     startButton.addEventListener('click', function(e) {
-      recognition.start()
-    })
 
-    stopButton.addEventListener('click', function(e) {
-      recognition.stop()
+      if ($(".record-button").text() === "Start"){
+        recognition.start()
+        $(".record-button").text("Stop")
+        $(".record-button").attr("id", "stopRec")
+      } else {
+        recognition.stop()
+        $(".record-button").text("Start")
+        $(".record-button").attr("id", "startRec")
+      }
     })
   }
 
   render() {
     return (
       <div>
-        <button id="startRec">Start</button>
-        <button id="stopRec">Stop</button>
+        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
         <div id="altsContainer"></div>
-        <div id="resultsContainer"></div>
+        <div className="container results" id="resultsContainer"></div>
       </div>
     )
   }
