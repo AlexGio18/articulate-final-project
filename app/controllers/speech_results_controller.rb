@@ -53,7 +53,7 @@ class SpeechResultsController < ApplicationController
 
   def test
     @speech_result = SpeechResult.find(1)
-    render json: @speech_result.to_json(:include =>[:taxonomies, :keywords])
+    render json: @speech_result
   end
 
 end
