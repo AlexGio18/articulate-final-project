@@ -58,6 +58,8 @@ GEM
     byebug (9.0.6)
     case_transform (0.2)
       activesupport
+    chart-js-rails (0.1.1)
+      railties (> 3.1)
     coderay (1.1.1)
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
@@ -225,12 +227,14 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootstrap-sass
   byebug
+  chart-js-rails
   devise
   devise-bootstrap-views
   dotenv-rails
   eventmachine
   jbuilder (~> 2.5)
   jquery-rails
+  json
   listen (~> 3.0.5)
   pg (~> 0.18)
   pry
