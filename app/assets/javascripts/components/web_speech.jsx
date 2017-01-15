@@ -8,7 +8,6 @@ class WebSpeech extends React.Component {
       social_data: []
     }
   }
-
   componentDidMount() {
 
     let finalTranscript = ''
