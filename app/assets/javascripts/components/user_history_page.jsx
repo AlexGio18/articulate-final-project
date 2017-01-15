@@ -4,9 +4,9 @@ class History extends React.Component {
     super();
 
     this.state = {
-      history: [{ "text": "HELLO",
+      history: [{ "transcript": "HELLO",
                   "created_at": "10/15/16"},
-                  {"text": "hi there",
+                  {"transcript": "hi there",
                     "created_at": "11/23/16"}]
     }
 

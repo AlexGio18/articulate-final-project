@@ -26,8 +26,8 @@
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
               <li class="right-align"><%= current_user.email %></li>
-              <li class="onhover"><a href="/users/<%= current_user.id %>">Home</a>
-              <li class="onhover"><a href="/users/<%= current_user.id %>/speech_results" >History</a></li>
+              <li class="onhover"><a href="/profile">Home</a>
+              <li class="onhover"><a href="/profile/history" >History</a></li>
               <li class="onhover">
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
               </li>
