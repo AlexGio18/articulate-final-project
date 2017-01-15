@@ -17,19 +17,18 @@ class TextForm extends React.Component {
   handleSubmit(event) {
     const textBox = this.refs.textBox;
     event.preventDefault();
+
+    let transcript = textBox.value
+    let userId = this.props.currentUser.id
     console.log(textBox.value)
     $.ajax({
-      url: '/users/3/speech_results',
+      url: "/users/"+userId+"/speech_results",
       method: 'post',
-      data: {
-        text: textBox.value
-        }
-      })
-      .done(function(r) {
-        console.log(r)
-      })
-    }
-
+      data: "text="+transcript
+    }).done(function(response){
+      console.log(response)
+    })
+  }
 
   render() {
     return (
