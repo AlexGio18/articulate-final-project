@@ -5,13 +5,14 @@ class WebSpeech extends React.Component {
     this.state = {
       emotion_data: [],
       language_data: [],
-      social_data: []
+      social_data: [],
     }
   }
 
   componentDidMount() {
-    let userId = this.props.currentUser.id
-    
+
+    let userID = this.props.currentUser.id
+
     let finalTranscript = ''
     let resultsContainer = document.getElementById('resultsContainer')
     let altsContainer = document.getElementById('altsContainer')
@@ -29,7 +30,7 @@ class WebSpeech extends React.Component {
     recognition.onend = function() {
 
       $.ajax({
-        url: "/users/"+userId+"/speech_results",
+        url: "/users/"+ userID +"/speech_results",
         method: "POST",
         data: "text="+finalTranscript
       }).done(function(response){
