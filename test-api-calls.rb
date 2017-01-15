@@ -3,8 +3,7 @@
 
 # WORKING FOR ALCHEMY CALLS
 
-service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
-                                               verify_ssl: OpenSSL::SSL::VERIFY_NONE)
+service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"], verify_ssl: OpenSSL::SSL::VERIFY_NONE)
 
 # Returns the big 5 emotions with their score as a hash (ex: {"anger"=>"0.353717", ...})
 def document_emotions(service, text)
@@ -17,7 +16,7 @@ end
 
 # Returns document keywords as an array, where each element is a hash ex: ( {"relevance"=>"0.914023", "text"=>"gray veil"} )
 def document_keywords(service, text)
-  result = service.TextGetRankedKeywords_get(text: text, outputMode:"json")
+  result = service.TextGetRankedKeywords_get(text: text, outputMode:"json", sentiment:1)
 
   response = JSON.parse(result.body)
 
@@ -47,3 +46,14 @@ def get_tone(username, password, text, version = '2016-05-19')
   language_tone_array = response["document_tone"]["tone_categories"][1]["tones"]
   social_tone_array = response["document_tone"]["tone_categories"][2]["tones"]
 end
+
+
+# Count the number of times a keyword appears within the text
+# Works for multiple-word keywords as well
+# Just input the API response from
+def count_keywords(***Result of document_keywords method ****)
+  key_array = response["keywords"] #response["keywords"] is the return of the document_keywords method
+  keyword_count = Hash.new
+  keywords_naked = key_array.map {|keyword| keyword["text"]}
+  keywords_naked.each {|keyword| keyword_count[keyword] = text.scan(/(#{keyword})/).count }
+end 

@@ -2,13 +2,32 @@
 @import "bootstrap";
 
 body {
-  padding-top: 50px;
   font-family: 'Lato', sans-serif;
   color: #b3aca7;
 }
+
+.result-history {
+  padding: 30px;
+}
+
+a.results-stylings {
+  text-decoration: none;
+}
+
+a.results-stylings:hover {
+  background-color: #D3D3D3;
+}
+.container-padding {
+  margin-top: 100px;
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+}
+
+.spacing {
+  padding-bottom: 10px;
 }
 
 .white-opacity {
@@ -20,9 +39,18 @@ body {
   background-color: #D3D3D3;
 }
 
+.record-button {
+  width: 200px;
+}
+
+.results {
+  height: 600px;
+  padding-top: 50px;
+}
+
 //forms for login and register
 
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
 
 .input-form::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #aca49c;

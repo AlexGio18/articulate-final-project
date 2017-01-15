@@ -9,6 +9,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'eventmachine'
 gem 'websocket-client-simple'
+gem 'active_model_serializers', '~> 0.10.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record
@@ -37,9 +38,10 @@ gem 'bootstrap-sass'
 gem 'pry'
 gem 'pry-rails', :group => :development
 gem 'watson-api-client'
-
+gem 'json'
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'chart-js-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
