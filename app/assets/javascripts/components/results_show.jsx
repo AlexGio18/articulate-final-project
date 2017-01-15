@@ -28,7 +28,7 @@ class ResultsShow extends React.Component{
       <BubbleChart/>
     </div>
     <div id="keywords">
-      <Keywords />
+      <Keywords keywords={this.state.result_data.keywords}/>
     </div>
     <div id="speech-container">
       <div id="speech">
