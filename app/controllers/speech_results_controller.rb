@@ -1,6 +1,6 @@
 class SpeechResultsController < ApplicationController
-  before_action :authenticate_user! [:show, :index]
-  
+  before_action :authenticate_user!, only: [:show, :index]
+
   include SpeechResultsHelper
 
   def index
