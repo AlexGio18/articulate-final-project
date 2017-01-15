@@ -123,11 +123,12 @@ Five score years ago, a great American, in whose symbolic shadow we stand today,
 
   def create
     user = User.find(params[:user_id])
+    binding.pry
     tone_response = get_tone(params[:text])
     speech_result = SpeechResult.new(transcript: params[:text], user: user)
     speech_result.save
 
-    binding.pry
+    
     # Parsing tone analyzer
 
     doc_emotion = DocEmotion.new(speech_result: speech_result)
