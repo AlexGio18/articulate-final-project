@@ -1,4 +1,8 @@
 class Index extends React.Component {
+  componentDidMount(){
+
+  }
+
   render(){
 
     return(
@@ -8,8 +12,8 @@ class Index extends React.Component {
 
           <div className="starter-template container-padding">
             <h1>Just Press Start.</h1>
-            <WebSpeech />
-            <TextForm />
+            <WebSpeech currentUser={this.props.current_user} />
+            <TextForm currentUser={this.props.current_user} />
           </div>
 
         </div>

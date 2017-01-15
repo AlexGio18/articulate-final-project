@@ -6,11 +6,13 @@ class SpeechResultsController < ApplicationController
 
   def index
     user = User.find(params[:user_id])
+
     if authorized?(user)
       render json: user.speech_results
     else
       render json: { errors: "Forbidden" }, status: 403
     end
+
   end
 
   def show
