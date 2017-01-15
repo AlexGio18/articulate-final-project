@@ -1,8 +1,5 @@
 class Index extends React.Component {
-  componentDidMount(){
-
-  }
-
+  
   render(){
 
     return(
