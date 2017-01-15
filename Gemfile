@@ -38,9 +38,10 @@ gem 'bootstrap-sass'
 gem 'pry'
 gem 'pry-rails', :group => :development
 gem 'watson-api-client'
-
+gem 'json'
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'chart-js-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
