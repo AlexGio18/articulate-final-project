@@ -1,9 +1,14 @@
 class ResultsShow extends React.Component{
   render(){
     return(
-      <div>
+  <div>
+    <div>
       <BubbleChart/>
-      </div>
+    </div>
+    <div>
+      <SpeechText/>
+    </div>
+  </div>
     )
   }
 }
