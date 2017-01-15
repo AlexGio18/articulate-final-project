@@ -1,5 +1,5 @@
 class Keyword < ApplicationRecord
-  before_create :count
+  before_save :count
   belongs_to :speech_result
 
 
