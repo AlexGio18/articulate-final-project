@@ -1,8 +1,18 @@
-require 'json'
+
 class SpeechResultsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :index]
+
   include SpeechResultsHelper
 
   def index
+    user = User.find(params[:user_id])
+
+    if authorized?(user)
+      render json: user.speech_results
+    else
+      render json: { errors: "Forbidden" }, status: 403
+    end
+
   end
 
   def show
@@ -99,56 +109,65 @@ Five score years ago, a great American, in whose symbolic shadow we stand today,
         ]
       }
     }
-    respond_to do |format|
-      format.html #{ redirect_to 'index' }
-      format.json { render json: speech}
+
+    speech_result = SpeechResult.find(:id)
+    if authorized?(speech_result.user)
+      respond_to do |format|
+        format.html #{ redirect_to 'index' }
+        format.json { render json: speech}
+      end
+    else
+      render json: { errors: "Forbidden" }, status: 403
     end
   end
 
   def create
-    @user = User.find(params[:user_id])
+    user = User.find(params[:user_id])
     tone_response = get_tone(params[:text])
-    @speech_result = SpeechResult.new(transcript: text, user: @user)
-    @speech_result.save
+    speech_result = SpeechResult.new(transcript: params[:text], user: user)
+    speech_result.save
 
+    binding.pry
     # Parsing tone analyzer
 
-    @doc_emotion = DocEmotion.new(speech_result: @speech_result)
+    doc_emotion = DocEmotion.new(speech_result: speech_result)
     emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
-    parse_tone_result(emotion_array, @doc_emotion)
-    @speech_result.doc_emotion = @doc_emotion
-    @doc_emotion.save
+    parse_tone_result(emotion_array, doc_emotion)
+    speech_result.doc_emotion = doc_emotion
+    doc_emotion.save
 
-    @doc_language_tone = DocLanguageTone.new(speech_result: @speech_result)
+    doc_language_tone = DocLanguageTone.new(speech_result: speech_result)
     language_tone_array = tone_response["document_tone"]["tone_categories"][1]["tones"]
-    parse_tone_result(language_tone_array, @doc_language_tone)
-    @speech_result.doc_language_tone = @doc_language_tone
-    @doc_language_tone.save
+    parse_tone_result(language_tone_array, doc_language_tone)
+    speech_result.doc_language_tone = doc_language_tone
+    doc_language_tone.save
 
-    @doc_social_tone = DocSocialTone.new(speech_result: @speech_result)
+    doc_social_tone = DocSocialTone.new(speech_result: speech_result)
     social_tone_array = tone_response["document_tone"]["tone_categories"][2]["tones"]
-    parse_tone_result(social_tone_array, @doc_social_tone)
-    @speech_result.doc_social_tone = @doc_social_tone
-    @doc_social_tone.save
+    parse_tone_result(social_tone_array, doc_social_tone)
+    speech_result.doc_social_tone = doc_social_tone
+    doc_social_tone.save
 
     # Parsing Alchemy
 
-    alchemy_response = get_alchemy_results(text)
+    alchemy_response = get_alchemy_results(params[:text])
 
     alchemy_response["taxonomies"].map do |taxonomy|
-      Taxonomy.create(speech_result: @speech_result, confident: taxonomy["confident"], label: taxonomy["label"], score: taxonomy["score"])
+      Taxonomy.create(speech_result: speech_result, confident: taxonomy["confident"], label: taxonomy["label"], score: taxonomy["score"])
     end
 
     alchemy_response["keywords"].map do |keyword|
-      Keyword.create(speech_result: @speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+      Keyword.create(speech_result: speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
     end
 
-    # format JSON here
+
+    render json: speech_result
   end
 
   protected
-    def speech_result_params
-      params.require(:speech_result).permit(:transcript)
+
+    def authorized?(user)
+      user == current_user
     end
 
 end

@@ -10,7 +10,8 @@ class WebSpeech extends React.Component {
   }
 
   componentDidMount() {
-
+    let userId = this.props.currentUser.id
+    
     let finalTranscript = ''
     let resultsContainer = document.getElementById('resultsContainer')
     let altsContainer = document.getElementById('altsContainer')
@@ -26,11 +27,9 @@ class WebSpeech extends React.Component {
     }
 
     recognition.onend = function() {
-      console.log("stopped recording")
-      let url = window.location.pathname
 
       $.ajax({
-        url: url + "/speech_results",
+        url: "/users/"+userId+"/speech_results",
         method: "POST",
         data: "text="+finalTranscript
       }).done(function(response){
