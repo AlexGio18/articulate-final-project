@@ -1,7 +1,12 @@
 class History extends React.Component {
+  constuctor(){
+    this.state = {
+      history: []
+    }
+  }
 
   componentDidMount() {
-    let url = window.location.pathname
+    let userID = this.props.current_user.id
     $.ajax({
       url: url,
       method: 'GET'
@@ -17,12 +22,12 @@ class History extends React.Component {
   render(){
 
     return (
-      <div className="container">
-        <h1> Hey There </h1>
+      <div className="starter-template container-padding">
+        <h1>Your History</h1>
         <ul>
-          {this.state.history.map((result, i) =>
+          {/* {this.state.history.map((result, i) =>
             <Result result={result} key={result.id} />
-          )}
+          )} */}
         </ul>
       </div>
     )
