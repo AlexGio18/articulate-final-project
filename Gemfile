@@ -32,9 +32,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'pry'
+gem 'json'
 
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'chart-js-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
