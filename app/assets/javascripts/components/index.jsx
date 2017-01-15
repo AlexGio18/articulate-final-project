@@ -3,7 +3,7 @@ class Index extends React.Component {
 
     return(
       <div>
-      
+
         <div className="container">
 
           <div className="starter-template">
