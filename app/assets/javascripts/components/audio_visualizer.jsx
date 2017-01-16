@@ -1,7 +1,7 @@
 class AudioVisualizer extends React.Component {
 
   componentDidMount(){
-        
+
     navigator.getUserMedia = (navigator.getUserMedia ||
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia ||
@@ -17,7 +17,7 @@ class AudioVisualizer extends React.Component {
 
     // grab the mute button to use below
 
-    var mute = document.querySelector('.mute');
+    // var mute = document.querySelector('.mute');
 
     //set up the different audio nodes we will use for the app
 
@@ -109,7 +109,7 @@ class AudioVisualizer extends React.Component {
              gainNode.connect(audioCtx.destination);
 
              visualize();
-             voiceChange();
+            //  voiceChange();
 
           },
 
@@ -127,55 +127,55 @@ class AudioVisualizer extends React.Component {
       HEIGHT = canvas.height;
 
 
-      var visualSetting = visualSelect.value;
-      console.log(visualSetting);
+      // var visualSetting = visualSelect.value;
+      // console.log(visualSetting);
 
-      if(visualSetting == "sinewave") {
-        analyser.fftSize = 2048;
-        var bufferLength = analyser.fftSize;
-        console.log(bufferLength);
-        var dataArray = new Uint8Array(bufferLength);
+      // if(visualSetting == "sinewave") {
+      //   analyser.fftSize = 2048;
+      //   var bufferLength = analyser.fftSize;
+      //   console.log(bufferLength);
+      //   var dataArray = new Uint8Array(bufferLength);
+      //
+      //   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+      //
+      //   function draw() {
+      //
+      //     drawVisual = requestAnimationFrame(draw);
+      //
+      //     analyser.getByteTimeDomainData(dataArray);
+      //
+      //     canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+      //     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+      //
+      //     canvasCtx.lineWidth = 2;
+      //     canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+      //
+      //     canvasCtx.beginPath();
+      //
+      //     var sliceWidth = WIDTH * 1.0 / bufferLength;
+      //     var x = 0;
+      //
+      //     for(var i = 0; i < bufferLength; i++) {
+      //
+      //       var v = dataArray[i] / 128.0;
+      //       var y = v * HEIGHT/2;
+      //
+      //       if(i === 0) {
+      //         canvasCtx.moveTo(x, y);
+      //       } else {
+      //         canvasCtx.lineTo(x, y);
+      //       }
+      //
+      //       x += sliceWidth;
+      //     }
+      //
+      //     canvasCtx.lineTo(canvas.width, canvas.height/2);
+      //     canvasCtx.stroke();
+      //   };
+      //
+      //   draw();
 
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-
-        function draw() {
-
-          drawVisual = requestAnimationFrame(draw);
-
-          analyser.getByteTimeDomainData(dataArray);
-
-          canvasCtx.fillStyle = 'rgb(200, 200, 200)';
-          canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-          canvasCtx.lineWidth = 2;
-          canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
-
-          canvasCtx.beginPath();
-
-          var sliceWidth = WIDTH * 1.0 / bufferLength;
-          var x = 0;
-
-          for(var i = 0; i < bufferLength; i++) {
-       
-            var v = dataArray[i] / 128.0;
-            var y = v * HEIGHT/2;
-
-            if(i === 0) {
-              canvasCtx.moveTo(x, y);
-            } else {
-              canvasCtx.lineTo(x, y);
-            }
-
-            x += sliceWidth;
-          }
-
-          canvasCtx.lineTo(canvas.width, canvas.height/2);
-          canvasCtx.stroke();
-        };
-
-        draw();
-
-      } else if(visualSetting == "frequencybars") {
+      // } else if(visualSetting == "frequencybars") {
         analyser.fftSize = 256;
         var bufferLength = analyser.frequencyBinCount;
         console.log(bufferLength);
@@ -207,36 +207,36 @@ class AudioVisualizer extends React.Component {
 
         draw();
 
-      } else if(visualSetting == "off") {
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-        canvasCtx.fillStyle = "red";
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-      }
+      // } else if(visualSetting == "off") {
+      //   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+      //   canvasCtx.fillStyle = "red";
+      //   canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+      // }
 
     }
 
-    function voiceChange() {
-      
-      distortion.oversample = '4x';
-      biquadFilter.gain.value = 0;
-      convolver.buffer = undefined;
-
-      var voiceSetting = voiceSelect.value;
-      console.log(voiceSetting);
-
-      if(voiceSetting == "distortion") {
-        distortion.curve = makeDistortionCurve(400);
-      } else if(voiceSetting == "convolver") {
-        convolver.buffer = concertHallBuffer;
-      } else if(voiceSetting == "biquad") {
-        biquadFilter.type = "lowshelf";
-        biquadFilter.frequency.value = 1000;
-        biquadFilter.gain.value = 25;
-      } else if(voiceSetting == "off") {
-        console.log("Voice settings turned off");
-      }
-
-    }
+    // function voiceChange() {
+    //
+    //   distortion.oversample = '4x';
+    //   biquadFilter.gain.value = 0;
+    //   convolver.buffer = undefined;
+    //
+    //   var voiceSetting = voiceSelect.value;
+    //   console.log(voiceSetting);
+    //
+    //   if(voiceSetting == "distortion") {
+    //     distortion.curve = makeDistortionCurve(400);
+    //   } else if(voiceSetting == "convolver") {
+    //     convolver.buffer = concertHallBuffer;
+    //   } else if(voiceSetting == "biquad") {
+    //     biquadFilter.type = "lowshelf";
+    //     biquadFilter.frequency.value = 1000;
+    //     biquadFilter.gain.value = 25;
+    //   } else if(voiceSetting == "off") {
+    //     console.log("Voice settings turned off");
+    //   }
+    //
+    // }
 
     // event listeners to change visualize and voice settings
 
@@ -245,23 +245,23 @@ class AudioVisualizer extends React.Component {
       visualize();
     }
 
-    voiceSelect.onchange = function() {
-      voiceChange();
-    }
+    // voiceSelect.onchange = function() {
+    //   voiceChange();
+    // }
 
-    mute.onclick = voiceMute;
-
-    function voiceMute() {
-      if(mute.id == "") {
-        gainNode.gain.value = 0;
-        mute.id = "activated";
-        mute.innerHTML = "Unmute";
-      } else {
-        gainNode.gain.value = 1;
-        mute.id = "";    
-        mute.innerHTML = "Mute";
-      }
-    }
+    // mute.onclick = voiceMute;
+    //
+    // function voiceMute() {
+    //   if(mute.id == "") {
+    //     gainNode.gain.value = 0;
+    //     mute.id = "activated";
+    //     mute.innerHTML = "Unmute";
+    //   } else {
+    //     gainNode.gain.value = 1;
+    //     mute.id = "";
+    //     mute.innerHTML = "Mute";
+    //   }
+    // }
 }
 
     render(){
@@ -269,15 +269,15 @@ class AudioVisualizer extends React.Component {
       return(
 
 
-            <div>
+
               <div className="wrapper">
 
-                <canvas className="visualizer" width="100" height="200"></canvas> 
+                <canvas className="visualizer" width="100" height="200"></canvas>
 
-                <form className="controls">
-                 
+                {/* <form className="controls">
+
                   <div>
-                    <label for="visual">Visualizer setting</label>
+                    <label htmlFor="visual">Visualizer setting</label>
                     <select id="visual" name="visual">
                       <option value="sinewave">Sinewave</option>
                       <option value="frequencybars" selected>Frequency bars</option>
@@ -287,13 +287,11 @@ class AudioVisualizer extends React.Component {
                   <div>
                     <a className="mute">Mute</a>
                   </div>
-                </form>
+                </form> */}
 
 
               </div>
 
-              
-            </div>
         )
     }
 }

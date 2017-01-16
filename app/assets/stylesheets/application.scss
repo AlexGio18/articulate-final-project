@@ -6,6 +6,14 @@ body {
   color: #b3aca7;
 }
 
+div.wrapper {
+  padding-top: 50px;
+}
+
+canvas.visualizer{
+  height: 100px;
+}
+
 .result-history {
   padding: 30px;
 }
@@ -17,12 +25,10 @@ a.results-stylings {
 div.results-stylings {
   background-color: #D3D3D3;
 }
-.container-padding {
-  margin-top: 100px;
-}
 
 .starter-template {
-  padding: 40px 15px;
+  padding-top: 0px;
+  padding-left: 40px 15px;
   text-align: center;
 }
 

@@ -3,10 +3,16 @@ class WebSpeech extends React.Component {
   constructor(){
     super();
     this.state = {
-      emotion_data: [],
-      language_data: [],
-      social_data: [],
+      resultData: {},
     }
+
+    this.getResultData = this.getResultData.bind(this)
+  }
+
+  getResultData(response){
+    this.setState({
+      resultData: response
+    })
   }
 
   componentDidMount() {
@@ -39,9 +45,7 @@ class WebSpeech extends React.Component {
         url: "/users/"+ userID +"/speech_results",
         method: "POST",
         data: "text="+finalTranscript+"&duration="+duration+"&wpm="+(finalTranscript.split(' ').length / (duration / 1000 / 60))
-      }).done(function(response){
-        console.log(response)
-      })
+      }).done(this.getResultData)
 
       $(resultsContainer).text(finalTranscript)
     }
