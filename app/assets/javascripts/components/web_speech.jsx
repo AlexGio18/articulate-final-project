@@ -16,6 +16,9 @@ class WebSpeech extends React.Component {
     let finalTranscript = ''
     let resultsContainer = document.getElementById('resultsContainer')
     let altsContainer = document.getElementById('altsContainer')
+    let startTime = 0
+    let endTime = 0
+    let duration = 0
 
     var recognition = new webkitSpeechRecognition()
     recognition.continuous = true
@@ -24,11 +27,14 @@ class WebSpeech extends React.Component {
     recognition.maxAlternatives = 1
 
     recognition.onstart = function() {
+      startTime = new Date().getTime()
       console.log("recording")
     }
 
     recognition.onend = function() {
-
+      endTime = new Date().getTime()
+      duration = endTime - startTime
+      console.log(duration)
       $.ajax({
         url: "/users/"+ userID +"/speech_results",
         method: "POST",
@@ -49,8 +55,11 @@ class WebSpeech extends React.Component {
       let interimTranscript = ''
       for (var i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
+          let interimTime = new Date().getTime()
+          duration = interimTime - startTime
           finalTranscript += event.results[i][0].transcript
           console.log(finalTranscript)
+          $('.wpmContainer').text("Current WPM: " + (finalTranscript.split(' ').length / (duration / 1000 / 60)))
         } else {
           console.log("results so far: " + event.results[i][0].transcript)
         }
@@ -77,7 +86,7 @@ class WebSpeech extends React.Component {
     return (
       <div>
         <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-        <div id="altsContainer"></div>
+        <div className="wpmContainer"></div>
         <div className="container results" id="resultsContainer"></div>
       </div>
     )
