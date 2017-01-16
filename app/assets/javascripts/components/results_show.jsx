@@ -8,20 +8,24 @@ class ResultsShow extends React.Component{
   }
 
   componentWillMount() {
-
+    debugger
+  if (this.props.resultData === {}){
     $.ajax({
       url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
     })
     .done(this.getResult)
+
+  }else{
+    this.getResult(this.props.resultData)
   }
+    
+}
 
   getResult(response) {
     this.setState({
       result_data: response
     })
   }
-
-
 
   render(){
     return(
