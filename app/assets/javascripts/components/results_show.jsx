@@ -31,6 +31,8 @@ class ResultsShow extends React.Component{
 
           {this.state.result_data.taxonomies && <Taxonomies taxonomies={this.state.result_data.taxonomies} />}
 
+          {this.state.result_data.filler_words && <FillerWords fillers={this.state.result_data.filler_words }/>}
+
         <div id="chart">
           <BubbleChart userID={this.props.current_user.id}/>
         </div>

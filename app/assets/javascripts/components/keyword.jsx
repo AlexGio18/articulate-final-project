@@ -9,7 +9,7 @@ class Keyword extends React.Component {
         <h4>text: {this.props.keyword.text}</h4>
         <p>relevance: {this.props.keyword.relevance}</p>
         <p>sentiment: {this.props.keyword.sentiment_score}</p>
-        <p></p>
+        <p>count: {this.props.keyword.count}</p>
       </div>
     )
   }
