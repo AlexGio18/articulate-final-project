@@ -47,6 +47,8 @@ class WebSpeech extends React.Component {
 
     recognition.onend = function() {
       endTime = new Date().getTime()
+      $("#time").slideUp()
+      $(".btn-primary").slideUp()
       duration = endTime - startTime
       let data = {
         speech_result: {

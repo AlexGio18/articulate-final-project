@@ -31,7 +31,7 @@ class Timer extends React.Component{
   render(){
     return(
       <div>
-        <h2 ><time>00:00:00</time></h2>
+        <h2 id="time" ><time>00:00:00</time></h2>
       </div>
     )
   }
