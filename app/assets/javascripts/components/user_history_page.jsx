@@ -4,27 +4,24 @@ class History extends React.Component {
     super();
 
     this.state = {
-      history: [{ "transcript": "HELLO",
-                  "created_at": "10/15/16"},
-                  {"transcript": "hi there",
-                    "created_at": "11/23/16"}]
+      history: []
     }
 
-    // this.getHistory = this.getHistory.bind(this)
+    this.getHistory = this.getHistory.bind(this)
   }
 
   componentDidMount() {
-    // let userID = this.props.current_user.id
-    // $.ajax({
-    //   url: "/users/"+userID+"/speech_results"
-    // }).done(this.getHistory)
+    let userID = this.props.current_user.id
+    $.ajax({
+      url: "/users/"+userID+"/speech_results"
+    }).done(this.getHistory)
   }
 
-  // getHistory(response) {
-  //   this.setState({
-  //     history: response
-  //   })
-  // }
+  getHistory(response) {
+    this.setState({
+      history: response
+    })
+  }
 
   render(){
 
