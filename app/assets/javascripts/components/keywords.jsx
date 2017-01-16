@@ -10,7 +10,6 @@ class Keywords extends React.Component {
         {this.props.keywords.map( (keyword, i) =>
           <Keyword keyword={keyword} key={i} />
         )}
-
       </div>
     )
   }

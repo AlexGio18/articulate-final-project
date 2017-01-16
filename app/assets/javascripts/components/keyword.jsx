@@ -5,8 +5,8 @@ class Keyword extends React.Component {
 
   render() {
     return(
-      <div id="keyword">
-        <p>text: {this.props.keyword.text}</p>
+      <div className="keyword">
+        <h4>text: {this.props.keyword.text}</h4>
         <p>relevance: {this.props.keyword.relevance}</p>
         <p>sentiment: {this.props.keyword.sentiment_score}</p>
         <p></p>
