@@ -22,12 +22,18 @@ class ResultsShow extends React.Component{
 
   render(){
     return(
-      <div>
-        <div id="chart">
-          <BubbleChart/>
-        </div>
+      <div id="results-container">
+
         <div id="keywords">
           {this.state.result_data.keywords && <Keywords keywords={this.state.result_data.keywords} />}
+        </div>
+
+        <div id="taxonomies">
+          {this.state.result_data.taxonomies && <Taxonomies keywords={this.state.result_data.taxonomies}}
+        </div>
+
+        <div id="chart">
+          <BubbleChart/>
         </div>
         <div id="speech-container">
           <div id="speech">
