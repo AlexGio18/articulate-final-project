@@ -4,7 +4,6 @@ class Keyword extends React.Component {
   }
 
   render() {
-    debugger
     return(
       <div id="keyword">
         <p>text: {this.props.keyword.text}</p>
