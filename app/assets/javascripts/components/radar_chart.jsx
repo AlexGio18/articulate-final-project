@@ -4,7 +4,7 @@ class RadarChart extends React.Component {
     this.state = {
       resultData: {}
     }
-
+    this.getResultData = this.getResultData.bind(this)
     this.renderRadarChart = this.renderRadarChart.bind(this)
   }
 
@@ -22,16 +22,18 @@ class RadarChart extends React.Component {
         // data: $.param(data)
       }).done(function(response){
         that.getResultData(response)
-        console.log(response)
+        that.renderRadarChart(that.state)
       })
 
-      that.renderRadarChart()
   }
 
-  renderRadarChart(){
+  renderRadarChart(data){
     let ctx = document.getElementById("radarChart").getContext("2d");
+    let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(0,0,0,1)');
+      gradient.addColorStop(1, 'rgba(250,174,50,0)');
     let radarData = {
-    labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+    labels: ["Anger", "Disgust", "Fear", "Joy", "Sadness"],
     datasets: [
         {
             label: "My First dataset",
@@ -41,18 +43,17 @@ class RadarChart extends React.Component {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [65, 59, 90, 81, 56, 55, 40]
+            data: [this.state.resultData.doc_emotion.anger * 100, this.state.resultData.doc_emotion.disgust * 100, this.state.resultData.doc_emotion.fear * 100, this.state.resultData.doc_emotion.joy * 100,this.state.resultData.doc_emotion.sadness * 100]
         },
         {
-            label: "My Second dataset",
-            backgroundColor: "rgba(255,99,132,0.2)",
-            borderColor: "rgba(255,99,132,1)",
-            pointBackgroundColor: "rgba(255,99,132,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(255,99,132,1)",
-            data: [28, 48, 40, 19, 96, 27, 100]
-        }
+            backgroundColor: gradient,
+            // borderColor: "rgba(179,181,198,1)",
+            // pointBackgroundColor: "rgba(179,181,198,1)",
+            // pointBorderColor: "#fff",
+            // pointHoverBackgroundColor: "#fff",
+            // pointHoverBorderColor: "rgba(179,181,198,1)",
+            data: [90, 90, 90, 90, 90]
+        },
     ]
 };
       let myPieChart = new Chart(ctx, {
@@ -64,7 +65,7 @@ class RadarChart extends React.Component {
   render(){
 
     return(
-      <canvas className="radar-chart" id="radarChart"></canvas>
+      <div className="radar-chart container"><canvas id="radarChart"></canvas></div>
     )
   }
 }
