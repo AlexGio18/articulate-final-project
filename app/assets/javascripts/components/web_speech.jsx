@@ -10,13 +10,14 @@ class WebSpeech extends React.Component {
   }
 
   getResultData(response){
+    
     this.setState({
       resultData: response
     })
   }
 
   componentDidMount() {
-
+    let that = this
     let userID = this.props.currentUser.id
 
     let finalTranscript = ''
@@ -40,12 +41,23 @@ class WebSpeech extends React.Component {
     recognition.onend = function() {
       endTime = new Date().getTime()
       duration = endTime - startTime
+      let data = {
+        speech_result: {
+          transcript: finalTranscript,
+          duration: duration,
+          wpm: (finalTranscript.split(' ').length / (duration / 1000 / 60))
+        }
+      }
       console.log(duration)
+      console.log(data)
+      
       $.ajax({
-        url: "/users/"+ userID +"/speech_results",
-        method: "POST",
-        data: "text="+finalTranscript+"&duration="+duration+"&wpm="+(finalTranscript.split(' ').length / (duration / 1000 / 60))
-      }).done(this.getResultData)
+        url: "/json_test",
+        method: "GET"
+        // data: $.param(data)
+      }).done(function(response){
+        that.getResultData(response)
+      })
 
       $(resultsContainer).text(finalTranscript)
     }
@@ -86,12 +98,13 @@ class WebSpeech extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
         <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
         <div className="wpmContainer"></div>
-        <div className="container results" id="resultsContainer"></div>
+        <div className="container results" id="resultsContainer">{this.state.resultData.transcript && <ResultsShow resultData={this.state.resultData} current_user={this.props.currentUser}/>}</div>
       </div>
     )
   }
