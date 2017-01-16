@@ -213,7 +213,7 @@ class AudioVisualizer extends React.Component {
       //   canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
       // }
 
-    }uju
+    }
 
     // function voiceChange() {
     //
