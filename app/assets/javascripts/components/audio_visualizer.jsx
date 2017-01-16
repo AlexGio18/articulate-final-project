@@ -109,7 +109,7 @@ class AudioVisualizer extends React.Component {
              gainNode.connect(audioCtx.destination);
 
              visualize();
-             voiceChange();
+            //  voiceChange();
 
           },
 
@@ -127,55 +127,55 @@ class AudioVisualizer extends React.Component {
       HEIGHT = canvas.height;
 
 
-      var visualSetting = visualSelect.value;
-      console.log(visualSetting);
+      // var visualSetting = visualSelect.value;
+      // console.log(visualSetting);
 
-      if(visualSetting == "sinewave") {
-        analyser.fftSize = 2048;
-        var bufferLength = analyser.fftSize;
-        console.log(bufferLength);
-        var dataArray = new Uint8Array(bufferLength);
+      // if(visualSetting == "sinewave") {
+      //   analyser.fftSize = 2048;
+      //   var bufferLength = analyser.fftSize;
+      //   console.log(bufferLength);
+      //   var dataArray = new Uint8Array(bufferLength);
+      //
+      //   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+      //
+      //   function draw() {
+      //
+      //     drawVisual = requestAnimationFrame(draw);
+      //
+      //     analyser.getByteTimeDomainData(dataArray);
+      //
+      //     canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+      //     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+      //
+      //     canvasCtx.lineWidth = 2;
+      //     canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+      //
+      //     canvasCtx.beginPath();
+      //
+      //     var sliceWidth = WIDTH * 1.0 / bufferLength;
+      //     var x = 0;
+      //
+      //     for(var i = 0; i < bufferLength; i++) {
+      //
+      //       var v = dataArray[i] / 128.0;
+      //       var y = v * HEIGHT/2;
+      //
+      //       if(i === 0) {
+      //         canvasCtx.moveTo(x, y);
+      //       } else {
+      //         canvasCtx.lineTo(x, y);
+      //       }
+      //
+      //       x += sliceWidth;
+      //     }
+      //
+      //     canvasCtx.lineTo(canvas.width, canvas.height/2);
+      //     canvasCtx.stroke();
+      //   };
+      //
+      //   draw();
 
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-
-        function draw() {
-
-          drawVisual = requestAnimationFrame(draw);
-
-          analyser.getByteTimeDomainData(dataArray);
-
-          canvasCtx.fillStyle = 'rgb(200, 200, 200)';
-          canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-          canvasCtx.lineWidth = 2;
-          canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
-
-          canvasCtx.beginPath();
-
-          var sliceWidth = WIDTH * 1.0 / bufferLength;
-          var x = 0;
-
-          for(var i = 0; i < bufferLength; i++) {
-
-            var v = dataArray[i] / 128.0;
-            var y = v * HEIGHT/2;
-
-            if(i === 0) {
-              canvasCtx.moveTo(x, y);
-            } else {
-              canvasCtx.lineTo(x, y);
-            }
-
-            x += sliceWidth;
-          }
-
-          canvasCtx.lineTo(canvas.width, canvas.height/2);
-          canvasCtx.stroke();
-        };
-
-        draw();
-
-      } else if(visualSetting == "frequencybars") {
+      // } else if(visualSetting == "frequencybars") {
         analyser.fftSize = 256;
         var bufferLength = analyser.frequencyBinCount;
         console.log(bufferLength);
@@ -207,11 +207,11 @@ class AudioVisualizer extends React.Component {
 
         draw();
 
-      } else if(visualSetting == "off") {
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-        canvasCtx.fillStyle = "red";
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-      }
+      // } else if(visualSetting == "off") {
+      //   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+      //   canvasCtx.fillStyle = "red";
+      //   canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+      // }
 
     }
 
@@ -269,7 +269,7 @@ class AudioVisualizer extends React.Component {
       return(
 
 
-            <div>
+
               <div className="wrapper">
 
                 <canvas className="visualizer" width="100" height="200"></canvas>
@@ -292,8 +292,6 @@ class AudioVisualizer extends React.Component {
 
               </div>
 
-
-            </div>
         )
     }
 }
