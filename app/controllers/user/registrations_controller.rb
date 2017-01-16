@@ -8,7 +8,20 @@ class User::RegistrationsController < Devise::RegistrationsController
 
     # POST /resource
     def create
-      super
+      if current_user && current_user.guest?
+        @user = current_user
+        binding.pry
+        @user.update_attributes(sign_up_params)
+        if @user.save
+          current_user.move_to(@user)
+          session[:user_id] = @user.id
+          session[:guest_user_id] = nil
+          redirect_to root_url
+        end
+      else
+        super
+        @user = User.new(sign_up_params)
+      end
     end
 
     # GET /resource/edit
