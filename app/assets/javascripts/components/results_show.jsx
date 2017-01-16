@@ -24,13 +24,9 @@ class ResultsShow extends React.Component{
     return(
       <div id="results-container">
 
-        <div id="keywords">
           {this.state.result_data.keywords && <Keywords keywords={this.state.result_data.keywords} />}
-        </div>
 
-        <div id="taxonomies">
-          {this.state.result_data.taxonomies && <Taxonomies keywords={this.state.result_data.taxonomies}}
-        </div>
+          {this.state.result_data.taxonomies && <Taxonomies taxonomies={this.state.result_data.taxonomies} />}
 
         <div id="chart">
           <BubbleChart/>
