@@ -1,7 +1,7 @@
 class AudioVisualizer extends React.Component {
 
   componentDidMount(){
-        
+
     navigator.getUserMedia = (navigator.getUserMedia ||
                               navigator.webkitGetUserMedia ||
                               navigator.mozGetUserMedia ||
@@ -17,7 +17,7 @@ class AudioVisualizer extends React.Component {
 
     // grab the mute button to use below
 
-    var mute = document.querySelector('.mute');
+    // var mute = document.querySelector('.mute');
 
     //set up the different audio nodes we will use for the app
 
@@ -156,7 +156,7 @@ class AudioVisualizer extends React.Component {
           var x = 0;
 
           for(var i = 0; i < bufferLength; i++) {
-       
+
             var v = dataArray[i] / 128.0;
             var y = v * HEIGHT/2;
 
@@ -215,28 +215,28 @@ class AudioVisualizer extends React.Component {
 
     }
 
-    function voiceChange() {
-      
-      distortion.oversample = '4x';
-      biquadFilter.gain.value = 0;
-      convolver.buffer = undefined;
-
-      var voiceSetting = voiceSelect.value;
-      console.log(voiceSetting);
-
-      if(voiceSetting == "distortion") {
-        distortion.curve = makeDistortionCurve(400);
-      } else if(voiceSetting == "convolver") {
-        convolver.buffer = concertHallBuffer;
-      } else if(voiceSetting == "biquad") {
-        biquadFilter.type = "lowshelf";
-        biquadFilter.frequency.value = 1000;
-        biquadFilter.gain.value = 25;
-      } else if(voiceSetting == "off") {
-        console.log("Voice settings turned off");
-      }
-
-    }
+    // function voiceChange() {
+    //
+    //   distortion.oversample = '4x';
+    //   biquadFilter.gain.value = 0;
+    //   convolver.buffer = undefined;
+    //
+    //   var voiceSetting = voiceSelect.value;
+    //   console.log(voiceSetting);
+    //
+    //   if(voiceSetting == "distortion") {
+    //     distortion.curve = makeDistortionCurve(400);
+    //   } else if(voiceSetting == "convolver") {
+    //     convolver.buffer = concertHallBuffer;
+    //   } else if(voiceSetting == "biquad") {
+    //     biquadFilter.type = "lowshelf";
+    //     biquadFilter.frequency.value = 1000;
+    //     biquadFilter.gain.value = 25;
+    //   } else if(voiceSetting == "off") {
+    //     console.log("Voice settings turned off");
+    //   }
+    //
+    // }
 
     // event listeners to change visualize and voice settings
 
@@ -245,23 +245,23 @@ class AudioVisualizer extends React.Component {
       visualize();
     }
 
-    voiceSelect.onchange = function() {
-      voiceChange();
-    }
+    // voiceSelect.onchange = function() {
+    //   voiceChange();
+    // }
 
-    mute.onclick = voiceMute;
-
-    function voiceMute() {
-      if(mute.id == "") {
-        gainNode.gain.value = 0;
-        mute.id = "activated";
-        mute.innerHTML = "Unmute";
-      } else {
-        gainNode.gain.value = 1;
-        mute.id = "";    
-        mute.innerHTML = "Mute";
-      }
-    }
+    // mute.onclick = voiceMute;
+    //
+    // function voiceMute() {
+    //   if(mute.id == "") {
+    //     gainNode.gain.value = 0;
+    //     mute.id = "activated";
+    //     mute.innerHTML = "Unmute";
+    //   } else {
+    //     gainNode.gain.value = 1;
+    //     mute.id = "";
+    //     mute.innerHTML = "Mute";
+    //   }
+    // }
 }
 
     render(){
@@ -272,12 +272,12 @@ class AudioVisualizer extends React.Component {
             <div>
               <div className="wrapper">
 
-                <canvas className="visualizer" width="100" height="200"></canvas> 
+                <canvas className="visualizer" width="100" height="200"></canvas>
 
-                <form className="controls">
-                 
+                {/* <form className="controls">
+
                   <div>
-                    <label for="visual">Visualizer setting</label>
+                    <label htmlFor="visual">Visualizer setting</label>
                     <select id="visual" name="visual">
                       <option value="sinewave">Sinewave</option>
                       <option value="frequencybars" selected>Frequency bars</option>
@@ -287,12 +287,12 @@ class AudioVisualizer extends React.Component {
                   <div>
                     <a className="mute">Mute</a>
                   </div>
-                </form>
+                </form> */}
 
 
               </div>
 
-              
+
             </div>
         )
     }

@@ -35,13 +35,10 @@ class TextForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label>
-              Text:
-            </label>
           </div>
           <textarea rows="10" cols="100" value={this.state.value} ref='textBox' onChange={this.handleChange} />
           <div>
-            <input type="submit" value="Analyze" />
+            <input type="submit" className="btn btn-primary btn-lg record-button" value="Analyze" />
           </div>
         </form>
       </div>

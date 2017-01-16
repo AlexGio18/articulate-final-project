@@ -3,10 +3,16 @@ class WebSpeech extends React.Component {
   constructor(){
     super();
     this.state = {
-      emotion_data: [],
-      language_data: [],
-      social_data: [],
+      resultData: {},
     }
+
+    this.getResultData = this.getResultData.bind(this)
+  }
+
+  getResultData(response){
+    this.setState({
+      resultData: response
+    })
   }
 
   componentDidMount() {
@@ -33,9 +39,7 @@ class WebSpeech extends React.Component {
         url: "/users/"+ userID +"/speech_results",
         method: "POST",
         data: "text="+finalTranscript
-      }).done(function(response){
-        console.log(response)
-      })
+      }).done(this.getResultData)
 
       $(resultsContainer).text(finalTranscript)
     }
@@ -78,7 +82,7 @@ class WebSpeech extends React.Component {
       <div>
         <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
         <div id="altsContainer"></div>
-        <div className="container results" id="resultsContainer"></div>
+        <div className="container" id="resultsContainer"></div>
       </div>
     )
   }
