@@ -7,7 +7,6 @@ class Result extends React.Component {
 
   handleClick(event){
     localStorage.setItem("id", this.refs.href.id)
-    debugger
   }
 
   render(){

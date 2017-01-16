@@ -10,7 +10,7 @@ class ResultsShow extends React.Component{
   componentWillMount() {
 
     $.ajax({
-      url: '/json_test'
+      url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
     })
     .done(this.getResult)
   }
@@ -20,6 +20,8 @@ class ResultsShow extends React.Component{
       result_data: response
     })
   }
+
+
 
   render(){
     return(
@@ -34,7 +36,7 @@ class ResultsShow extends React.Component{
         </div>
         <div id="speech-container">
           <div id="speech">
-            <SpeechText/>
+            {this.state.result_data.transcript && <SpeechText transcript={this.state.result_data.transcript}/>}
           </div>
         </div>
       </div>

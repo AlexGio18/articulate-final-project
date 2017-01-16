@@ -8,6 +8,7 @@ class SpeechText extends React.Component{
         $("#speech-text").hide();
     }
   }
+  
   constructor(){
     super()
     this.state = {
@@ -15,25 +16,17 @@ class SpeechText extends React.Component{
     }
     this.handleSpeechDisplay = this.handleSpeechDisplay.bind(this)
   }
+
   componentDidMount(){
     $("#speech-text").hide()
-    var that = this
-    $.ajax({
-      url: '/json_test',
-      dataType: "json"
-    }).done(function(response){
-      that.setState({
-        speech: response.transcript
-      })
-    })
-
   }
+
   render(){
     return(
         <div className="dropdown">
           <button className="btn btn-primary" type="button" data-toggle="dropdown" onClick={this.handleSpeechDisplay}>See Speech Text
           <span className="caret"></span></button>
-          <p id ="speech-text">{this.state.speech}</p>
+          <p id ="speech-text">{this.props.transcript}</p>
       </div>
     )
   }
