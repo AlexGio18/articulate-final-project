@@ -43,8 +43,9 @@ class SpeechResultsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    tone_response = get_tone(params[:text])
-    speech_result = SpeechResult.new(transcript: params[:text], user: user, duration: params[:duration], wpm: params[:wpm])
+    tone_response = get_tone(params[:speech_result][:transcript])
+    speech_result = SpeechResult.new(speech_result_params)
+    speech_result.user = current_user
     speech_result.save
 
     # Parsing tone analyzer
@@ -69,7 +70,7 @@ class SpeechResultsController < ApplicationController
 
     # Parsing Alchemy
 
-    alchemy_response = get_alchemy_results(params[:text])
+    alchemy_response = get_alchemy_results(params[:speech_result][:transcript])
 
     alchemy_response["taxonomies"].map do |taxonomy|
       Taxonomy.create(speech_result: speech_result, confident: taxonomy["confident"], label: taxonomy["label"], score: taxonomy["score"])
@@ -85,6 +86,10 @@ class SpeechResultsController < ApplicationController
 
 
   protected
+
+    def speech_result_params
+      params.require(:speech_result).permit(:duration, :wpm, :user_id, :transcript)
+    end
 
     def authorized?(user)
       user == current_user

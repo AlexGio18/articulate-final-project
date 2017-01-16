@@ -40,11 +40,19 @@ class WebSpeech extends React.Component {
     recognition.onend = function() {
       endTime = new Date().getTime()
       duration = endTime - startTime
+      let data = {
+        speech_result: {
+          transcript: finalTranscript,
+          duration: duration,
+          wpm: (finalTranscript.split(' ').length / (duration / 1000 / 60))
+        }
+      }
       console.log(duration)
+      console.log(data)
       $.ajax({
         url: "/users/"+ userID +"/speech_results",
         method: "POST",
-        data: "text="+finalTranscript+"&duration="+duration+"&wpm="+(finalTranscript.split(' ').length / (duration / 1000 / 60))
+        data: $.param(data)
       }).done(this.getResultData)
 
       $(resultsContainer).text(finalTranscript)
