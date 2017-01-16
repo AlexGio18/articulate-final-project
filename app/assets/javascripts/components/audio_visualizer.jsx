@@ -240,10 +240,10 @@ class AudioVisualizer extends React.Component {
 
     // event listeners to change visualize and voice settings
 
-    visualSelect.onchange = function() {
-      window.cancelAnimationFrame(drawVisual);
-      visualize();
-    }
+    // visualSelect.onchange = function() {
+    //   window.cancelAnimationFrame(drawVisual);
+    //   visualize();
+    // }
 
     // voiceSelect.onchange = function() {
     //   voiceChange();

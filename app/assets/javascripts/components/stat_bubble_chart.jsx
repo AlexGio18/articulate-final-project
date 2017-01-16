@@ -99,7 +99,7 @@ class BubbleChart extends React.Component {
   componentDidMount(){
     var that = this
     $.ajax({
-      url: '/json_test',
+      url: "/users/"+this.props.userID+"/speech_results/"+localStorage.getItem("id"),
       dataType: "json"
     }).done(function(response){
       that.setState({
