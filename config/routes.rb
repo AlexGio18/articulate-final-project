@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   post "/results", to: "static#results"
   get '/json_test', to: "speech_results#test"
 
-  resources :users do
-    resources :speech_results
+  resources :users, only: [] do
+    resources :speech_results, only: [:index, :show, :create]
   end
 
   post "/static" => "static#create"
