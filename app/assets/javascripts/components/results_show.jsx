@@ -8,6 +8,7 @@ class ResultsShow extends React.Component{
   }
 
   componentWillMount() {
+
     $.ajax({
       url: '/json_test'
     })
@@ -29,7 +30,7 @@ class ResultsShow extends React.Component{
           {this.state.result_data.taxonomies && <Taxonomies taxonomies={this.state.result_data.taxonomies} />}
 
         <div id="chart">
-          <BubbleChart/>
+          <BubbleChart userID={this.props.current_user.id}/>
         </div>
         <div id="speech-container">
           <div id="speech">
