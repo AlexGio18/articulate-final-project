@@ -48,9 +48,8 @@ ActiveRecord::Schema.define(version: 20170115194844) do
 
   create_table "keywords", force: :cascade do |t|
     t.string   "text"
-    t.string   "sentiment_type"
-    t.float    "sentiment_score"
-    t.float    "relevance"
+    t.string   "sentiment"
+    t.float    "relavance"
     t.integer  "speech_result_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170115194844) do
   end
 
   create_table "taxonomies", force: :cascade do |t|
-    t.string   "label"
+    t.string   "label_heirarchy"
     t.float    "score"
     t.string   "confident"
     t.integer  "speech_result_id"

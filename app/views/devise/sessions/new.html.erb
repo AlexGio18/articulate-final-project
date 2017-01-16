@@ -3,17 +3,14 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin spacing"}) do |f| %>
     <%= devise_error_messages! %>
 
-    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %>
+    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %></br>
 
     <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
 
-    <% if devise_mapping.rememberable? %>
-      <label>
-        <%= f.check_box :remember_me, label: false %>
-        Remember me
-      </label>
+    <% if devise_mapping.rememberable? %></br>
+      <label><%= f.check_box :remember_me, label: false %> Remember me </label></br>
     <% end %>
 
-    <%= f.button "Sign in", class: 'btn btn-secondary minimalist-button' %>
+    <%= f.button "Sign in", class: 'btn btn-secondary minimalist-button' %></br>
   <% end %>
 </div>
