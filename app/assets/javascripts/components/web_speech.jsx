@@ -3,6 +3,7 @@ class WebSpeech extends React.Component {
   constructor(){
     super();
     this.state = {
+      display_booleans: false,
       resultData: {},
     }
 
@@ -10,7 +11,7 @@ class WebSpeech extends React.Component {
   }
 
   getResultData(response){
-    
+
     this.setState({
       resultData: response
     })
@@ -34,6 +35,12 @@ class WebSpeech extends React.Component {
     recognition.maxAlternatives = 1
 
     recognition.onstart = function() {
+      that.setState({
+        display_booleans: true,
+      })
+      $("#just-play").hide()
+      $("#text-analyzer").hide()
+      $("#recording-components").show()
       startTime = new Date().getTime()
       console.log("recording")
     }
@@ -50,7 +57,7 @@ class WebSpeech extends React.Component {
       }
       console.log(duration)
       console.log(data)
-      
+
       $.ajax({
         url: "/json_test",
         method: "GET"
@@ -102,9 +109,16 @@ class WebSpeech extends React.Component {
   render() {
     return (
       <div>
-        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-        <div className="wpmContainer"></div>
-        <div className="container results" id="resultsContainer">{this.state.resultData.transcript && <ResultsShow resultData={this.state.resultData} current_user={this.props.currentUser}/>}</div>
+      {this.state.display_booleans && <Timer />}
+      <h1 id="just-play">Just Press Start.</h1>
+      <a href="#textAnalyzer" id="text-analyzer"><p>You can also analyze text(below)</p></a>
+
+        <div>
+          <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
+          <div className="wpmContainer"></div>
+          <div className="container results" id="resultsContainer">{this.state.resultData.transcript && <ResultsShow resultData={this.state.resultData} current_user={this.props.currentUser}/>}</div>
+              {this.state.display_booleans && <AudioVisualizer  /> }
+        </div>
       </div>
     )
   }
