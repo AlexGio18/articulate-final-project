@@ -141,7 +141,7 @@ Five score years ago, a great American, in whose symbolic shadow we stand today,
   def create
     user = User.find(params[:user_id])
     tone_response = get_tone(params[:text])
-    speech_result = SpeechResult.new(transcript: params[:text], user: user)
+    speech_result = SpeechResult.new(transcript: params[:text], user: user, duration: params[:duration], wpm: params[:wpm])
     speech_result.save
 
     binding.pry
