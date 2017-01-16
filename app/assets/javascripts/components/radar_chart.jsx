@@ -64,7 +64,7 @@ class RadarChart extends React.Component {
   render(){
 
     return(
-      <canvas id="radarChart"></canvas>
+      <canvas className="radar-chart" id="radarChart"></canvas>
     )
   }
 }
