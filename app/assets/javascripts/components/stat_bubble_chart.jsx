@@ -5,6 +5,12 @@ class BubbleChart extends React.Component {
     if($(event.target).context.innerHTML === " Social "){
       var chart = new CanvasJS.Chart("chartContainer",
         {
+      axisY: {
+  			valueFormatString: " ",
+  		},
+  		axisX: {
+  			valueFormatString: " ",
+  		},
        data: [
        {
          type: "bubble",
@@ -25,6 +31,12 @@ class BubbleChart extends React.Component {
     else if ($(event.target).context.innerHTML === " Emotional ") {
       var chart = new CanvasJS.Chart("chartContainer",
         {
+      axisY: {
+  			valueFormatString: " ",
+  		},
+  		axisX: {
+  			valueFormatString: " ",
+  		},
        data: [
        {
          type: "bubble",
@@ -46,6 +58,12 @@ class BubbleChart extends React.Component {
     else if ($(event.target).context.innerHTML === " Language "){
       var chart = new CanvasJS.Chart("chartContainer",
         {
+      axisY: {
+  			valueFormatString: " ",
+  		},
+  		axisX: {
+  			valueFormatString: " ",
+  		},    
        data: [
        {
          type: "bubble",
@@ -96,6 +114,12 @@ class BubbleChart extends React.Component {
   createChartAll(){
     var chart = new CanvasJS.Chart("chartContainer",
       {
+    axisY: {
+			valueFormatString: " ",
+		},
+		axisX: {
+			valueFormatString: " ",
+		},
     //    zoomEnabled: true,
     //    animationEnabled: true,
     //    title:{
