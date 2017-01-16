@@ -1,9 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html {
+  width: 100%;
+  background-color: #fff;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   color: #b3aca7;
+  width:960px;
+  margin: 65px auto;
+  background-color: #eee;
+  padding: 0px 10px;
 }
 
 div.wrapper {
