@@ -38,7 +38,7 @@ class WebSpeech extends React.Component {
       $.ajax({
         url: "/users/"+ userID +"/speech_results",
         method: "POST",
-        data: "text="+finalTranscript
+        data: "text="+finalTranscript+"&duration="+duration+"&wpm="+(finalTranscript.split(' ').length / (duration / 1000 / 60))
       }).done(function(response){
         console.log(response)
       })
