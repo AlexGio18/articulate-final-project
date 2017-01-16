@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/get_token", to: "static#token"
   post "/results", to: "static#results"
   get '/json_test', to: "speech_results#test"
+  get '/radar_chart', to: "static#radar_chart"
 
   resources :users, only: [] do
     resources :speech_results, only: [:index, :show, :create]

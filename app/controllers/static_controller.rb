@@ -81,4 +81,7 @@ class StaticController < ApplicationController
     get_token
   end
 
+  def radar_chart
+  end
+
 end
