@@ -43,7 +43,9 @@ class RadarChart extends React.Component {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [this.state.resultData.doc_emotion.anger * 100, this.state.resultData.doc_emotion.disgust * 100, this.state.resultData.doc_emotion.fear * 100, this.state.resultData.doc_emotion.joy * 100,this.state.resultData.doc_emotion.sadness * 100]
+            data: [this.state.resultData.doc_emotion.anger * 100, this.state.resultData.doc_emotion.disgust * 100, this.state.resultData.doc_emotion.fear * 100,
+              (this.state.resultData.doc_emotion.joy * 100).toFixed(2),
+              (this.state.resultData.doc_emotion.sadness * 100).toFixed(2)]
         },
         {
             backgroundColor: gradient,
