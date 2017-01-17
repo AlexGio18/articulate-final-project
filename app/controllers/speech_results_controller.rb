@@ -7,7 +7,7 @@ class SpeechResultsController < ApplicationController
     user = User.find(params[:user_id])
 
     if authorized?(user)
-      render json: user.speech_results, include: ['speech_result']
+      render json: user.speech_results.order(id: :desc), include: ['speech_result']
     else
       render json: { errors: "Forbidden" }, status: 403
     end
