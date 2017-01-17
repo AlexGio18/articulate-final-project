@@ -6,7 +6,7 @@ class Result extends React.Component {
   }
 
   handleClick(event){
-    localStorage.setItem("id", this.refs.href.id)
+    localStorage.setItem("speecId", this.refs.href.id)
   }
 
   render(){
