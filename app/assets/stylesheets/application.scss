@@ -1,10 +1,76 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* Custom styles */
+html {
+  width: 100%;
+  background-color: #fff;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   color: #b3aca7;
+  max-width:960px;
+  margin: 80px auto;
+  padding: 0px 10px;
 }
+
+.meta-results {
+  background-color: #fff;
+  padding-bottom: 30px;
+}
+
+.result-box-sm {
+  padding-left: 0px;
+  min-height:250px;
+  border: 1px #bbb solid;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.result-box-sm h1 {
+  font-size: 10em;
+  font-weight: 200;
+  letter-spacing: -10px;
+}
+
+.result-box-md {
+  padding-left: 15px;
+  min-height:250px;
+  border: 1px #bbb solid;
+  text-align: left;
+}
+
+.result-box-md h3 {
+  margin: 10px 0 0 0;
+  font-weight:light;
+  font-size: 2em;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.result-box-md h4 {
+  margin: 10px 0 0 0;
+  font-weight:light;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.result-box-text {
+  letter-spacing: 2px;
+}
+
+.navbar-inverse {
+  border-color: #bbb;
+}
+
+.taxonomy {
+  padding: 15px 0;
+}
+
+/* Not custom styles */
 
 div.wrapper {
   padding-top: 50px;
