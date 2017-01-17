@@ -28,9 +28,17 @@ class ResultsShow extends React.Component{
     return minutes+':'+seconds
   }
 
+  getTotalFiller(filler_words) {
+    filler_words.reduce(function(total,word) {
+      return total + word.count
+    }, 0)
+  }
+
 
 
   render(){
+    let total_filler = 15
+
     return(
       <div id="results-container">
         <div className="row meta-results">
@@ -41,17 +49,16 @@ class ResultsShow extends React.Component{
             </div>
           </div>
 
-          <div className="col-sm-4">
+          <div className="col-sm-5">
             <div className="result-box-sm">
               <h1>{this.getTimer(this.state.result_data.duration)}</h1>
               <span className="result-box-text">total speech duration</span>
             </div>
           </div>
 
-          <div className="col-sm-4">
-            <div className="result-box-sm">
-              <h1>{Math.round(this.state.result_data.wpm)}</h1>
-              <span className="result-box-text">words per minute</span>
+          <div className="col-sm-3">
+            <div className="result-box-sm"> {this.state.result_data.filler_words && <h1>{total_filler}</h1>}
+              <span className="result-box-text">filler words</span>
             </div>
           </div>
         </div>
