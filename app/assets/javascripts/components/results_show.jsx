@@ -8,21 +8,17 @@ class ResultsShow extends React.Component{
   }
 
   componentWillMount() {
-    if (localStorage.getItem("id")){
       $.ajax({
-        url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
+        url: "/users/1/speech_results/1"
       })
       .done(this.getResult)
-    }else{
-      localStorage.setItem("id", this.props.resultData.id)
-      this.getResult(this.props.resultData)
-    }
   }
 
   getResult(response) {
     this.setState({
       result_data: response
     })
+    console.log(response)
   }
 
 
@@ -39,11 +35,18 @@ class ResultsShow extends React.Component{
     }, 0)
   }
 
+
+
   render(){
     let total_filler = 15
 
     return(
       <div id="results-container">
+
+        <div className="evaluation">
+          {this.state.result_data.keywords && <Evaluation data={this.state.result_data} />}
+        </div>
+
         <div className="row meta-results">
           <div className="col-sm-4">
             <div className="result-box-sm">
