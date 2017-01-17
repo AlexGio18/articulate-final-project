@@ -42,7 +42,6 @@ class SpeechResultsController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
     tone_response = get_tone(params[:speech_result][:transcript])
     speech_result = SpeechResult.new(speech_result_params)
     speech_result.user = current_user
