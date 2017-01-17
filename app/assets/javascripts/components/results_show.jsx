@@ -29,17 +29,7 @@ class ResultsShow extends React.Component{
     return minutes+':'+seconds
   }
 
-  getTotalFiller(filler_words) {
-    filler_words.reduce(function(total,word) {
-      return total + word.count
-    }, 0)
-  }
-
-
-
   render(){
-    let total_filler = 15
-
     return(
       <div id="results-container">
 
@@ -63,7 +53,7 @@ class ResultsShow extends React.Component{
           </div>
 
           <div className="col-sm-3">
-            <div className="result-box-sm"> {this.state.result_data.filler_words && <h1>{total_filler}</h1>}
+            <div className="result-box-sm"> {this.state.result_data.filler_words && <FillerTotal fillers={this.state.result_data.filler_words} />}
               <span className="result-box-text">filler words</span>
             </div>
           </div>
