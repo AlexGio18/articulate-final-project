@@ -60,7 +60,7 @@ class WebSpeech extends React.Component {
       console.log(data)
 
       $.ajax({
-        url: "/users/"+this.props.currentUser.id+"/speech_results",
+        url: "/users/"+userID+"/speech_results",
         method: "POST",
         data: $.param(data)
       }).done(function(response){
