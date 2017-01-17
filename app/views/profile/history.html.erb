@@ -1,1 +1,9 @@
-<%= react_component "History", current_user: current_user %>
+<div className="container starter-template container-padding ">
+  <h1>Your History</h1>
+    <div>
+      <% @speech_results.each do |result| %>
+        <%= react_component "Result", result: result %>
+      <% end %>
+    </div>
+</div>
+<!-- <%= react_component "History", current_user: current_user %> -->
