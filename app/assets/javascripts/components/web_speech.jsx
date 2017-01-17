@@ -1,7 +1,6 @@
 class WebSpeech extends React.Component {
 
   constructor(){
-    debugger
     super();
     this.state = {
       display_booleans: false,
