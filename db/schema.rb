@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170116193317) do
   create_table "taxonomies", force: :cascade do |t|
     t.string   "label"
     t.float    "score"
-    t.string   "configit push dent"
+    t.string   "confident"
     t.integer  "speech_result_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
