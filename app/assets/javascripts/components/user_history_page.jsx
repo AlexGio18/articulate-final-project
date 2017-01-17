@@ -29,8 +29,8 @@ class History extends React.Component {
       <div className="starter-template container-padding">
         <h1>Your History</h1>
         <div>
-          {this.state.history.map((result, i) =>
-            <Result result={result} key={i} />
+          {this.state.history.map((result) =>
+            <Result result={result} key={result.id} />
           )}
         </div>
       </div>
