@@ -3,6 +3,7 @@ class WebSpeech extends React.Component {
   constructor(){
     super();
     this.state = {
+      display_booleans: false,
       resultData: {},
     }
 
@@ -16,7 +17,7 @@ class WebSpeech extends React.Component {
   }
 
   componentDidMount() {
-
+    let that = this
     let userID = this.props.currentUser.id
 
     let finalTranscript = ''
@@ -33,12 +34,20 @@ class WebSpeech extends React.Component {
     recognition.maxAlternatives = 1
 
     recognition.onstart = function() {
+      that.setState({
+        display_booleans: true,
+      })
+      $("#just-play").hide()
+      $("#text-analyzer").hide()
+      $("#recording-components").show()
       startTime = new Date().getTime()
       console.log("recording")
     }
 
     recognition.onend = function() {
       endTime = new Date().getTime()
+      $("#time").slideUp()
+      $(".btn-primary").slideUp()
       duration = endTime - startTime
       let data = {
         speech_result: {
@@ -49,12 +58,14 @@ class WebSpeech extends React.Component {
       }
       console.log(duration)
       console.log(data)
+
       $.ajax({
-        url: "/users/"+ userID +"/speech_results",
+        url: "/users/"+userID+"/speech_results",
         method: "POST",
         data: $.param(data)
-      }).done(this.getResultData)
-
+      }).done(function(response){
+        that.getResultData(response)
+      })
       $(resultsContainer).text(finalTranscript)
     }
 
@@ -83,9 +94,9 @@ class WebSpeech extends React.Component {
     startButton.addEventListener('click', function(e) {
 
       if ($(".record-button").text() === "Start"){
-        recognition.start()
         $(".record-button").text("Stop")
         $(".record-button").attr("id", "stopRec")
+        recognition.start()
       } else {
         recognition.stop()
         $(".record-button").text("Start")
@@ -94,12 +105,20 @@ class WebSpeech extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
-        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-        <div className="wpmContainer"></div>
-        <div className="container results" id="resultsContainer"></div>
+      {this.state.display_booleans && <Timer />}
+      <h1 id="just-play">Just Press Start.</h1>
+      <a href="#textAnalyzer" id="text-analyzer"><p>You can also analyze text(below)</p></a>
+
+        <div>
+          <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
+          <div className="wpmContainer"></div>
+          <div className="container results" id="resultsContainer">{this.state.resultData.transcript && <ResultsShow resultData={this.state.resultData} current_user={this.props.currentUser}/>}</div>
+              {this.state.display_booleans && <AudioVisualizer  /> }
+        </div>
       </div>
     )
   }

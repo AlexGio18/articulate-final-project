@@ -8,11 +8,15 @@ class ResultsShow extends React.Component{
   }
 
   componentWillMount() {
-
-    $.ajax({
-      url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
-    })
-    .done(this.getResult)
+    if (localStorage.getItem("id")){
+      $.ajax({
+        url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
+      })
+      .done(this.getResult)
+    }else{
+      localStorage.setItem("id", this.props.resultData.id)
+      this.getResult(this.props.resultData)
+    }
   }
 
   getResult(response) {
@@ -20,6 +24,7 @@ class ResultsShow extends React.Component{
       result_data: response
     })
   }
+
 
   getTimer(duration) {
     var seconds = duration / 1000
@@ -33,8 +38,6 @@ class ResultsShow extends React.Component{
       return total + word.count
     }, 0)
   }
-
-
 
   render(){
     let total_filler = 15
