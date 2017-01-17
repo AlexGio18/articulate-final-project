@@ -4,9 +4,7 @@ class SpeechResultsController < ApplicationController
   include SpeechResultsHelper
 
   def index
-    binding.pry
     user = User.find(params[:user_id])
-    average
 
     if authorized?(user)
       render json: user.speech_results

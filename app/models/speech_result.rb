@@ -8,19 +8,6 @@ class SpeechResult < ApplicationRecord
 
   attr_reader :filler_words
 
-  def get_user_average_emotions(user)
-    results_length = users.speech_results.length
-    doc_emotions = user.speech_results.map {|result| result.doc_emotion }
-    
-    anger_average = doc_emotions.map {|emotion| emotion.anger }.inject {|sum, n| sum + n} / results_length
-    joy_average = doc_emotions.map {|emotion| emotion.joy }.inject {|sum, n| sum + n} / results_length
-    disgust_average = doc_emotions.map {|emotion| emotion.disgust }.inject {|sum, n| sum + n} / results_length
-    sadness_average = doc_emotions.map {|emotion| emotion.sadness }.inject {|sum, n| sum + n} / results_length
-    fear_average = doc_emotions.map {|emotion| emotion.fear }.inject {|sum, n| sum + n} / results_length
-
-    [anger_average, joy_average, disgust_average, sadness_average, fear_average]
-  end
-
   private
     def filler_words
       fillers = [" like ", " so ", " basically ", " i guess ", " um ", " umm ", " uh ", " eh ", " you know ", " okay ", " OK "]
