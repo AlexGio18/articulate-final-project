@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116193317) do
+ActiveRecord::Schema.define(version: 20170117011442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20170116193317) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "keyword_emotions", force: :cascade do |t|
+    t.float    "anger"
+    t.float    "disgust"
+    t.float    "fear"
+    t.float    "joy"
+    t.float    "sadness"
+    t.integer  "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "keywords", force: :cascade do |t|
     t.string   "text"
     t.string   "sentiment_type"
@@ -69,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170116193317) do
   create_table "taxonomies", force: :cascade do |t|
     t.string   "label"
     t.float    "score"
-    t.string   "configit push dent"
+    t.string   "confident"
     t.integer  "speech_result_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

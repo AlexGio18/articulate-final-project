@@ -1,6 +1,7 @@
 class Keyword < ApplicationRecord
   after_save :count
   belongs_to :speech_result
+  has_one :keyword_emotion, :dependent => :destroy
 
 
   private
