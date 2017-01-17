@@ -102,6 +102,7 @@ class BubbleChart extends React.Component {
       url: "/users/"+this.props.userID+"/speech_results/"+localStorage.getItem("id"),
       dataType: "json"
     }).done(function(response){
+      localStorage.removeItem("id")
       that.setState({
         emotion_tone: response.doc_emotion,
         language_tone: response.doc_language_tone,
