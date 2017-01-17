@@ -21,10 +21,10 @@ class Evaluation extends React.Component {
     let strongLanguageTones = Object.keys(this.props.data.doc_language_tone).filter(this.getStrongLanguageTone.bind(this))
 
     return (
-      <div>
-        Emotions: This speech ranks high in {strongEmotions.join(', ')}<br />
-        Social Tone: This speech ranks high in {strongSocialTones.join(', ')}<br />
-        Language Tone: This speech ranks high in {strongLanguageTones.join(', ')}
+      <div className="evaluation">
+        <p>Emotions: This speech ranks high in {strongEmotions.join(', ')}</p>
+        <p>Social Tone: This speech ranks high in {strongSocialTones.join(', ')}</p>
+        <p>Language Tone: This speech ranks high in {strongLanguageTones.join(', ')}</p>
       </div>
     )
   }

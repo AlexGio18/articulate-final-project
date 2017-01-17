@@ -33,9 +33,7 @@ class ResultsShow extends React.Component{
     return(
       <div id="results-container">
 
-        <div className="evaluation">
-          {this.state.result_data.keywords && <Evaluation data={this.state.result_data} />}
-        </div>
+        {this.state.result_data.keywords && <Evaluation data={this.state.result_data} />}
 
         <div className="row meta-results">
           <div className="col-sm-4">
