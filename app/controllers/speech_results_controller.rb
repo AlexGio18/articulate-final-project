@@ -76,7 +76,9 @@ class SpeechResultsController < ApplicationController
     end
 
     alchemy_response["keywords"].map do |keyword|
-      Keyword.create(speech_result: speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+      k_word = Keyword.create(speech_result: speech_result, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+      keyword_emotion = KeywordEmotion.create(anger: keyword["emotions"]["anger"], disgust: keyword["emotions"]["disgust"], fear: keyword["emotions"]["fear"], joy: keyword["emotions"]["joy"], sadness: keyword["emotions"]["sadness"])
+      k_word.keyword_emotion = keyword_emotion
     end
 
 

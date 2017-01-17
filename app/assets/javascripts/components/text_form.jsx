@@ -20,11 +20,18 @@ class TextForm extends React.Component {
 
     let transcript = textBox.value
     let userId = this.props.currentUser.id
+    let data = {
+      speech_result: {
+        transcript: transcript,
+        duration: 0,
+        wpm: 0
+      }
+    }
     console.log(textBox.value)
     $.ajax({
       url: "/users/"+userId+"/speech_results",
       method: 'post',
-      data: "text="+transcript
+      data: $.param(data)
     }).done(function(response){
       console.log(response)
     })
