@@ -13,6 +13,7 @@ class ResultsShow extends React.Component{
         url: "/users/"+this.props.current_user.id+"/speech_results/"+localStorage.getItem("id")
       })
       .done(this.getResult)
+      localStorage.removeItem("id")
     }else{
       localStorage.setItem("id", this.props.resultData.id)
       this.getResult(this.props.resultData)
