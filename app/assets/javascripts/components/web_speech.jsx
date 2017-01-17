@@ -11,7 +11,6 @@ class WebSpeech extends React.Component {
   }
 
   getResultData(response){
-
     this.setState({
       resultData: response
     })
@@ -61,13 +60,12 @@ class WebSpeech extends React.Component {
       console.log(data)
 
       $.ajax({
-        url: "/json_test",
-        method: "GET"
-        // data: $.param(data)
+        url: "/users/"+this.props.currentUser.id+"/speech_results",
+        method: "POST",
+        data: $.param(data)
       }).done(function(response){
         that.getResultData(response)
       })
-
       $(resultsContainer).text(finalTranscript)
     }
 
@@ -96,9 +94,9 @@ class WebSpeech extends React.Component {
     startButton.addEventListener('click', function(e) {
 
       if ($(".record-button").text() === "Start"){
-        recognition.start()
         $(".record-button").text("Stop")
         $(".record-button").attr("id", "stopRec")
+        recognition.start()
       } else {
         recognition.stop()
         $(".record-button").text("Start")
