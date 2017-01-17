@@ -29,9 +29,9 @@ class RadarChart extends React.Component {
 
   renderRadarChart(data){
     let ctx = document.getElementById("radarChart").getContext("2d");
-    let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient.addColorStop(0, 'rgba(0,0,0,1)');
-      gradient.addColorStop(1, 'rgba(250,174,50,0)');
+    let gradient = ctx.createRadialGradient(75,50,5,90,60,100);
+      gradient.addColorStop(0,"red");
+      gradient.addColorStop(1,"white");
     let radarData = {
     labels: ["Anger", "Disgust", "Fear", "Joy", "Sadness"],
     datasets: [
