@@ -10,7 +10,6 @@ class User::RegistrationsController < Devise::RegistrationsController
     def create
       if current_user && current_user.guest?
         @user = current_user
-        binding.pry
         @user.update_attributes(sign_up_params)
         if @user.save
           current_user.move_to(@user)
