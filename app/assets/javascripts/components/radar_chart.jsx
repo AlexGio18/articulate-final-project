@@ -28,6 +28,15 @@ class RadarChart extends React.Component {
   }
 
   renderRadarChart(data){
+    let canvas = document.getElementById("background-gradient");
+    let ctxGradient = canvas.getContext("2d");
+
+    let backgroundGradient = ctxGradient.createRadialGradient(100,100,100,100,100,0);
+    backgroundGradient.addColorStop(0,"white");
+    backgroundGradient.addColorStop(1,"green");
+    ctxGradient.fillStyle = backgroundGradient;
+    ctxGradient.fillRect(0,0,200,200);
+
     let ctx = document.getElementById("radarChart").getContext("2d");
     let gradient = ctx.createRadialGradient(75,50,5,90,60,100);
       gradient.addColorStop(0,"red");
@@ -49,11 +58,6 @@ class RadarChart extends React.Component {
         },
         {
             backgroundColor: gradient,
-            // borderColor: "rgba(179,181,198,1)",
-            // pointBackgroundColor: "rgba(179,181,198,1)",
-            // pointBorderColor: "#fff",
-            // pointHoverBackgroundColor: "#fff",
-            // pointHoverBorderColor: "rgba(179,181,198,1)",
             data: [90, 90, 90, 90, 90]
         },
     ]
@@ -67,7 +71,7 @@ class RadarChart extends React.Component {
   render(){
 
     return(
-      <div className="radar-chart container"><canvas id="radarChart"></canvas></div>
+      <div className="radar-chart container"><canvas id="background-gradient"></canvas><canvas id="radarChart"></canvas></div>
     )
   }
 }
