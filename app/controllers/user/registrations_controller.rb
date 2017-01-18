@@ -7,21 +7,17 @@ class User::RegistrationsController < Devise::RegistrationsController
     end
 
     # POST /resource
-    def create
-      if current_user && current_user.guest?
-        @user = current_user
-        @user.update_attributes(sign_up_params)
-        if @user.save
-          current_user.move_to(@user)
-          session[:user_id] = @user.id
-          session[:guest_user_id] = nil
-          redirect_to root_url
-        end
-      else
-        super
-        @user = User.new(sign_up_params)
-      end
-    end
+    # def create
+    #   @user = current_user
+    #   @user.update_attributes(sign_up_params)
+    #   if @user.save
+    #     current_user.move_to(@user)
+    #     session[:user_id] = @user.id
+    #     session[:guest_user_id] = nil
+    #     redirect_to root_url
+    #   end
+    #   super
+    # end
 
     # GET /resource/edit
     def edit
@@ -31,6 +27,14 @@ class User::RegistrationsController < Devise::RegistrationsController
     # PUT /resource
     def update
       super
+      @user = current_user
+      @user.update_attributes(sign_up_params)
+      if @user.save
+        current_user.move_to(@user)
+        session[:user_id] = @user.id
+        session[:guest_user_id] = nil
+        redirect_to root_url
+      end
     end
 
     protected
