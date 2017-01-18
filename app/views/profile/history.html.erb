@@ -5,7 +5,7 @@
         <%= react_component "Result", result: result %>
       <% end %>
     </div>
-
+    <% if @speech_results %>
     <div>
       <h2> Your Historical Emotional Average</h2>
       <p>Ave. Anger: <%= (@average_emotions[:anger_avg] * 100).to_i%>%</p>

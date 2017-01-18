@@ -25,7 +25,7 @@ class SpeechText extends React.Component{
     return(
         <div className="dropdown">
         <div className="button-speech-text">
-          <button className="btn btn-secondary minimalist-button center-button" type="button" data-toggle="dropdown" onClick={this.handleSpeechDisplay}>See Speech Text</button>
+          <button className="btn btn-secondary minimalist-button center-button" type="button" data-toggle="dropdown" onClick={this.handleSpeechDisplay}>See Text Transcript</button>
         </div>  
           <p className="speech-text" id="speech-text">{this.props.transcript}</p>
       </div>
