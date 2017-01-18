@@ -2,7 +2,6 @@ class ResultsShow extends React.Component{
   constructor() {
     super()
   }
-
   componentDidMount(){
     this.getTotalFiller()
   }

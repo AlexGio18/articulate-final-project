@@ -17,13 +17,12 @@ class User < ApplicationRecord
   end
 
   def find_average(array)
-    array.inject {|sum, n| sum + n} 
+    array.inject {|sum, n| sum + n}
   end
 
-  private
   def average_emotions
     doc_emotions = self.speech_results.map {|result| result.doc_emotion }
-    
+
     anger_average = find_average(doc_emotions.map {|emotion| emotion.anger }) / self.speech_length
     joy_average = find_average(doc_emotions.map {|emotion| emotion.joy }) / self.speech_length
     disgust_average = find_average(doc_emotions.map {|emotion| emotion.disgust }) / self.speech_length
