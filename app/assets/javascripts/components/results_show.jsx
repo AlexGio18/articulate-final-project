@@ -2,11 +2,9 @@ class ResultsShow extends React.Component{
   constructor() {
     super()
   }
-
-  componentWillMount(){
-    
+  componentDidMount(){
+    this.getTotalFiller()
   }
-
 
   getTimer(duration) {
     var seconds = duration / 1000
@@ -16,13 +14,13 @@ class ResultsShow extends React.Component{
   }
 
   getTotalFiller(filler_words) {
-    filler_words.reduce(function(total,word) {
+    var count = filler_words.reduce(function(total,word) {
       return total + word.count
     }, 0)
+    return count
   }
 
   render(){
-    let total_filler = 15
 
     return(
       <div id="results-container">
@@ -42,7 +40,8 @@ class ResultsShow extends React.Component{
           </div>
 
           <div className="col-sm-3">
-            <div className="result-box-sm"> {this.props.result_data.filler_words && <h1>{total_filler}</h1>}
+            <div className="result-box-sm">
+                <h1>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
               <span className="result-box-text">filler words</span>
             </div>
           </div>

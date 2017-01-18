@@ -1,8 +1,15 @@
 <div class="container minimalist-form">
   <h2 class="form-signin-heading minimalist-heading">Sign in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin spacing"}) do |f| %>
-    <%= devise_error_messages! %>
-
+    <!-- <%= resource.validate %>
+    <h1><%= resource.errors.count%> </h1> -->
+    <% flash.each do |key, value| %>
+      <div class="alert alert-dismissible alert-<%= key.to_s == 'notice' ? 'success' : 'danger' %>" role="alert">
+       <button type="button" class="close" data-dismiss="alert">
+         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+           <%= value if value.is_a?(String) %>
+      </div>
+    <% end %>
     <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address' %></br>
 
     <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
