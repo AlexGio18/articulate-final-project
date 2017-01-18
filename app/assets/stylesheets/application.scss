@@ -12,34 +12,52 @@ body {
   font-family: 'Lato', sans-serif;
   color: #b3aca7;
   max-width:960px;
-  margin: 80px auto;
+  margin: 40px auto;
   padding: 0px 10px;
 }
 
 .meta-results {
-  background-color: #fff;
   padding-bottom: 30px;
+  background-color: #fff;
+}
+
+.radar-chart {
+  width: 95%;
 }
 
 .result-box-sm {
-  padding-left: 0px;
-  min-height:250px;
-  border: 1px #bbb solid;
+  min-height: 200px;
+}
+
+.results-header {
+  letter-spacing: 5px;
   text-align: center;
   text-transform: uppercase;
 }
 
-.result-box-sm h1 {
-  font-size: 10em;
-  font-weight: 200;
+.result-box-lg h1 {
+  font-size: 8em;
+  font-weight: lighter;
   letter-spacing: -10px;
+}
+
+.result-box-lg {
+  text-align: center;
+}
+
+#blue-header {
+  color: #000051;
 }
 
 .result-box-md {
   padding-left: 15px;
-  min-height:250px;
-  border: 1px #bbb solid;
+  min-height: 450px;
   text-align: left;
+}
+
+.middle {
+  border-right: 2px #bbb solid;;
+  border-left: 2px #bbb solid;
 }
 
 .result-box-md h3 {
@@ -60,6 +78,9 @@ body {
 
 .result-box-text {
   letter-spacing: 2px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
 .evaluation {
@@ -67,7 +88,7 @@ body {
   font-size: 2em;
   font-weight: 300;
   margin-bottom: 20px;
-  padding: 10px 20px;
+  text-align: center;
 }
 
 .navbar-inverse {
@@ -75,7 +96,7 @@ body {
 }
 
 .taxonomy {
-  padding: 15px 0;
+  padding: 5px;
 }
 
 .red-flag {
@@ -111,6 +132,17 @@ a.results-stylings {
   text-decoration: none;
 }
 
+.bubble-chart {
+  margin: auto;
+  width: 90%;
+}
+
+.bubble-chart-wrapper {
+  width: 100%;
+  height: 500px;
+}
+
+
 div.results-stylings {
   background-color: #D3D3D3;
 }
@@ -125,6 +157,21 @@ div.results-stylings {
   padding-bottom: 10px;
 }
 
+#chart{
+  width: 90%;
+  height: 400px;
+}
+
+.nav-bar-align {
+  padding-top: 14px;
+  font-size: 1.1em;
+}
+
+#chart-selection {
+  border-collapse:separate;
+  border-spacing:10px 10px;
+}​​​​​​​​​​​​​
+
 .white-opacity {
   background-color: white;
   opacity: 0.8;
@@ -136,6 +183,16 @@ div.results-stylings {
 
 .record-button {
   width: 200px;
+}
+
+.drop-down {
+  text-align: center;
+}
+
+.speech-text {
+  padding: 10px;
+  color: #4d4d4d;
+  font-size: 1.5em;
 }
 
 .results {

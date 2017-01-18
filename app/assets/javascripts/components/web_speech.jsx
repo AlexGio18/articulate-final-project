@@ -51,8 +51,7 @@ class WebSpeech extends React.Component {
           wpm: (finalTranscript.split(' ').length / (duration / 1000 / 60))
         }
       }
-      console.log(duration)
-      console.log(data)
+
 
       if (data.speech_result.transcript != ""){
         $.ajax({
@@ -82,10 +81,7 @@ class WebSpeech extends React.Component {
           let interimTime = new Date().getTime()
           duration = interimTime - startTime
           finalTranscript += event.results[i][0].transcript
-          console.log(finalTranscript)
           $('.wpmContainer').text("Current WPM: " + (finalTranscript.split(' ').length / (duration / 1000 / 60)))
-        } else {
-          console.log("results so far: " + event.results[i][0].transcript)
         }
       }
     }

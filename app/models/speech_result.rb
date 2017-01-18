@@ -54,9 +54,9 @@ class SpeechResult < ApplicationRecord
 
   def personality_profile
     tone_scores = Hash[ self.doc_social_tone.as_json.collect {|tone, score|
-      if score > 0.75
+      if score > 0.85
         [tone, "high"]
-      elsif score < 0.50
+      elsif score < 0.4
         [tone, "low"]
       else
         [tone, score]

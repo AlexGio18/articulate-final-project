@@ -54,12 +54,12 @@ class User < ApplicationRecord
     { analytical_avg: analytical_average, confident_avg: confident_average, tentative_avg: tentative_average }
   end
 
-  def valid_wpm_averages
-    self.speech_results.select {|result| result.wpm > 0.0 }
+  def valid_wpm_values
+    self.speech_results.select {|result| result.wpm > 0.0 }.map {|result| result.slice(:wpm)}.map {|result| result["wpm"] }
   end
 
   def average_user_wpm
-    find_average(valid_wpm_averages.pluck(:wpm)) / self.speech_length
+    find_average(self.valid_wpm_values) / self.valid_wpm_values.length
   end
 
 end
