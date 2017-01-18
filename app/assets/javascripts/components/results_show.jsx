@@ -35,7 +35,7 @@ class ResultsShow extends React.Component{
   }
 
   render(){
-
+    console.log(this.props.result_data)
     return(
       <div id="results-container">
 
