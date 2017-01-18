@@ -15,7 +15,26 @@ class Evaluation extends React.Component {
     let anger = this.props.data.doc_emotion["anger"]
     if (anger > 0.01) {
       return (
-        <h1 className="red-flag">You may be perceived as angry</h1>
+        <p className="red-flag">You may be perceived as angry</p>
+      )
+    }
+  }
+
+  getSpeed() {
+    let speed = this.props.data.wpm
+    if (speed < 110) {
+      return (
+      <p className="red-flag">Your delivery was a little slow. Consider speeding up.</p>
+      )
+    }
+    else if (speed > 155) {
+      return (
+        <p className="red-flag">You're speaking a bit too quickly. Consider slowing down.</p>
+      )
+    }
+    else {
+      return (
+        <p>Your delivery speed was great!</p>
       )
     }
   }
@@ -27,6 +46,8 @@ class Evaluation extends React.Component {
 
     return (
       <div className="evaluation">
+
+        {this.getSpeed()}
 
         {this.isAngry()}
 
