@@ -52,7 +52,7 @@ class Evaluation extends React.Component {
     let fillerRate = (this.props.fillerCount / (this.props.data.duration / 1000 / 60))
     if (fillerRate > 3) {
       return (
-        <p className="red-flag">You used filler words at a high rate.</p>
+        <p className="red-flag">You used a high rate of filler words.</p>
       )
     }
   }
