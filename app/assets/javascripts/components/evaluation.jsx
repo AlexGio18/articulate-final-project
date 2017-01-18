@@ -3,17 +3,9 @@ class Evaluation extends React.Component {
     super()
   }
 
-  getStrongEmotion(emotion) {
-    return this.props.data.doc_emotion[emotion] > .5
-  }
-
-  getStrongLanguageTone(tone) {
-    return this.props.data.doc_language_tone[tone] > .8
-  }
-
   isAngry() {
     let anger = this.props.data.doc_emotion["anger"]
-    if (anger > 0.01) {
+    if (anger > 0.8) {
       return (
         <p className="red-flag">You may be perceived as angry</p>
       )
@@ -39,10 +31,25 @@ class Evaluation extends React.Component {
     }
   }
 
+  isConfident() {
+    let confidence = this.props.data.doc_language_tone["confident"]
+    let tentativeness = this.props.data.doc_language_tone["tentative"]
+
+    if (confidence > 0.8) {
+      return (
+        <p>You seem to be confident in your message.</p>
+      )
+    }
+    else if (tentativeness > 0.8) {
+      return (
+        <p className="red-flag">You seem to be tentative about your message.</p>
+      )
+    }
+    return
+  }
+
   render() {
     console.log(this.props.data)
-    let strongEmotions = Object.keys(this.props.data.doc_emotion).filter(this.getStrongEmotion.bind(this))
-    let strongLanguageTones = Object.keys(this.props.data.doc_language_tone).filter(this.getStrongLanguageTone.bind(this))
 
     return (
       <div className="evaluation">
@@ -51,9 +58,10 @@ class Evaluation extends React.Component {
 
         {this.isAngry()}
 
-        <p>Your speech may be perceived as {this.props.data.personality_profile.join(', ')}</p>
-        <p>Emotions: This speech ranks high in {strongEmotions.join(', ')}</p>
-        <p>Language Tone: This speech ranks high in {strongLanguageTones.join(', ')}</p>
+        {this.isConfident()}
+
+        <p>Your speech may be described as  {this.props.data.personality_profile.join(', ')}</p>
+
       </div>
     )
   }
