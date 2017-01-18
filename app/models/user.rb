@@ -59,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def average_user_wpm
-    find_average(valid_wpm_averages) / self.speech_length
+    find_average(valid_wpm_averages.pluck(:wpm)) / self.speech_length
   end
 
 end
