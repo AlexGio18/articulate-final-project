@@ -142,12 +142,12 @@ class BubbleChart extends React.Component {
       <div id="charts-container">
         <div>
           <h1 className="results-header">Emotional Data</h1>
-          <table id= "chart-selection" onClick={this.handleChartDisplay}>
+          <table id="chart-selection" onClick={this.handleChartDisplay}>
             <tbody>
-              <td className="onhover"id="show-all">| All </td>
-              <td className="onhover" id="emotion-chart">| Emotional </td>
-              <td className="onhover" id="language-chart">| Language </td>
-              <td className="onhover" id="social-chart">| Social |</td>
+              <td className="onhover"id="show-all"> All </td>
+              <td className="onhover" id="emotion-chart"> Emotional </td>
+              <td className="onhover" id="language-chart"> Language </td>
+              <td className="onhover" id="social-chart"> Social </td>
             </tbody>
           </table>
         </div>

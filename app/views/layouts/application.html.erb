@@ -35,7 +35,7 @@
               <li class="onhover"><a href="/users/sign_in">Login</a></li>
               <li class="onhover"><a href="/users/sign_up">Register</a></li>
             <% elsif !current_user.guest? %>
-              <li class="right-align"><%= current_user.email %></li>
+              <li class="nav-bar-align"><%="Hello,  #{current_user.first_name}"%></li>
               <li class="onhover"><a href="/profile">Home</a>
               <li class="onhover"><a href="/profile/history" >History</a></li>
               <li class="onhover">
