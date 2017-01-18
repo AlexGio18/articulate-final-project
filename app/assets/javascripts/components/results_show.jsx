@@ -2,6 +2,7 @@ class ResultsShow extends React.Component{
   constructor() {
     super()
   }
+
   componentDidMount(){
     this.getTotalFiller()
   }
@@ -24,6 +25,9 @@ class ResultsShow extends React.Component{
 
     return(
       <div id="results-container">
+
+        {this.state.result_data.keywords && <Evaluation data={this.state.result_data} />}
+
         <div className="row meta-results">
           <div className="col-sm-4">
             <div className="result-box-sm">
@@ -40,8 +44,10 @@ class ResultsShow extends React.Component{
           </div>
 
           <div className="col-sm-3">
+
             <div className="result-box-sm">
                 <h1>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
+              
               <span className="result-box-text">filler words</span>
             </div>
           </div>
