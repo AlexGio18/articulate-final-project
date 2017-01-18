@@ -20,11 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <% if current_user.guest? %>
-            <%= link_to('Articulate', destroy_user_session_path, :method => :delete, class: "onhover navbar-brand") %>
-          <% else %>
             <a class="onhover navbar-brand" href="/">Articulate</a>
-          <% end %>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -41,7 +37,14 @@
               <li class="onhover">
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
               </li>
+            <% else %>
+              <li class="onhover">
+                <%= link_to('Home', destroy_user_session_path, :method => :delete) %>
+              </li>
+              <li class="onhover"><a href="/users/sign_in">Login</a></li>
+              <li class="onhover"><a href="/users/sign_up">Register</a></li>
             <% end %>
+
           </ul>
         </div>
       </div>
