@@ -84,7 +84,9 @@ body {
 }
 
 .evaluation {
+  border: 1px #bbb solid;
   font-size: 2em;
+  font-weight: 300;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -103,6 +105,13 @@ body {
 
 .green-flag {
   color: #5AA85A;
+}
+
+.feedback-header {
+  margin-top: 0px;
+  font-size: 2em;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 /* Not custom styles */
