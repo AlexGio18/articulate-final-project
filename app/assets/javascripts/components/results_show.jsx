@@ -3,9 +3,9 @@ class ResultsShow extends React.Component{
     super()
   }
 
-  // componentWillMount(){
-  //
-  // }
+  componentWillMount(){
+    
+  }
 
 
   getTimer(duration) {

@@ -16,6 +16,7 @@ class ProfileController < ApplicationController
   end
 
   def record
+    @speech_result = SpeechResult.find(params[:id])
   end
 
 end
