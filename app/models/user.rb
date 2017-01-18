@@ -9,7 +9,6 @@ class User < ApplicationRecord
 
   def move_to(user)
    user.speech_results.update_all(user_id: user.id)
-   binding.pry
    user.update_attributes(guest: nil)
   end
 
