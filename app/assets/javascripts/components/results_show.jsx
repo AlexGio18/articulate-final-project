@@ -69,7 +69,7 @@ class ResultsShow extends React.Component{
 
           <div className="col-sm-3">
             <div className="result-box-lg">
-                <h1 id="blue-header" className={this.fillerColor()>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
+                <h1 id="blue-header" className={this.fillerColor()}>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
               <span className="result-box-text">filler words</span>
             </div>
           </div>
