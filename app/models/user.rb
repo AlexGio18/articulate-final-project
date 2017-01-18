@@ -41,7 +41,7 @@ class User < ApplicationRecord
     agreeableness_average = find_average(doc_social_tone.map {|social| social.agreeableness}) / self.speech_length
     emotional_range_average = find_average(doc_social_tone.map {|social| social.emotional_range}) / self.speech_length
 
-    {opennes_avg: openness_average, conscientiousness_avg: conscientiousness_average, extraversion_avg: extraversion_average, agreeableness_avg: agreeableness_average, emotional_range_avg: emotional_range_average}
+    {openness_avg: openness_average, conscientiousness_avg: conscientiousness_average, extraversion_avg: extraversion_average, agreeableness_avg: agreeableness_average, emotional_range_avg: emotional_range_average}
   end
 
   def average_language_tone
