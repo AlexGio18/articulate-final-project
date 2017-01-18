@@ -59,11 +59,11 @@ class User < ApplicationRecord
   end
 
   def average_user_wpm
-    valid_average =  find_average(valid_wpm_values) ? nil : 0
-    if valid_average != 0
+    valid_average = find_average(valid_wpm_values)
+    if valid_average != nil
       valid_average / self.valid_wpm_values.length
     else
-      "Text Only: Not Applicable"
+      "Not Enough Info!"
     end
   end
 
