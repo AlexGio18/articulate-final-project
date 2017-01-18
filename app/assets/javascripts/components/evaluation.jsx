@@ -3,29 +3,76 @@ class Evaluation extends React.Component {
     super()
   }
 
-  getStrongEmotion(emotion) {
-    return this.props.data.doc_emotion[emotion] > .5
+  emotionFeedback() {
+    let anger = this.props.data.doc_emotion["anger"]
+    if (anger > 0.8) {
+      return (
+        <p className="red-flag">You may be perceived as angry</p>
+      )
+    }
   }
 
-  getStrongSocialTone(tone) {
-    return this.props.data.doc_social_tone[tone] > .8
+  speedFeedback() {
+    let speed = this.props.data.wpm
+    if (speed < 110) {
+      return (
+      <p className="red-flag">Your delivery was a little slow. Consider speeding up.</p>
+      )
+    }
+    else if (speed > 155) {
+      return (
+        <p className="red-flag">You're speaking a bit too quickly. Consider slowing down.</p>
+      )
+    }
+    else {
+      return (
+        <p className="green-flag">Your delivery speed was great!</p>
+      )
+    }
   }
 
-  getStrongLanguageTone(tone) {
-    return this.props.data.doc_language_tone[tone] > .8
+  confidenceFeedback() {
+    let confidence = this.props.data.doc_language_tone["confident"]
+    let tentativeness = this.props.data.doc_language_tone["tentative"]
+
+    if (confidence > 0.8) {
+      return (
+        <p className="green-flag">You seem to be confident in your message.</p>
+      )
+    }
+    else if (tentativeness > 0.8) {
+      return (
+        <p className="red-flag">You seem to be tentative about your message.</p>
+      )
+    }
+    return
+  }
+
+  fillerFeedback() {
+    let fillerRate = (this.props.fillerCount / (this.props.data.duration / 1000 / 60))
+    if (fillerRate > 3) {
+      return (
+        <p className="red-flag">You used a high rate of filler words.</p>
+      )
+    }
   }
 
   render() {
-    let strongEmotions = Object.keys(this.props.data.doc_emotion).filter(this.getStrongEmotion.bind(this))
-    let strongSocialTones = Object.keys(this.props.data.doc_social_tone).filter(this.getStrongSocialTone.bind(this))
-    let strongLanguageTones = Object.keys(this.props.data.doc_language_tone).filter(this.getStrongLanguageTone.bind(this))
+    console.log(this.props.data)
 
     return (
       <div className="evaluation">
-        <p>Your speech may be perceived as {this.props.data.personality_profile.join(', ')}</p>
-        <p>Emotions: This speech ranks high in {strongEmotions.join(', ')}</p>
-        <p>Social Tone: This speech ranks high in {strongSocialTones.join(', ')}</p>
-        <p>Language Tone: This speech ranks high in {strongLanguageTones.join(', ')}</p>
+
+        {this.speedFeedback()}
+
+        {this.emotionFeedback()}
+
+        {this.confidenceFeedback()}
+
+        {this.fillerFeedback()}
+
+        <p>Your speech may be described as  {this.props.data.personality_profile.join(', ')}</p>
+
       </div>
     )
   }
