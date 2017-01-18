@@ -14,12 +14,23 @@ class ResultsShow extends React.Component{
     return minutes+':'+seconds
   }
 
-  getTotalFiller(filler_words) {
-    if (filler_words) {
-      var count = filler_words.reduce(function(total,word) {
+  getTotalFiller() {
+    if (this.props.result_data.filler_words) {
+      let fillerWords = this.props.result_data.filler_words
+      var count = fillerWords.reduce(function(total,word) {
         return total + word.count
       }, 0)
       return count
+    }
+  }
+
+  fillerColor() {
+    if (this.props.result_data.filler_words) {
+      if ((this.getTotalFiller() / 1000 / 60) > 3) {
+        return "red-flag"
+      } else {
+        return "green-flag"
+      }
     }
   }
 
@@ -39,7 +50,7 @@ class ResultsShow extends React.Component{
     return(
       <div id="results-container">
 
-        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} fillerCount={this.getTotalFiller(this.props.result_data.filler_words)}/>}
+        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} fillerCount={this.getTotalFiller()}/>}
 
         <div className="row meta-results">
           <div className="col-sm-4">
@@ -59,7 +70,7 @@ class ResultsShow extends React.Component{
           <div className="col-sm-3">
 
             <div className="result-box-sm">
-                <h1>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
+                <h1 className={this.fillerColor()}>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
 
               <span className="result-box-text">filler words</span>
             </div>

@@ -5,9 +5,14 @@ class Evaluation extends React.Component {
 
   emotionFeedback() {
     let anger = this.props.data.doc_emotion["anger"]
-    if (anger > 0.8) {
+    if ((anger - this.props.data.user["average_emotions"]["anger_avg"]) > 0.5) {
       return (
-        <p className="red-flag">You may be perceived as angry</p>
+        <p className="red-flag">Compared to your average, the content of this speech seems angry.</p>
+      )
+    }
+    else if (anger > 0.8) {
+      return (
+        <p className="red-flag">You may be perceived as angry.</p>
       )
     }
   }
@@ -34,8 +39,19 @@ class Evaluation extends React.Component {
   confidenceFeedback() {
     let confidence = this.props.data.doc_language_tone["confident"]
     let tentativeness = this.props.data.doc_language_tone["tentative"]
-
-    if (confidence > 0.8) {
+    let avg_confidence = this.props.data.user["average_language_tone"]["confidence"]
+    let avg_tentativeness = this.props.data.user["average_language_tone"]["tentative"]
+    if ((confidence - avg_confidence) > 0.5) {
+      return (
+      <p className="green-flag">Compared to your average, you seem confident in your message.</p>
+      )
+    }
+    else if ((tentativeness - avg_tentativeness) > 0.5) {
+      return (
+        <p className="red-flag">Compared to your average, you seem less confident in your message.</p>
+      )
+    }
+    else if (confidence > 0.8) {
       return (
         <p className="green-flag">You seem to be confident in your message.</p>
       )
@@ -62,6 +78,8 @@ class Evaluation extends React.Component {
 
     return (
       <div className="evaluation">
+
+        <h1 className="feedback-header">Feedback</h1>
 
         {this.speedFeedback()}
 
