@@ -62,7 +62,6 @@ class WebSpeech extends React.Component {
           //callback function setting response in parent
           that.props.results(response)
         })
-        $(resultsContainer).text(finalTranscript)
       }
       else{
         that.props.errorCheck("ERROR")
@@ -105,15 +104,9 @@ class WebSpeech extends React.Component {
 
   render() {
     return (
-      <div>
-      {this.state.display_booleans && <Timer />}
-      <h1 id="just-play">Just Press Start.</h1>
-      <a href="#textAnalyzer" id="text-analyzer"><p>You can also analyze text(below)</p></a>
-        <div>
-          <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-          <div className="wpmContainer"></div>
-              {this.state.display_booleans && <AudioVisualizer  /> }
-        </div>
+      <div id="webspeech">
+        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
+        {this.state.display_booleans && <AudioVisualizer  /> }
       </div>
     )
   }

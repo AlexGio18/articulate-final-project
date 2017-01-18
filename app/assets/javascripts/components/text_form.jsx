@@ -4,7 +4,6 @@ class TextForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleSubmit(event) {
     const textBox = this.refs.textBox;
     event.preventDefault();
@@ -28,9 +27,10 @@ class TextForm extends React.Component {
     }.bind(this))
   }
 
+
   render() {
     return (
-      <div>
+      <div id="text_analyzer">
         <form onSubmit={this.handleSubmit}>
           <div>
           </div>
