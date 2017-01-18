@@ -12,38 +12,53 @@ body {
   font-family: 'Lato', sans-serif;
   color: #b3aca7;
   max-width:960px;
-  margin: 80px auto;
+  margin: 40px auto;
   padding: 0px 10px;
 }
 
 .meta-results {
-  background-color: #fff;
   padding-bottom: 30px;
+  background-color: #fff;
 }
 
 .radar-chart {
-  width: 90%;
-
+  width: 95%;
 }
+
 .result-box-sm {
-  padding-left: 0px;
-  min-height:250px;
-  border: 1px #bbb solid;
+  min-height: 200px;
+}
+
+.results-header {
+  letter-spacing: 5px;
   text-align: center;
   text-transform: uppercase;
 }
 
-.result-box-sm h1 {
-  font-size: 10em;
-  font-weight: 200;
+.result-box-lg h1 {
+  font-size: 8em;
+  font-weight: lighter;
   letter-spacing: -10px;
+}
+
+
+.result-box-lg {
+  text-align: center;
+}
+
+#blue-header {
+  color: #000051;
 }
 
 .result-box-md {
   padding-left: 15px;
-  min-height:250px;
-  border: 1px #bbb solid;
+  min-height: 450px;
   text-align: left;
+}
+
+.middle {
+  border-right: 2px #bbb solid;;
+  border-left: 2px #bbb solid;
 }
 
 .result-box-md h3 {
@@ -64,11 +79,15 @@ body {
 
 .result-box-text {
   letter-spacing: 2px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
 }
 
 .evaluation {
   font-size: 2em;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .navbar-inverse {
@@ -76,7 +95,7 @@ body {
 }
 
 .taxonomy {
-  padding: 15px 0;
+  padding: 5px;
 }
 
 .red-flag {
@@ -103,6 +122,11 @@ canvas.visualizer{
 
 a.results-stylings {
   text-decoration: none;
+}
+
+.bubble-chart {
+  margin: auto;
+  width: 90%;
 }
 
 div.results-stylings {

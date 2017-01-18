@@ -137,9 +137,8 @@ class RadarChart extends React.Component {
   render(){
 
     return(
-
       <div className="radar-chart container">
-      <h2>Keywords Chart</h2>
+      <h2 className="results-header">Keywords</h2>
       <canvas id="radarChart"></canvas>
       </div>
     )
