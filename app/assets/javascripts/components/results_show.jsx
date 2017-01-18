@@ -45,13 +45,9 @@ class ResultsShow extends React.Component{
     }
   }
 
-  render(){
-    console.log(this.props.result_data)
-    return(
-      <div id="results-container">
-
-        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} fillerCount={this.getTotalFiller()}/>}
-
+  isSpeechInput() {
+    if (this.props.result_data.wpm > 0) {
+      return(
         <div className="row meta-results">
           <div className="col-sm-4">
             <div className="result-box-lg">
@@ -69,17 +65,30 @@ class ResultsShow extends React.Component{
 
           <div className="col-sm-3">
             <div className="result-box-lg">
-                <h1 id="blue-header" className={this.fillerColor()>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
+                <h1 id="blue-header" className={this.fillerColor()}>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
               <span className="result-box-text">filler words</span>
             </div>
           </div>
         </div>
+      )
+    }
+  }
 
-          <div className="col-lg-7 col-md-7 col-xl-7">
-            <div className="result-box-md">
-              {this.props.result_data.keywords && <RadarChart keywords={this.props.result_data.keywords} />}
-            </div>
+  render(){
+    console.log(this.props.result_data)
+    return(
+      <div id="results-container">
+
+        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} fillerCount={this.getTotalFiller()}/>}
+
+
+        {this.isSpeechInput()}
+
+        <div className="col-lg-7 col-md-7 col-xl-7">
+          <div className="result-box-md">
+            {this.props.result_data.keywords && <RadarChart keywords={this.props.result_data.keywords} />}
           </div>
+        </div>
 
         <div className="row row-eq-height">
           <div className="col-lg-5 col-md-5 col-xl-5">
