@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     resources :speech_results, only: [:index, :show, :create]
   end
 
+  match '*path', to: 'errors#routing', via: :get
+
   post "/static" => "static#create"
 end

@@ -54,15 +54,20 @@ class WebSpeech extends React.Component {
       console.log(duration)
       console.log(data)
 
-      $.ajax({
-        url: "/users/"+userID+"/speech_results",
-        method: "POST",
-        data: $.param(data)
-      }).done(function(response){
-        //callback function setting response in parent
-        that.props.results(response)
-      })
-      $(resultsContainer).text(finalTranscript)
+      if (data.speech_result.transcript != ""){
+        $.ajax({
+          url: "/users/"+userID+"/speech_results",
+          method: "POST",
+          data: $.param(data)
+        }).done(function(response){
+          //callback function setting response in parent
+          that.props.results(response)
+        })
+        $(resultsContainer).text(finalTranscript)
+      }
+      else{
+        that.props.errorCheck("ERROR")
+      }
     }
 
     recognition.onresult = function(event) {
