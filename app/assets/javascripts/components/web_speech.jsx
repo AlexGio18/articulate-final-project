@@ -51,8 +51,6 @@ class WebSpeech extends React.Component {
           wpm: (finalTranscript.split(' ').length / (duration / 1000 / 60))
         }
       }
-      console.log(duration)
-      console.log(data)
 
       $.ajax({
         url: "/users/"+userID+"/speech_results",
@@ -62,7 +60,6 @@ class WebSpeech extends React.Component {
         //callback function setting response in parent
         that.props.results(response)
       })
-      $(resultsContainer).text(finalTranscript)
     }
 
     recognition.onresult = function(event) {
@@ -77,10 +74,7 @@ class WebSpeech extends React.Component {
           let interimTime = new Date().getTime()
           duration = interimTime - startTime
           finalTranscript += event.results[i][0].transcript
-          console.log(finalTranscript)
           $('.wpmContainer').text("Current WPM: " + (finalTranscript.split(' ').length / (duration / 1000 / 60)))
-        } else {
-          console.log("results so far: " + event.results[i][0].transcript)
         }
       }
     }
