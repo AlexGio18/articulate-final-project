@@ -106,6 +106,7 @@ class BubbleChart extends React.Component {
 		},
 		axisX: {
 			valueFormatString: " ",
+      maximum:21,
 		},
      data: [
      {
