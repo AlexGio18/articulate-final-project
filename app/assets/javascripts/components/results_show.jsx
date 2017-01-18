@@ -15,10 +15,12 @@ class ResultsShow extends React.Component{
   }
 
   getTotalFiller(filler_words) {
-    var count = filler_words.reduce(function(total,word) {
-      return total + word.count
-    }, 0)
-    return count
+    if (filler_words) {
+      var count = filler_words.reduce(function(total,word) {
+        return total + word.count
+      }, 0)
+      return count
+    }
   }
 
   render(){
