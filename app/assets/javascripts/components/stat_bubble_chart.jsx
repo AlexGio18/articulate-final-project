@@ -95,18 +95,7 @@ class BubbleChart extends React.Component {
 
   componentDidMount(){
     var that = this
-    // $.ajax({
-    //   url: "/users/"+this.props.userID+"/speech_results/"+localStorage.getItem("id"),
-    //   dataType: "json"
-    // }).done(function(response){
-    //   localStorage.removeItem("id")
-    //   that.setState({
-    //     emotion_tone: response.doc_emotion,
-    //     language_tone: response.doc_language_tone,
-    //     social_tone: response.doc_social_tone,
-    //   })
-        this.createChartAll()
-    // })
+      this.createChartAll()
   }
 
   createChartAll(){
@@ -118,25 +107,6 @@ class BubbleChart extends React.Component {
 		axisX: {
 			valueFormatString: " ",
 		},
-    //    zoomEnabled: true,
-    //    animationEnabled: true,
-    //    title:{
-    //     text: "Fertility Rate Vs Life Expectancy in different countries - 2009"
-    //   },
-    //   axisX: {
-    //    title:"Life Expectancy",
-    //    minimim: 30
-    //  },
-    //  axisY: {
-    //    title:"Fertility Rate"
-     //
-    //  },
-     //
-    //  legend:{
-    //    verticalAlign: "bottom",
-    //    horizontalAlign: "left"
-     //
-    //  },
      data: [
      {
        type: "bubble",
@@ -171,16 +141,17 @@ class BubbleChart extends React.Component {
     return(
       <div id="charts-container">
         <div>
-          <table id= "chart-selection" onClick={this.handleChartDisplay}>
+          <h1 className="results-header">Emotional Data</h1>
+          <table id="chart-selection" onClick={this.handleChartDisplay}>
             <tbody>
-              <td id="show-all"> All </td>
-              <td id="emotion-chart"> Emotional </td>
-              <td id="language-chart"> Language </td>
-              <td id="social-chart"> Social </td>
+              <td className="onhover"id="show-all"> All </td>
+              <td className="onhover" id="emotion-chart"> Emotional </td>
+              <td className="onhover" id="language-chart"> Language </td>
+              <td className="onhover" id="social-chart"> Social </td>
             </tbody>
           </table>
         </div>
-        <div id="chartContainer"></div>)
+        <div id="chartContainer"></div>
       </div>
     )
   }
