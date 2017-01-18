@@ -38,7 +38,6 @@ class Index extends React.Component {
         <div className="wrapper">
 
           <div className="welcome">
-            {this.state.display_booleans && <Timer />}
             <h1 id="just-play">Just Press Start.</h1>
             <a href="/" onClick={this.handleInputType}><p>(click here for text input instead)</p></a>
           </div>
