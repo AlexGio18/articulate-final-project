@@ -10,33 +10,33 @@ class Index extends React.Component {
     this.handleTranscriptErrors = this.handleTranscriptErrors.bind(this)
   }
 
-webSpeechResults(data) {
-  this.setState({
-    resultData: data,
-  })
-}
+  webSpeechResults(data) {
+    this.setState({
+      resultData: data,
+    })
+  }
 
-handleTranscriptErrors(error){
-  this.setState({
-    errors: error,
-  })
-}
+  handleTranscriptErrors(error){
+    this.setState({
+      errors: error,
+    })
+  }
 
   render(){
     return(
-      <div>
-        <div className="starter-template container-padding">
-          <div className="wrapper">
+      <div className="starter-template container-padding">
+        <div className="wrapper">
+
           <WebSpeech currentUser={this.props.current_user} results={this.webSpeechResults} errorCheck={this.handleTranscriptErrors} />
-            <div className="container results" id="resultsContainer">
+
+          <div className="container results" id="resultsContainer">
             {(this.state.errors.length > 0) && <Errors />}
-            {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}</div>
           </div>
-          <div id="textAnalyzer">
-            <h1>Text Analysis</h1>
-            <TextForm currentUser={this.props.current_user} />
-          </div>
+
         </div>
+
+          <TextForm currentUser={this.props.current_user} />
+
       </div>
     )
   }
