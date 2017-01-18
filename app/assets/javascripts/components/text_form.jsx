@@ -1,18 +1,9 @@
 class TextForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      value: 'You can also directly input the transcript of your speech here.'
-    };
-
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
 
   handleSubmit(event) {
     const textBox = this.refs.textBox;
@@ -33,8 +24,8 @@ class TextForm extends React.Component {
       method: 'post',
       data: $.param(data)
     }).done(function(response){
-      console.log(response)
-    })
+      this.props.results(response)
+    }.bind(this))
   }
 
   render() {
@@ -43,7 +34,7 @@ class TextForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div>
           </div>
-          <textarea rows="10" cols="100" value={this.state.value} ref='textBox' onChange={this.handleChange} />
+          <textarea rows="10" cols="100" ref='textBox' />
           <div>
             <input type="submit" className="btn btn-primary btn-lg record-button" value="Analyze" />
           </div>

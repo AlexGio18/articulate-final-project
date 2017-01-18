@@ -81,15 +81,15 @@ class Evaluation extends React.Component {
 
         <h1 className="feedback-header">Feedback</h1>
 
-        {this.speedFeedback()}
+        {(this.props.data.wpm > 0) && this.speedFeedback()}
+
+        {(this.props.data.wpm > 0) && this.fillerFeedback()}
 
         {this.emotionFeedback()}
 
         {this.confidenceFeedback()}
 
-        {this.fillerFeedback()}
-
-        <p>Your speech may be described as  {this.props.data.personality_profile.join(', ')}</p>
+        <p>Your speech may be described as  {this.props.data.personality_profile.join(', ')}.</p>
 
       </div>
     )
