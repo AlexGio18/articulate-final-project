@@ -32,10 +32,7 @@ handleTranscriptErrors(error){
             {(this.state.errors.length > 0) && <Errors />}
             {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}</div>
           </div>
-          <div id="textAnalyzer">
-            <h1>Text Analysis</h1>
             <TextForm currentUser={this.props.current_user} />
-          </div>
         </div>
       </div>
     )

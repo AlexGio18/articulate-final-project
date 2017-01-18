@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'dotenv-rails', :groups => [:development, :test]
-
+gem 'gingerice'
 gem 'eventmachine'
 gem 'websocket-client-simple'
 gem 'active_model_serializers', '~> 0.10.0'

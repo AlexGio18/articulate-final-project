@@ -9,7 +9,6 @@ class TextForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChange(event) {
     this.setState({value: event.target.value});
   }
@@ -33,21 +32,27 @@ class TextForm extends React.Component {
       method: 'post',
       data: $.param(data)
     }).done(function(response){
+      debugger
+      $("#textAnalyzer").slideUp()
       console.log(response)
     })
   }
 
+
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div id="textAnalyzer">
+        <h1>Text Analysis</h1>
           <div>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+              </div>
+              <textarea rows="10" cols="100" value={this.state.value} ref='textBox' onChange={this.handleChange} />
+              <div>
+                <input type="submit" className="btn btn-primary btn-lg record-button" value="Analyze" />
+              </div>
+            </form>
           </div>
-          <textarea rows="10" cols="100" value={this.state.value} ref='textBox' onChange={this.handleChange} />
-          <div>
-            <input type="submit" className="btn btn-primary btn-lg record-button" value="Analyze" />
-          </div>
-        </form>
       </div>
     )
   }
