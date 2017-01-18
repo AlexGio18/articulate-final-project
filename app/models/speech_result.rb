@@ -50,7 +50,7 @@ class SpeechResult < ApplicationRecord
   has_one :doc_social_tone, :dependent => :destroy
   has_one :doc_language_tone, :dependent => :destroy
 
-  attr_reader :filler_words
+  attr_reader :filler_words, :personality_profile
 
   def personality_profile
 
