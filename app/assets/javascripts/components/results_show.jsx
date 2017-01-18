@@ -23,17 +23,28 @@ class ResultsShow extends React.Component{
     }
   }
 
+  speedColor() {
+    if (this.props.result_data.wpm) {
+      let wpm = this.props.result_data.wpm
+      if ((wpm > 155) || (wpm < 110)) {
+        return "red-flag"
+      } else {
+        return "green-flag"
+      }
+    }
+  }
+
   render(){
 
     return(
       <div id="results-container">
 
-        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} />}
+        {this.props.result_data.keywords && <Evaluation data={this.props.result_data} fillerCount={this.getTotalFiller(this.props.result_data.filler_words)}/>}
 
         <div className="row meta-results">
           <div className="col-sm-4">
             <div className="result-box-sm">
-              <h1>{Math.round(this.props.result_data.wpm)}</h1>
+              <h1 className={this.speedColor()}>{Math.round(this.props.result_data.wpm)}</h1>
               <span className="result-box-text">words per minute</span>
             </div>
           </div>

@@ -3,7 +3,7 @@ class Evaluation extends React.Component {
     super()
   }
 
-  isAngry() {
+  emotionFeedback() {
     let anger = this.props.data.doc_emotion["anger"]
     if (anger > 0.8) {
       return (
@@ -12,7 +12,7 @@ class Evaluation extends React.Component {
     }
   }
 
-  getSpeed() {
+  speedFeedback() {
     let speed = this.props.data.wpm
     if (speed < 110) {
       return (
@@ -26,18 +26,18 @@ class Evaluation extends React.Component {
     }
     else {
       return (
-        <p>Your delivery speed was great!</p>
+        <p className="green-flag">Your delivery speed was great!</p>
       )
     }
   }
 
-  isConfident() {
+  confidenceFeedback() {
     let confidence = this.props.data.doc_language_tone["confident"]
     let tentativeness = this.props.data.doc_language_tone["tentative"]
 
     if (confidence > 0.8) {
       return (
-        <p>You seem to be confident in your message.</p>
+        <p className="green-flag">You seem to be confident in your message.</p>
       )
     }
     else if (tentativeness > 0.8) {
@@ -48,17 +48,28 @@ class Evaluation extends React.Component {
     return
   }
 
+  fillerFeedback() {
+    let fillerRate = (this.props.fillerCount / (this.props.data.duration / 1000 / 60))
+    if (fillerRate > 3) {
+      return (
+        <p className="red-flag">You used filler words at a high rate.</p>
+      )
+    }
+  }
+
   render() {
     console.log(this.props.data)
 
     return (
       <div className="evaluation">
 
-        {this.getSpeed()}
+        {this.speedFeedback()}
 
-        {this.isAngry()}
+        {this.emotionFeedback()}
 
-        {this.isConfident()}
+        {this.confidenceFeedback()}
+
+        {this.fillerFeedback()}
 
         <p>Your speech may be described as  {this.props.data.personality_profile.join(', ')}</p>
 
