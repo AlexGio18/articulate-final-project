@@ -7,6 +7,10 @@ class TextForm extends React.Component {
   handleSubmit(event) {
     const textBox = this.refs.textBox;
     event.preventDefault();
+    $('#text_analyzer').slideUp('slow')
+    $('.welcome').slideUp('slow')
+
+    $( "<div class='loading'>Results are loading...</div>" ).appendTo('.wrapper')
 
     let transcript = textBox.value
     let userId = this.props.currentUser.id
@@ -17,14 +21,15 @@ class TextForm extends React.Component {
         wpm: 0
       }
     }
-    console.log(textBox.value)
     $.ajax({
       url: "/users/"+userId+"/speech_results",
       method: 'post',
       data: $.param(data)
     }).done(function(response){
       this.props.results(response)
+      $('.loading').remove()
     }.bind(this))
+
   }
 
 

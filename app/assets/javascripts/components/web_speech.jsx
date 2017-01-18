@@ -80,7 +80,6 @@ class WebSpeech extends React.Component {
           let interimTime = new Date().getTime()
           duration = interimTime - startTime
           finalTranscript += event.results[i][0].transcript
-          $('.wpmContainer').text("Current WPM: " + (finalTranscript.split(' ').length / (duration / 1000 / 60)))
         }
       }
     }

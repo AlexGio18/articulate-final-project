@@ -3,7 +3,7 @@ class Index extends React.Component {
   constructor() {
     super()
     this.state={
-      resultData: [],
+      resultData: false,
       errors: "",
       speechInput: true
     }
@@ -16,6 +16,7 @@ class Index extends React.Component {
     this.setState({
       resultData: data
     })
+    console.log(data)
   }
 
   handleTranscriptErrors(error){
@@ -36,9 +37,11 @@ class Index extends React.Component {
       <div className="starter-template container-padding">
         <div className="wrapper">
 
-          {this.state.display_booleans && <Timer />}
-          <h1 id="just-play">Just Press Start.</h1>
-          <a href="/" onClick={this.handleInputType}><p>(click here for text input instead)</p></a>
+          <div className="welcome">
+            {this.state.display_booleans && <Timer />}
+            <h1 id="just-play">Just Press Start.</h1>
+            <a href="/" onClick={this.handleInputType}><p>(click here for text input instead)</p></a>
+          </div>
 
           {this.state.speechInput && <WebSpeech currentUser={this.props.current_user} results={this.webSpeechResults} errorCheck={this.handleTranscriptErrors} />}
 
@@ -48,6 +51,7 @@ class Index extends React.Component {
             {(this.state.errors.length > 0) && <Errors />}
           </div>
 
+          {this.state.resultData && <ResultsShow result_data={this.state.resultData} />}
         </div>
 
       </div>

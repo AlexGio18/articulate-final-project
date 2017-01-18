@@ -75,7 +75,6 @@ class ResultsShow extends React.Component{
   }
 
   render(){
-    console.log(this.props.result_data)
     return(
       <div id="results-container">
 
@@ -102,7 +101,7 @@ class ResultsShow extends React.Component{
 
         <div className="bubble-chart-wrapper">
           <div className="bubble-chart" id="chart">
-            {this.props.result_data.doc_emotion && <BubbleChart result_data={this.props.result_data} userID={this.props.current_user.id}/> }
+            {this.props.result_data.doc_emotion && <BubbleChart result_data={this.props.result_data} userID={this.props.result_data.user.id}/> }
           </div>
         </div>
 
