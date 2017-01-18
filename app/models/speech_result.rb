@@ -53,7 +53,6 @@ class SpeechResult < ApplicationRecord
   attr_reader :filler_words, :personality_profile
 
   def personality_profile
-
     tone_scores = Hash[ self.doc_social_tone.as_json.collect {|tone, score|
       if score > 0.75
         [tone, "high"]
