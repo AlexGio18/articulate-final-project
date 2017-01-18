@@ -6,17 +6,11 @@ class WebSpeech extends React.Component {
       display_booleans: false,
       resultData: {},
     }
-
-    this.getResultData = this.getResultData.bind(this)
   }
 
-  getResultData(response){
-    this.setState({
-      resultData: response
-    })
-  }
 
   componentDidMount() {
+    console.log("webspeech")
     let that = this
     let userID = this.props.currentUser.id
 
@@ -48,6 +42,7 @@ class WebSpeech extends React.Component {
       endTime = new Date().getTime()
       $("#time").slideUp()
       $(".btn-primary").slideUp()
+      $(".visualizer").slideUp()
       duration = endTime - startTime
       let data = {
         speech_result: {
@@ -64,7 +59,8 @@ class WebSpeech extends React.Component {
         method: "POST",
         data: $.param(data)
       }).done(function(response){
-        that.getResultData(response)
+        //callback function setting response in parent
+        that.props.results(response)
       })
       $(resultsContainer).text(finalTranscript)
     }
@@ -112,11 +108,9 @@ class WebSpeech extends React.Component {
       {this.state.display_booleans && <Timer />}
       <h1 id="just-play">Just Press Start.</h1>
       <a href="#textAnalyzer" id="text-analyzer"><p>You can also analyze text(below)</p></a>
-
         <div>
           <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
           <div className="wpmContainer"></div>
-          <div className="container results" id="resultsContainer">{this.state.resultData.transcript && <ResultsShow resultData={this.state.resultData} current_user={this.props.currentUser}/>}</div>
               {this.state.display_booleans && <AudioVisualizer  /> }
         </div>
       </div>

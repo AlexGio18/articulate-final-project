@@ -1,12 +1,11 @@
 class Result extends React.Component {
   constructor(){
     super();
-
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(event){
-    localStorage.setItem("id", this.refs.href.id)
+    localStorage.setItem("speechId", this.refs.href.id)
   }
 
   render(){
