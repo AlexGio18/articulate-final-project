@@ -3,9 +3,11 @@ class Index extends React.Component {
   constructor() {
     super()
     this.state={
-      resultData: []
+      resultData: [],
+      errors: "",
     }
     this.webSpeechResults = this.webSpeechResults.bind(this)
+    this.handleTranscriptErrors = this.handleTranscriptErrors.bind(this)
   }
 
 webSpeechResults(data) {
@@ -14,21 +16,25 @@ webSpeechResults(data) {
   })
 }
 
+handleTranscriptErrors(error){
+  this.setState({
+    errors: error,
+  })
+}
+
   render(){
     return(
       <div>
         <div className="starter-template container-padding">
           <div className="wrapper">
-
-            <WebSpeech currentUser={this.props.current_user} results={this.webSpeechResults}  />
-
-            <div id="textAnalyzer">
-              <h1>Text Analysis</h1>
-              <TextForm currentUser={this.props.current_user} results={this.webSpeechResults} />
-            </div>
-
-            {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}
-
+          <WebSpeech currentUser={this.props.current_user} results={this.webSpeechResults} errorCheck={this.handleTranscriptErrors} />
+            <div className="container results" id="resultsContainer">
+            {(this.state.errors.length > 0) && <Errors />}
+            {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}</div>
+          </div>
+          <div id="textAnalyzer">
+            <h1>Text Analysis</h1>
+            <TextForm currentUser={this.props.current_user} />
           </div>
         </div>
       </div>
