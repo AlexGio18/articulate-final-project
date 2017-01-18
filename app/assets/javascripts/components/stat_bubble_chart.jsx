@@ -141,6 +141,7 @@ class BubbleChart extends React.Component {
     return(
       <div id="charts-container">
         <div>
+          <h1 className="results-header">Emotional Data</h1>
           <table id= "chart-selection" onClick={this.handleChartDisplay}>
             <tbody>
               <td className="onhover"id="show-all">| All </td>
@@ -150,7 +151,7 @@ class BubbleChart extends React.Component {
             </tbody>
           </table>
         </div>
-        <div id="chartContainer"></div>)
+        <div id="chartContainer"></div>
       </div>
     )
   }
