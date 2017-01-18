@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "profile#index"
   get "/profile", to:"profile#index"
   get "/profile/history", to:"profile#history"
-  get "/profile/history/:id", to: "static#test"
+  get "/profile/history/:id", to: "profile#record"
   get "/test", to: "static#test"
   post "/static", to: "static#create"
   get "/get_token", to: "static#token"
