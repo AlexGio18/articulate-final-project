@@ -7,7 +7,7 @@ class SpeechResultsController < ApplicationController
     user = User.find(params[:user_id])
 
     if authorized?(user)
-      render json: user.speech_results
+      render json: user.speech_results.order(id: :desc), include: ['speech_result']
     else
       render json: { errors: "Forbidden" }, status: 403
     end
@@ -35,7 +35,7 @@ class SpeechResultsController < ApplicationController
   def show
     speech_result = SpeechResult.find(params[:id])
     if authorized?(speech_result.user)
-        render json: speech_result
+        render json: speech_result, include: ['doc_emotion', 'doc_language_tone', 'doc_social_tone', 'taxonomies', 'keywords', 'keywords.keyword_emotion']
     else
       render json: { errors: "Forbidden" }, status: 403
     end

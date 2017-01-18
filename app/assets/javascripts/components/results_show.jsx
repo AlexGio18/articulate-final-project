@@ -1,26 +1,11 @@
 class ResultsShow extends React.Component{
   constructor() {
     super()
-    this.state = {
-      result_data: {},
-    }
-    this.getResult = this.getResult.bind(this)
   }
 
-  componentWillMount() {
-      $.ajax({
-        url: "/users/1/speech_results/1"
-      })
-      .done(this.getResult)
+  componentDidMount(){
+    this.getTotalFiller()
   }
-
-  getResult(response) {
-    this.setState({
-      result_data: response
-    })
-    console.log(response)
-  }
-
 
   getTimer(duration) {
     var seconds = duration / 1000
@@ -29,7 +14,15 @@ class ResultsShow extends React.Component{
     return minutes+':'+seconds
   }
 
+  getTotalFiller(filler_words) {
+    var count = filler_words.reduce(function(total,word) {
+      return total + word.count
+    }, 0)
+    return count
+  }
+
   render(){
+
     return(
       <div id="results-container">
 
@@ -38,20 +31,23 @@ class ResultsShow extends React.Component{
         <div className="row meta-results">
           <div className="col-sm-4">
             <div className="result-box-sm">
-              <h1>{Math.round(this.state.result_data.wpm)}</h1>
+              <h1>{Math.round(this.props.result_data.wpm)}</h1>
               <span className="result-box-text">words per minute</span>
             </div>
           </div>
 
           <div className="col-sm-5">
             <div className="result-box-sm">
-              <h1>{this.getTimer(this.state.result_data.duration)}</h1>
+              <h1>{this.getTimer(this.props.result_data.duration)}</h1>
               <span className="result-box-text">total speech duration</span>
             </div>
           </div>
 
           <div className="col-sm-3">
-            <div className="result-box-sm"> {this.state.result_data.filler_words && <FillerTotal fillers={this.state.result_data.filler_words} />}
+
+            <div className="result-box-sm">
+                <h1>{this.getTotalFiller(this.props.result_data.filler_words)}</h1>
+              
               <span className="result-box-text">filler words</span>
             </div>
           </div>
@@ -60,23 +56,23 @@ class ResultsShow extends React.Component{
         <div className="row row-eq-height meta-results">
           <div className="col-sm-8">
             <div className="result-box-md">
-              {this.state.result_data.taxonomies && <Taxonomies taxonomies={this.state.result_data.taxonomies} />}
+              {this.props.result_data.taxonomies && <Taxonomies taxonomies={this.props.result_data.taxonomies} />}
             </div>
           </div>
 
           <div className="col-sm-4">
             <div className="result-box-sm">
-              {this.state.result_data.filler_words && <FillerWords fillers={this.state.result_data.filler_words }/>}
+              {this.props.result_data.filler_words && <FillerWords fillers={this.props.result_data.filler_words }/>}
             </div>
           </div>
         </div>
 
         <div id="chart">
-          <BubbleChart userID={this.props.current_user.id}/>
+          {this.props.result_data.doc_emotion && <BubbleChart result_data={this.props.result_data} userID={this.props.current_user.id}/> }
         </div>
         <div id="speech-container">
           <div id="speech">
-            {this.state.result_data.transcript && <SpeechText transcript={this.state.result_data.transcript}/>}
+            {this.props.result_data.transcript && <SpeechText transcript={this.props.result_data.transcript}/>}
           </div>
         </div>
       </div>
