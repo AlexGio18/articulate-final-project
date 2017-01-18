@@ -66,20 +66,20 @@ class ResultsShow extends React.Component{
           </div>
         </div>
 
-          <div className="col-sm-4">
+          <div className="col-lg-7 col-md-7 col-xl-7">
             <div className="result-box-md">
               {this.props.result_data.keywords && <RadarChart keywords={this.props.result_data.keywords} />}
             </div>
           </div>
 
         <div className="row row-eq-height meta-results">
-          <div className="col-sm-4">
+          <div className="col-lg-5 col-md-5 col-xl-5">
             <div className="result-box-md">
               {this.props.result_data.taxonomies && <Taxonomies taxonomies={this.props.result_data.taxonomies} />}
             </div>
           </div>
 
-          <div className="col-sm-4">
+          <div className="col-lg-5 col-md-5 col-xl-5">
             <div className="result-box-sm">
               {this.props.result_data.filler_words && <FillerWords fillers={this.props.result_data.filler_words }/>}
             </div>
