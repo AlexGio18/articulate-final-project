@@ -22,6 +22,7 @@ class Evaluation extends React.Component {
 
     return (
       <div className="evaluation">
+        <p>Your speech may be perceived as {this.props.data.personality_profile.join(', ')}</p>
         <p>Emotions: This speech ranks high in {strongEmotions.join(', ')}</p>
         <p>Social Tone: This speech ranks high in {strongSocialTones.join(', ')}</p>
         <p>Language Tone: This speech ranks high in {strongLanguageTones.join(', ')}</p>
