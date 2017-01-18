@@ -105,6 +105,9 @@ body {
   border-color: #bbb;
 }
 
+.historical-ave {
+  padding-bottom: 20px;
+}
 .taxonomy {
   padding: 5px;
 }
@@ -135,7 +138,8 @@ canvas.visualizer{
 }
 
 .result-history {
-  padding: 30px;
+  padding: 20px;
+  font-size: 1.2em;
 }
 
 a.results-stylings {

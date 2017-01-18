@@ -1,35 +1,40 @@
-<div className="container starter-template container-padding ">
-  <h1>Your History</h1>
-    <div>
+<div class="wrapper">
+    <div class="col-md-8 col-sm-8 col-lg-8 col-xl-8">
+      <h2 class="results-header">Your History</h1>
       <% @speech_results.each do |result| %>
         <%= react_component "Result", result: result %>
       <% end %>
     </div>
-    <div>
-      <h2> Your Historical Emotional Average</h2>
+    <div class="col-md-4 col-sm-4 col-lg-4 col-xl-4">
+    <h2 class="results-header">Historical Averages</h1>
+    <div class="historical-ave">
+      <h4 class="results-header" id="blue-header">Emotional</h3>
       <p>Ave. Anger: <%= (@average_emotions[:anger_avg] * 100).to_i%>%</p>
       <p>Ave. Joy: <%= (@average_emotions[:joy_avg] * 100).to_i%>%</p>
       <p>Ave. Disgust: <%= (@average_emotions[:disgust_avg] * 100).to_i%>%</p>
       <p>Ave. Fear: <%= (@average_emotions[:fear_avg] * 100).to_i%>%</p>
       <p>Ave. Sadness: <%= (@average_emotions[:sadness_avg] * 100).to_i%>%</p>
-    </div>
-    <div>
+    </div class="historical-ave">
+    
+    <h4 class="results-header" id="blue-header">Words Per Minute</h3>
+    <div class="historical-ave">
       <p>Ave. Words Per Minute: <%= @average_user_wpm.to_i %></p>
     </div>
 
-    <div>
-      <h2> Your Historical Language Average</h2>
+    <div class="historical-ave">
+      <h4 class="results-header" id="blue-header">Language Tone</h3>
       <p>Analytical Ave: <%= (@average_language_tone[:analytical_avg] * 100).to_i%>%</p>
       <p>Ave Confidence: <%= (@average_language_tone[:confident_avg] * 100).to_i%>%</p>
       <p>Ave Tentativeness: <%= (@average_language_tone[:tentative_avg] * 100).to_i%>%</p>
     </div>
 
-    <div>
-      <h2> Your Historical Social Average </h2>
+    <div class="historical-ave">
+      <h4 class="results-header" id="blue-header">Social Tone</h3>
       <p>Openness Ave: <%=(@average_social_tone[:openness_avg] * 100).to_i%>%</p>
       <p>Conscientiousness Ave: <%=(@average_social_tone[:conscientiousness_avg] * 100).to_i %>%</p>
       <p>Extraversion Ave: <%=(@average_social_tone[:extraversion_avg] * 100).to_i %>%</p>
       <p>Agreeableness Ave: <%=(@average_social_tone[:agreeableness_avg] * 100).to_i %>%</p>
       <p>Emotional Range Ave: <%=(@average_social_tone[:emotional_range_avg] * 100).to_i %></p>
     </div>
+    <div>
 </div>
