@@ -14,7 +14,7 @@ class Result extends React.Component {
 
     return(
       <a href={window.location.pathname+ "/"+ id} ref="href" id={id} onClick={this.handleClick} className="results-stylings onhover"><div className="result-history"><p>{transcript}</p>
-          <p>{created_at}</p></div></a>
+          <p>Created At: {created_at.slice(0,10)}</p></div></a>
 
     )
   }
