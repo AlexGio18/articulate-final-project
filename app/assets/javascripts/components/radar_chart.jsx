@@ -4,91 +4,134 @@ class RadarChart extends React.Component {
     this.state = {
       keywordCount: [],
     }
-    // this.filterKeyWords = this.filterKeyWords.bind(this)
-    this.renderRadarChart = this.renderRadarChart.bind(this)
   }
-
-  // filterKeyWords(){
-  //   let keywords = this.props.keywords.filter(function(keyword){
-  //   return (keyword.relevance >= 0.817)
-  //   })
-  //   return keywords.slice(0,3)
-  // }
 
   componentDidMount(){
+    if (this.props.keywords.length >= 3){
     this.renderRadarChart()
+    }
+    else if (this.props.keywords.length === 2){
+      this.renderRadarTwoCharts()
+    }
+    else {
+      this.renderRadarOneChart()
+    }
   }
 
-  
+  renderDataSet(){
 
-
-
-    // let backgroundGradient = ctxGradient.createRadialGradient(100,100,100,100,100,0);
-    // backgroundGradient.addColorStop(0,"white");
-    // backgroundGradient.addColorStop(1,"green");
-    // ctxGradient.fillStyle = backgroundGradient;
-    // ctxGradient.fillRect(0,0,200,200);
-  renderRadarChart() {
-      debugger
-      let ctx = document.getElementById("radarChart").getContext("2d");
-      // let gradient = ctx.createRadialGradient(75,50,5,90,60,100);
-      //   gradient.addColorStop(0,"red");
-      //   gradient.addColorStop(1,"white");
-      
-      let radarData = {
-      labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
-      datasets: [
-          {
+   if (this.props.keywords[0]){
+    return  {
               label: this.props.keywords[0].text,
-              backgroundColor: "rgba(90, 168, 90,0.2)",
-              borderColor: "rgba(90, 168, 90, 1)",
-              pointBackgroundColor: "rgba(90, 168, 90, 1)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(90, 168, 90,1)",
-              data: [ (this.props.keywords[0].keyword_emotion.anger * 100).toFixed(2), 
-                      (this.props.keywords[0].keyword_emotion.fear * 100).toFixed(2), 
-                      (this.props.keywords[0].keyword_emotion.joy * 100).toFixed(2),
-                      (this.props.keywords[0].keyword_emotion.sadness * 100).toFixed(2), 
-                      (this.props.keywords[0].keyword_emotion.disgust * 100).toFixed(2)
-                    ]
-          },
-          {
-              label: this.props.keywords[1].text,
               backgroundColor: "rgba(229, 35, 63, 0.2)",
               borderColor: "rgba(229, 35, 63, 1)",
               pointBackgroundColor: "rgba(229, 35, 63, 1)",
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(229, 35, 63, 1)",
-              data: [ (this.props.keywords[1].keyword_emotion.anger * 100).toFixed(2), 
-                      (this.props.keywords[1].keyword_emotion.fear * 100).toFixed(2), 
-                      (this.props.keywords[1].keyword_emotion.joy * 100).toFixed(2),
-                      (this.props.keywords[1].keyword_emotion.sadness * 100).toFixed(2), 
-                      (this.props.keywords[1].keyword_emotion.disgust * 100).toFixed(2)
+              data: [ (this.props.keywords[0].keyword_emotion.anger * 100).toFixed(2), 
+                      (this.props.keywords[0].keyword_emotion.fear * 100).toFixed(2), 
+                      (this.props.keywords[0].keyword_emotion.joy * 100).toFixed(2),
+                      (this.props.keywords[0].keyword_emotion.sadness * 100).toFixed(2), 
+                      (this.props.keywords[0].keyword_emotion.disgust * 100).toFixed(2)
                     ]
-          },
-          {
-              label: this.props.keywords[2].text,
+            }
+    }
+
+  }
+
+  renderDataSet2() {
+
+    if (this.props.keywords[1]){
+       return {
+              label: this.props.keywords[1].text,
               backgroundColor: "rgba(49, 137, 175, 0.2)",
               borderColor: "rgba(49, 137, 175, 1)",
               pointBackgroundColor: "rgba(49, 137, 175, 1)",
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(49, 137, 175, 1)",
+              data: [ (this.props.keywords[1].keyword_emotion.anger * 100).toFixed(2), 
+                      (this.props.keywords[1].keyword_emotion.fear * 100).toFixed(2), 
+                      (this.props.keywords[1].keyword_emotion.joy * 100).toFixed(2),
+                      (this.props.keywords[1].keyword_emotion.sadness * 100).toFixed(2), 
+                      (this.props.keywords[1].keyword_emotion.disgust * 100).toFixed(2)
+                    ]
+              }
+        }
+  }
+
+  renderDataSet3(){
+
+   if (this.props.keywords[2]){
+    return  {
+              label: this.props.keywords[2].text,
+              backgroundColor: "rgba(90, 168, 90, 0.2)",
+              borderColor: "rgba(90, 168, 90, 1)",
+              pointBackgroundColor: "rgba(90, 168, 90, 1)",
+              pointBorderColor: "#fff",
+              pointHoverBackgroundColor: "#fff",
+              pointHoverBorderColor: "rgba(90, 168, 90, 1)",
               data: [ (this.props.keywords[2].keyword_emotion.anger * 100).toFixed(2), 
                       (this.props.keywords[2].keyword_emotion.fear * 100).toFixed(2), 
                       (this.props.keywords[2].keyword_emotion.joy * 100).toFixed(2),
                       (this.props.keywords[2].keyword_emotion.sadness * 100).toFixed(2), 
                       (this.props.keywords[2].keyword_emotion.disgust * 100).toFixed(2)
                     ]
-          },
+            }
+    }
+
+  }
+
+  renderRadarChart() {
+    let ctx = document.getElementById("radarChart").getContext("2d");
+      
+    let radarData = {
+      labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
+      datasets: [
+
+          this.renderDataSet(),
+          this.renderDataSet2(),
+          this.renderDataSet3(),
+
       ]};
 
-        let myPieChart = new Chart(ctx, {
-              type: 'radar',
-              data: radarData
-            })
+    let myPieChart = new Chart(ctx, {
+      type: 'radar',
+      data: radarData
+    })
+  }
+
+  renderRadarTwoCharts() {
+    let ctx = document.getElementById("radarChart").getContext("2d");
+      
+    let radarData = {
+      labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
+      datasets: [
+        this.renderDataSet(),
+        this.renderDataSet2(),
+      ]}
+ 
+    let myPieChart = new Chart(ctx, {
+      type: 'radar',
+      data: radarData
+    })
+  }
+
+    renderRadarOneChart() {
+      let ctx = document.getElementById("radarChart").getContext("2d");
+      
+      let radarData = {
+      labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
+      datasets: [
+          this.renderDataSet()
+      ]};
+
+      let myPieChart = new Chart(ctx, {
+        type: 'radar',
+        data: radarData
+      })
+
     }
 
   render(){
