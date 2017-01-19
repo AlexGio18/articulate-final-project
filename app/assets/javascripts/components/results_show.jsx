@@ -11,6 +11,9 @@ class ResultsShow extends React.Component{
     var seconds = duration / 1000
     var minutes = parseInt( seconds / 60 )
     seconds = Math.round(seconds % 60)
+    if (seconds < 10 ) {
+      seconds = '0' + seconds
+    }
     return minutes+':'+seconds
   }
 
