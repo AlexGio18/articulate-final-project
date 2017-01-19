@@ -31,7 +31,7 @@ class WebSpeech extends React.Component {
         display_booleans: true,
       })
 
-      $('.welcome').slideUp('slow')
+      $('.welcome').hide()
       $("#recording-components").show()
 
       startTime = new Date().getTime()
