@@ -43,6 +43,8 @@ TRAIT_MAP = {
 }
 
 class SpeechResult < ApplicationRecord
+  include SpeechResultsHelper
+
   belongs_to :user
   has_many :keywords, :dependent => :destroy
   has_many :taxonomies, :dependent => :destroy
@@ -51,6 +53,44 @@ class SpeechResult < ApplicationRecord
   has_one :doc_language_tone, :dependent => :destroy
 
   attr_reader :filler_words, :personality_profile
+
+  def generate_analysis(transcript)
+    tone_response = get_tone(transcript)
+    alchemy_response = get_alchemy_results(transcript)
+
+    tone_classes = [[DocEmotion, 0], [DocLanguageTone, 1], [DocSocialTone, 2]]
+    tone_classes.each { |tone_info| self.generate_tone_results(tone_response, tone_info) }
+
+    self.get_keywords(alchemy_response)
+    self.get_taxonomies(alchemy_response)
+  end
+
+  def generate_tone_results(tone_response, class_info)
+    new_tone_object = class_info[0].new(speech_result: self)
+    emotion_array = tone_response["document_tone"]["tone_categories"][class_info[1]]["tones"]
+    parse_tone_result(emotion_array, new_tone_object)
+    new_tone_object.save
+
+    class_method = class_info[0].to_s.underscore
+    self.send("#{class_method}=", new_tone_object)
+  end
+
+  def get_taxonomies(alchemy_response)
+    alchemy_response["taxonomies"].map do |taxonomy|
+      Taxonomy.create(speech_result: self, confident: taxonomy["confident"], label: taxonomy["label"], score: taxonomy["score"])
+    end
+  end
+
+  def get_keywords(alchemy_response)
+    alchemy_response["keywords"].map do |keyword|
+
+      new_keyword = Keyword.create(speech_result: self, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+
+      keyword_emotion = KeywordEmotion.create(anger: keyword["emotions"]["anger"], disgust: keyword["emotions"]["disgust"], fear: keyword["emotions"]["fear"], joy: keyword["emotions"]["joy"], sadness: keyword["emotions"]["sadness"])
+
+      new_keyword.keyword_emotion = keyword_emotion
+    end
+  end
 
   def personality_profile
     tone_scores = Hash[ self.doc_social_tone.as_json.collect {|tone, score|
@@ -73,12 +113,16 @@ class SpeechResult < ApplicationRecord
         traits << TRAIT_MAP.key(x).to_s if TRAIT_MAP.key(x)
       end
     end
-    traits.uniq
+    if traits.empty?
+      ["emotionally balanced"]
+    else
+      traits.uniq
+    end
   end
 
   private
     def filler_words
-      fillers = [" like ", " so ", " basically ", " i guess ", " um ", " umm ", " uh ", " eh ", " you know ", " okay ", " OK "]
+      fillers = [" like ", " basically ", " i guess ", " um ", " umm ", " uh ", " eh ", " you know ", " okay ", " OK ", " okay ", " yeah ", " sort of ", " sorta ", " oh ", " and so ", " kind of ", " kinda ", " so yeah ", " i mean ", " you see ", " know what i mean ", " i suppose "]
       fillers.inject([]) {|memo, filler| !self.transcript.scan(/#{filler}/).empty? ? memo << {word: filler, count: self.transcript.scan(/#{filler}/).count} : memo }
     end
 end
