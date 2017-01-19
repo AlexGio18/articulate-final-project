@@ -7,9 +7,15 @@ class BubbleChart extends React.Component {
         {
       axisY: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
   		axisX: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
        data: [
        {
@@ -34,9 +40,15 @@ class BubbleChart extends React.Component {
         {
       axisY: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
   		axisX: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
        data: [
        {
@@ -62,9 +74,15 @@ class BubbleChart extends React.Component {
         {
       axisY: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
   		axisX: {
   			valueFormatString: " ",
+        gridColor: "white",
+        lineColor: "white",
+        tickColor: "white",
   		},
        data: [
        {
@@ -103,9 +121,15 @@ class BubbleChart extends React.Component {
       {
     axisY: {
 			valueFormatString: " ",
+      gridColor: "white",
+      lineColor: "white",
+      tickColor: "white"
 		},
 		axisX: {
 			valueFormatString: " ",
+      gridColor: "white",
+      lineColor: "white",
+      tickColor: "white",
       maximum:21,
       minimum:4,
 		},
