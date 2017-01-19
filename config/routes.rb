@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :speech_results, only: [:index, :show, :create]
   end
 
-  match '*path', to: 'errors#routing', via: :get
+  get '*unmatched_route', to: 'application#not_found'
 
   post "/static" => "static#create"
 end

@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   helper_method :current_user
 
+
+  def not_found
+    render '/errors/404'
+  end
+
   def current_user
     super || guest_user
   end
