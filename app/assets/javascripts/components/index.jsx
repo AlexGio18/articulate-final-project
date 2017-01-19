@@ -27,9 +27,17 @@ class Index extends React.Component {
 
   handleInputType(e) {
     e.preventDefault()
-    this.setState({
-      speechInput: false
-    })
+    if (this.state.speechInput === true){
+      $(e.target).text("(click here for speech input instead)")
+      this.setState({
+        speechInput: false
+      })
+    }else if (this.state.speechInput === false){
+      $(e.target).text("(click here for text input instead)")
+      this.setState({
+        speechInput: true
+      })
+    }
   }
 
   render(){
