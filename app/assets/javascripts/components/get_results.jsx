@@ -24,8 +24,11 @@ class GetResults extends React.Component {
 
   render(){
     return(
-      <div className="container results" id="resultsContainer">
-            {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}</div>
+      <div className="starter-template container-padding">
+        <div className="wrapper">
+          {this.state.resultData.transcript && <ResultsShow result_data={this.state.resultData} current_user={this.props.current_user}/>}
+        </div>
+      </div>
       )
   }
 }
