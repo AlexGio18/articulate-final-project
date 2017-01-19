@@ -1,11 +1,10 @@
 class SpeechResultsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :index]
-
   include SpeechResultsHelper
+
+  before_action :authenticate_user!, only: [:show, :index]
 
   def index
     user = User.find(params[:user_id])
-
     if authorized?(user)
       render json: user.speech_results.order(id: :desc), include: ['speech_result']
     else
@@ -23,30 +22,15 @@ class SpeechResultsController < ApplicationController
   end
 
   def create
-    tone_response = get_tone(params[:speech_result][:transcript])
     speech_result = SpeechResult.new(speech_result_params)
     speech_result.user = current_user
     speech_result.save
 
-    # Parsing tone analyzer
+    tone_response = get_tone(params[:speech_result][:transcript])
 
-    doc_emotion = DocEmotion.new(speech_result: speech_result)
-    emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
-    parse_tone_result(emotion_array, doc_emotion)
-    speech_result.doc_emotion = doc_emotion
-    doc_emotion.save
-
-    doc_language_tone = DocLanguageTone.new(speech_result: speech_result)
-    language_tone_array = tone_response["document_tone"]["tone_categories"][1]["tones"]
-    parse_tone_result(language_tone_array, doc_language_tone)
-    speech_result.doc_language_tone = doc_language_tone
-    doc_language_tone.save
-
-    doc_social_tone = DocSocialTone.new(speech_result: speech_result)
-    social_tone_array = tone_response["document_tone"]["tone_categories"][2]["tones"]
-    parse_tone_result(social_tone_array, doc_social_tone)
-    speech_result.doc_social_tone = doc_social_tone
-    doc_social_tone.save
+    speech_result.get_doc_emotion(tone_response)
+    speech_result.get_doc_language_tone(tone_response)
+    speech_result.get_doc_social_tone(tone_response)
 
     # Parsing Alchemy
 

@@ -43,6 +43,8 @@ TRAIT_MAP = {
 }
 
 class SpeechResult < ApplicationRecord
+  include SpeechResultsHelper
+
   belongs_to :user
   has_many :keywords, :dependent => :destroy
   has_many :taxonomies, :dependent => :destroy
@@ -51,6 +53,30 @@ class SpeechResult < ApplicationRecord
   has_one :doc_language_tone, :dependent => :destroy
 
   attr_reader :filler_words, :personality_profile
+
+  def get_doc_emotion(tone_response)
+    doc_emotion = DocEmotion.new(speech_result: self)
+    emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
+    parse_tone_result(emotion_array, doc_emotion)
+    doc_emotion.save
+    self.doc_emotion = doc_emotion
+  end
+
+  def get_doc_language_tone(tone_response)
+    doc_language_tone = DocLanguageTone.new(speech_result: self)
+    emotion_array = tone_response["document_tone"]["tone_categories"][1]["tones"]
+    parse_tone_result(emotion_array, doc_language_tone)
+    doc_language_tone.save
+    self.doc_language_tone = doc_language_tone
+  end
+
+  def get_doc_social_tone(tone_response)
+    doc_social_tone = DocSocialTone.new(speech_result: self)
+    emotion_array = tone_response["document_tone"]["tone_categories"][2]["tones"]
+    parse_tone_result(emotion_array, doc_social_tone)
+    doc_social_tone.save
+    self.doc_social_tone = doc_social_tone
+  end
 
   def personality_profile
     tone_scores = Hash[ self.doc_social_tone.as_json.collect {|tone, score|
@@ -73,7 +99,11 @@ class SpeechResult < ApplicationRecord
         traits << TRAIT_MAP.key(x).to_s if TRAIT_MAP.key(x)
       end
     end
-    traits.uniq
+    if traits.empty?
+      ["emotionally balanced"]
+    else
+      traits.uniq
+    end
   end
 
   private
