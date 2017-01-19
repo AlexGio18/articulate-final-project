@@ -25,13 +25,13 @@ class SpeechResultsController < ApplicationController
     speech_result = SpeechResult.new(speech_result_params)
     speech_result.user = current_user
     speech_result.save
-
-    if speech_result.generate_analysis(speech_result.transcript.gsub!(/\P{ASCII}/, ''))
+    
+    if speech_result.generate_analysis(speech_result.transcript.gsub(/\P{ASCII}/, "")) && speech_result.keywords.any?
       render json: speech_result
     else
       speech_result.destroy
       render json: { errors: "Forbidden" }, status: 403
-    end 
+    end
   end
 
 
