@@ -46,7 +46,6 @@ class User < ApplicationRecord
 
   def average_language_tone
     doc_language_tone = self.speech_results.map {|result| result.doc_language_tone }
-    binding.pry
 
     analytical_average = find_average(doc_language_tone.map {|language| language.analytical }) / self.speech_length
     confident_average = find_average(doc_language_tone.map {|language| language.confident }) / self.speech_length

@@ -54,6 +54,17 @@ class SpeechResult < ApplicationRecord
 
   attr_reader :filler_words, :personality_profile
 
+  def generate_analysis(transcript)
+    tone_response = get_tone(transcript)
+    self.get_doc_emotion(tone_response)
+    self.get_doc_language_tone(tone_response)
+    self.get_doc_social_tone(tone_response)
+
+    alchemy_response = get_alchemy_results(transcript)
+    self.get_keywords(alchemy_response)
+    self.get_taxonomies(alchemy_response)
+  end
+
   def get_doc_emotion(tone_response)
     doc_emotion = DocEmotion.new(speech_result: self)
     emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
@@ -76,6 +87,20 @@ class SpeechResult < ApplicationRecord
     parse_tone_result(emotion_array, doc_social_tone)
     doc_social_tone.save
     self.doc_social_tone = doc_social_tone
+  end
+
+  def get_taxonomies(alchemy_response)
+    alchemy_response["taxonomies"].map do |taxonomy|
+      Taxonomy.create(speech_result: self, confident: taxonomy["confident"], label: taxonomy["label"], score: taxonomy["score"])
+    end
+  end
+
+  def get_keywords(alchemy_response)
+    alchemy_response["keywords"].map do |keyword|
+      k_word = Keyword.create(speech_result: self, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+      keyword_emotion = KeywordEmotion.create(anger: keyword["emotions"]["anger"], disgust: keyword["emotions"]["disgust"], fear: keyword["emotions"]["fear"], joy: keyword["emotions"]["joy"], sadness: keyword["emotions"]["sadness"])
+      k_word.keyword_emotion = keyword_emotion
+    end
   end
 
   def personality_profile
