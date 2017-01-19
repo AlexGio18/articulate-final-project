@@ -56,11 +56,11 @@ class SpeechResult < ApplicationRecord
 
   def generate_analysis(transcript)
     tone_response = get_tone(transcript)
+    alchemy_response = get_alchemy_results(transcript)
 
     tone_classes = [[DocEmotion, 0], [DocLanguageTone, 1], [DocSocialTone, 2]]
     tone_classes.each { |tone_info| self.generate_tone_results(tone_response, tone_info) }
 
-    alchemy_response = get_alchemy_results(transcript)
     self.get_keywords(alchemy_response)
     self.get_taxonomies(alchemy_response)
   end
@@ -83,9 +83,12 @@ class SpeechResult < ApplicationRecord
 
   def get_keywords(alchemy_response)
     alchemy_response["keywords"].map do |keyword|
-      k_word = Keyword.create(speech_result: self, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+
+      new_keyword = Keyword.create(speech_result: self, relevance: keyword["relevance"], sentiment_score: keyword["sentiment"]["score"], sentiment_type: keyword["sentiment"]["type"], text: keyword["text"])
+
       keyword_emotion = KeywordEmotion.create(anger: keyword["emotions"]["anger"], disgust: keyword["emotions"]["disgust"], fear: keyword["emotions"]["fear"], joy: keyword["emotions"]["joy"], sadness: keyword["emotions"]["sadness"])
-      k_word.keyword_emotion = keyword_emotion
+
+      new_keyword.keyword_emotion = keyword_emotion
     end
   end
 
