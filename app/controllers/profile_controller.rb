@@ -2,7 +2,6 @@ class ProfileController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    session[:guest_user_id] = nil
     current_user
   end
 
