@@ -270,7 +270,7 @@ class AudioVisualizer extends React.Component {
 
 
 
-              <div className="wrapper">
+              <div className="visualizer-wrapper">
 
                 <canvas className="visualizer" width="100" height="200"></canvas>
 

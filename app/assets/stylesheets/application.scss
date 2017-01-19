@@ -114,6 +114,12 @@ body {
   text-transform: uppercase;
 }
 
+.visualizer-wrapper {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotate(180deg); /* Standard syntax */
+}
+
 /* Not custom styles */
 
 div.wrapper {
