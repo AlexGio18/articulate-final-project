@@ -9,13 +9,6 @@ module SpeechResultsHelper
     response = JSON.parse(RestClient.get(tone_endpoint))
   end
 
-  # def get_keywords(text)
-  #   keyword_endpoint = "https://gateway-a.watsonplatform.net/calls/text/TextGetRankedKeywords"
-  #   options = { text: text, apikey: ENV["WATSON_API_KEY"], outputMode: 'json', sentiment: 1, emotion: 1 }
-  #   response = JSON.parse(RestClient.post(keyword_endpoint, options).body)
-  #   response["keywords"]
-  # end
-  
   def get_alchemy_results(text)
     json = {}
     service = WatsonAPIClient::AlchemyLanguage.new(apikey: ENV["WATSON_API_KEY"],
