@@ -108,7 +108,7 @@ class ResultsShow extends React.Component{
           </div>
         </div>
 
-        <div className="container" id="speech-container">
+        <div id="speech-container">
           <div id="speech">
             {this.props.result_data.transcript && <SpeechText transcript={this.props.result_data.transcript}/>}
           </div>

@@ -16,6 +16,10 @@ body {
   padding: 0px 10px;
 }
 
+.table-header {
+  font-size: 1.4 em;
+}
+
 #results-container {
   margin-bottom: 50px;
 }
@@ -26,8 +30,6 @@ body {
 }
 
 .button-speech-text {
-  width: 100%;
-  margin: auto;
   text-align: center;
 }
 
@@ -56,6 +58,10 @@ body {
 }
 
 #blue-header {
+  color: #000051;
+}
+
+.blue {
   color: #000051;
 }
 
