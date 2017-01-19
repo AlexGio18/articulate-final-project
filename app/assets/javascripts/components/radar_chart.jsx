@@ -4,32 +4,32 @@ class RadarChart extends React.Component {
     this.state = {
       keywordCount: [],
     }
-    this.checkKeywords = this.checkKeywords.bind(this)
-  }
-
-  componentWillMount(){
-    this.checkKeywords()
   }
 
   componentDidMount(){
+    checkEmotionalValue =[]
 
-    if (this.props.keywords.length >= 3){
-    this.renderRadarChart()
+    if (this.props.keywords && (this.props.keywords.length >= 3)){
+      for(var i =0; i <this.props.keywords.slice(0,3).length; i++){
+        checkEmotionalValue.push(this.props.keywords[i].keyword_emotion.anger)
+      }
+      if((checkEmotionalValue[0] === checkEmotionalValue[1]) && (checkEmotionalValue[0] === checkEmotionalValue[2]) && (checkEmotionalValue[1] === checkEmotionalValue[2])){
+        this.renderRadarOneChart()
+      }
+      else if(checkEmotionalValue[0] != (checkEmotionalValue[1]) && (checkEmotionalValue[0] != checkEmotionalValue[2]) && (checkEmotionalValue[1] === checkEmotionalValue[2])){
+        this.renderRadarTwoChart()
+      }
+      else { this.renderRadarChart()}
     }
-    else if (this.props.keywords.length === 2){
-      this.renderRadarTwoCharts()
+    else if (this.props.keywords && (this.props.keywords.length === 2)){
+      //assumes if anger values are identical all values are identical
+      if (this.props.keywords[0].keyword_emotion.anger === this.props.keywords[1].keyword_emotion.anger){
+        this.renderRadarOneChart()
+      } else { this.renderRadarTwoChart() }
     }
-    else {
+    else{
       this.renderRadarOneChart()
     }
-  }
-
-  checkKeywords(){
-    debugger
-    if (this.props.keywords && (this.props.keywords.length > 1)){
-      debugger
-    }
-
   }
 
   renderDataSet(){
@@ -49,9 +49,8 @@ class RadarChart extends React.Component {
                       (this.props.keywords[0].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[0].keyword_emotion.disgust * 100).toFixed(2)
                     ]
-            }
+      }
     }
-
   }
 
   renderDataSet2() {
@@ -71,8 +70,8 @@ class RadarChart extends React.Component {
                       (this.props.keywords[1].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[1].keyword_emotion.disgust * 100).toFixed(2)
                     ]
-              }
-        }
+      }
+    }
   }
 
   renderDataSet3(){
@@ -92,9 +91,8 @@ class RadarChart extends React.Component {
                       (this.props.keywords[2].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[2].keyword_emotion.disgust * 100).toFixed(2)
                     ]
-            }
+      }
     }
-
   }
 
   renderRadarChart() {
@@ -116,7 +114,7 @@ class RadarChart extends React.Component {
     })
   }
 
-  renderRadarTwoCharts() {
+  renderRadarTwoChart() {
     let ctx = document.getElementById("radarChart").getContext("2d");
 
     let radarData = {
