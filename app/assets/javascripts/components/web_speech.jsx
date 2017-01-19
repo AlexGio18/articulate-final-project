@@ -51,7 +51,7 @@ class WebSpeech extends React.Component {
       }
 
 
-      if (data.speech_result.transcript != ""){
+      if (data.speech_result.transcript.split(' ').length > 15){
         $('#webspeech').slideUp('slow')
         $( "<div class='loading'>Results are loading...</div>" ).appendTo('.wrapper')
         $.ajax({
@@ -62,6 +62,9 @@ class WebSpeech extends React.Component {
           //callback function setting response in parent
           that.props.results(response)
           $('.loading').remove()
+        }).error(function(error) {
+          $('.loading').remove()
+          that.props.errorCheck("ERROR")
         })
       }
       else{
