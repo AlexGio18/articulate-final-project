@@ -56,37 +56,23 @@ class SpeechResult < ApplicationRecord
 
   def generate_analysis(transcript)
     tone_response = get_tone(transcript)
-    self.get_doc_emotion(tone_response)
-    self.get_doc_language_tone(tone_response)
-    self.get_doc_social_tone(tone_response)
+
+    tone_classes = [[DocEmotion, 0], [DocLanguageTone, 1], [DocSocialTone, 2]]
+    tone_classes.each { |tone_info| self.generate_tone_results(tone_response, tone_info) }
 
     alchemy_response = get_alchemy_results(transcript)
     self.get_keywords(alchemy_response)
     self.get_taxonomies(alchemy_response)
   end
 
-  def get_doc_emotion(tone_response)
-    doc_emotion = DocEmotion.new(speech_result: self)
-    emotion_array = tone_response["document_tone"]["tone_categories"][0]["tones"]
-    parse_tone_result(emotion_array, doc_emotion)
-    doc_emotion.save
-    self.doc_emotion = doc_emotion
-  end
+  def generate_tone_results(tone_response, class_info)
+    new_tone_object = class_info[0].new(speech_result: self)
+    emotion_array = tone_response["document_tone"]["tone_categories"][class_info[1]]["tones"]
+    parse_tone_result(emotion_array, new_tone_object)
+    new_tone_object.save
 
-  def get_doc_language_tone(tone_response)
-    doc_language_tone = DocLanguageTone.new(speech_result: self)
-    emotion_array = tone_response["document_tone"]["tone_categories"][1]["tones"]
-    parse_tone_result(emotion_array, doc_language_tone)
-    doc_language_tone.save
-    self.doc_language_tone = doc_language_tone
-  end
-
-  def get_doc_social_tone(tone_response)
-    doc_social_tone = DocSocialTone.new(speech_result: self)
-    emotion_array = tone_response["document_tone"]["tone_categories"][2]["tones"]
-    parse_tone_result(emotion_array, doc_social_tone)
-    doc_social_tone.save
-    self.doc_social_tone = doc_social_tone
+    class_method = class_info[0].to_s.underscore
+    self.send("#{class_method}=", new_tone_object)
   end
 
   def get_taxonomies(alchemy_response)
