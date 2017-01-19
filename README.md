@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to Articulate!
 
-Things you may want to cover:
+Find Your Voice…
 
-* Ruby version
+Our Purpose
+Public speaking is hard. We here at articulate strive to make sure that what you want to say, is what your audience will hear. Nervous about a speech, presentation, or perhaps an email to your boss? Run it by us. Using IBM Watson’s Language API’s we’ll analyze your ideas and give you easy to understand feedback.
 
-* System dependencies
+Registration is optional, but we’d like to get to know you better. If you do choose to sign up, the more you use Articulate, the more personal your feedback will become. We know everyone is different. That’s why each registered user result is compared to their overall average. We don’t want you to just understand our feedback, we want you to understand HOW we got there.
 
-* Configuration
+Speak Clearly, Speak Confidently, Articulate!
 
-* Database creation
+Contributors:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Alexandra Cooper, Alexander Giacobbe, Patrick Kolodgy, Mark Tanca
