@@ -29,6 +29,10 @@ class TextForm extends React.Component {
       this.props.results(response)
       $('.loading').remove()
     }.bind(this))
+    .error(function(errors) {
+      $('.loading').remove()
+      this.props.errorCheck("ERROR")
+    }.bind(this))
 
   }
 
