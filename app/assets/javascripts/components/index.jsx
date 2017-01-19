@@ -46,9 +46,7 @@ class Index extends React.Component {
 
           {!this.state.speechInput && <TextForm currentUser={this.props.current_user} results={this.webSpeechResults} errorCheck={this.handleTranscriptErrors} />}
 
-          <div className="errors">
-            {(this.state.errors.length > 0) && <Errors />}
-          </div>
+          {(this.state.errors.length > 0) && <Errors />}
 
           {this.state.resultData && <ResultsShow result_data={this.state.resultData} />}
         </div>

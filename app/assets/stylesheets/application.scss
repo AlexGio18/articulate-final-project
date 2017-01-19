@@ -133,6 +133,8 @@ body {
   transform: rotate(180deg) scaleX(-1); /* Standard syntax */
   margin-top: -43px;
   margin-bottom: 36px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 canvas.visualizer {
@@ -147,6 +149,16 @@ canvas.visualizer {
   font-size:8em;
   font-weight: 300;
   color: #000051;
+}
+
+.alert {
+  width: 60%;
+  margin: 0 auto 25px;
+  font-size: 1.5em;
+}
+
+.try-again {
+  font-size:1.75em;
 }
 
 /* Not custom styles */
