@@ -78,7 +78,7 @@ class SpeechResult < ApplicationRecord
 
   private
     def filler_words
-      fillers = [" like ", " so ", " basically ", " i guess ", " um ", " umm ", " uh ", " eh ", " you know ", " okay ", " OK "]
+      fillers = [" like ", " basically ", " i guess ", " um ", " umm ", " uh ", " eh ", " you know ", " okay ", " OK ", " okay ", " yeah ", " sort of ", " sorta ", " oh ", " and so ", " kind of ", " kinda ", " so yeah ", " i mean ", " you see ", " know what i mean ", " i suppose "]
       fillers.inject([]) {|memo, filler| !self.transcript.scan(/#{filler}/).empty? ? memo << {word: filler, count: self.transcript.scan(/#{filler}/).count} : memo }
     end
 end
