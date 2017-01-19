@@ -120,6 +120,15 @@ body {
   transform: rotate(180deg); /* Standard syntax */
 }
 
+.loading {
+  font-size: 2.5em;
+}
+
+#timer h2 {
+  font-size:6em;
+  font-weight: 300;
+}
+
 /* Not custom styles */
 
 div.wrapper {

@@ -106,9 +106,9 @@ class WebSpeech extends React.Component {
   render() {
     return (
       <div id="webspeech">
-        {this.state.display_booleans && <Timer />}
-        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
         {this.state.display_booleans && <AudioVisualizer  /> }
+        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
+        {this.state.display_booleans && <Timer />}
       </div>
     )
   }
