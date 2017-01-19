@@ -4,9 +4,15 @@ class RadarChart extends React.Component {
     this.state = {
       keywordCount: [],
     }
+    this.checkKeywords = this.checkKeywords.bind(this)
+  }
+
+  componentWillMount(){
+    this.checkKeywords()
   }
 
   componentDidMount(){
+
     if (this.props.keywords.length >= 3){
     this.renderRadarChart()
     }
@@ -16,6 +22,14 @@ class RadarChart extends React.Component {
     else {
       this.renderRadarOneChart()
     }
+  }
+
+  checkKeywords(){
+    debugger
+    if (this.props.keywords && (this.props.keywords.length > 1)){
+      debugger
+    }
+
   }
 
   renderDataSet(){
@@ -29,10 +43,10 @@ class RadarChart extends React.Component {
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(229, 35, 63, 1)",
-              data: [ (this.props.keywords[0].keyword_emotion.anger * 100).toFixed(2), 
-                      (this.props.keywords[0].keyword_emotion.fear * 100).toFixed(2), 
+              data: [ (this.props.keywords[0].keyword_emotion.anger * 100).toFixed(2),
+                      (this.props.keywords[0].keyword_emotion.fear * 100).toFixed(2),
                       (this.props.keywords[0].keyword_emotion.joy * 100).toFixed(2),
-                      (this.props.keywords[0].keyword_emotion.sadness * 100).toFixed(2), 
+                      (this.props.keywords[0].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[0].keyword_emotion.disgust * 100).toFixed(2)
                     ]
             }
@@ -51,10 +65,10 @@ class RadarChart extends React.Component {
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(49, 137, 175, 1)",
-              data: [ (this.props.keywords[1].keyword_emotion.anger * 100).toFixed(2), 
-                      (this.props.keywords[1].keyword_emotion.fear * 100).toFixed(2), 
+              data: [ (this.props.keywords[1].keyword_emotion.anger * 100).toFixed(2),
+                      (this.props.keywords[1].keyword_emotion.fear * 100).toFixed(2),
                       (this.props.keywords[1].keyword_emotion.joy * 100).toFixed(2),
-                      (this.props.keywords[1].keyword_emotion.sadness * 100).toFixed(2), 
+                      (this.props.keywords[1].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[1].keyword_emotion.disgust * 100).toFixed(2)
                     ]
               }
@@ -72,10 +86,10 @@ class RadarChart extends React.Component {
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(90, 168, 90, 1)",
-              data: [ (this.props.keywords[2].keyword_emotion.anger * 100).toFixed(2), 
-                      (this.props.keywords[2].keyword_emotion.fear * 100).toFixed(2), 
+              data: [ (this.props.keywords[2].keyword_emotion.anger * 100).toFixed(2),
+                      (this.props.keywords[2].keyword_emotion.fear * 100).toFixed(2),
                       (this.props.keywords[2].keyword_emotion.joy * 100).toFixed(2),
-                      (this.props.keywords[2].keyword_emotion.sadness * 100).toFixed(2), 
+                      (this.props.keywords[2].keyword_emotion.sadness * 100).toFixed(2),
                       (this.props.keywords[2].keyword_emotion.disgust * 100).toFixed(2)
                     ]
             }
@@ -85,7 +99,7 @@ class RadarChart extends React.Component {
 
   renderRadarChart() {
     let ctx = document.getElementById("radarChart").getContext("2d");
-      
+
     let radarData = {
       labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
       datasets: [
@@ -104,14 +118,14 @@ class RadarChart extends React.Component {
 
   renderRadarTwoCharts() {
     let ctx = document.getElementById("radarChart").getContext("2d");
-      
+
     let radarData = {
       labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
       datasets: [
         this.renderDataSet(),
         this.renderDataSet2(),
       ]}
- 
+
     let myPieChart = new Chart(ctx, {
       type: 'radar',
       data: radarData
@@ -120,7 +134,7 @@ class RadarChart extends React.Component {
 
     renderRadarOneChart() {
       let ctx = document.getElementById("radarChart").getContext("2d");
-      
+
       let radarData = {
       labels: ["Anger", "Fear", "Joy", "Sadness", "Disgust"],
       datasets: [
