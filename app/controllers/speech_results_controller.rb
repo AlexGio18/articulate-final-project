@@ -28,7 +28,12 @@ class SpeechResultsController < ApplicationController
 
     speech_result.generate_analysis(speech_result.transcript)
 
-    render json: speech_result
+    if speech_result.keywords.any?
+      render json: speech_result
+    else
+      speech_result.destroy
+      render json: { errors: "Forbidden" }, status: 403
+    end
   end
 
 
