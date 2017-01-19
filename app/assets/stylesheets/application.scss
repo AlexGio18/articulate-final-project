@@ -117,8 +117,9 @@ body {
 .visualizer-wrapper {
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Safari */
-  transform: rotate(180deg); /* Standard syntax */
+  transform: rotate(180deg) scaleX(-1); /* Standard syntax */
   margin-top: -43px;
+  margin-bottom: 36px;
 }
 
 .loading {
@@ -126,8 +127,9 @@ body {
 }
 
 #timer h2 {
-  font-size:6em;
+  font-size:8em;
   font-weight: 300;
+  color: #000051;
 }
 
 /* Not custom styles */

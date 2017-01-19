@@ -272,7 +272,7 @@ class AudioVisualizer extends React.Component {
 
               <div className="visualizer-wrapper">
 
-                <canvas className="visualizer" width="100" height="200"></canvas>
+                <canvas className="visualizer" width="100" height="100"></canvas>
 
                 {/* <form className="controls">
 
