@@ -8,9 +8,7 @@ class User < ApplicationRecord
   attr_reader :speech_length, :average_emotions, :average_social_tone, :average_language_tone, :average_user_wpm
 
   def move_to(user)
-   user.speech_results.update_all(user_id: user.id)
-   binding.pry
-   user.update_attributes(guest: nil)
+    user.speech_results.update_all(user_id: self.id)
   end
 
   def speech_length
