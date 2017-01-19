@@ -42,8 +42,6 @@ class WebSpeech extends React.Component {
       endTime = new Date().getTime()
       $('#webspeech').slideUp('slow')
 
-      $( "<div class='loading'>Results are loading...</div>" ).appendTo('.wrapper')
-
       duration = endTime - startTime
       let data = {
         speech_result: {
@@ -55,6 +53,7 @@ class WebSpeech extends React.Component {
 
 
       if (data.speech_result.transcript != ""){
+        $( "<div class='loading'>Results are loading...</div>" ).appendTo('.wrapper')
         $.ajax({
           url: "/users/"+userID+"/speech_results",
           method: "POST",
