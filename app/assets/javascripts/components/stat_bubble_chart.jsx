@@ -16,6 +16,8 @@ class BubbleChart extends React.Component {
         gridColor: "white",
         lineColor: "white",
         tickColor: "white",
+        maximum:21,
+        minimum:4,
   		},
        data: [
        {
@@ -49,6 +51,8 @@ class BubbleChart extends React.Component {
         gridColor: "white",
         lineColor: "white",
         tickColor: "white",
+        maximum:21,
+        minimum:4,
   		},
        data: [
        {
@@ -83,6 +87,8 @@ class BubbleChart extends React.Component {
         gridColor: "white",
         lineColor: "white",
         tickColor: "white",
+        maximum:21,
+        minimum:4,
   		},
        data: [
        {
@@ -170,10 +176,10 @@ class BubbleChart extends React.Component {
           <h1 className="results-header">Emotional Data</h1>
           <table id="chart-selection" onClick={this.handleChartDisplay}>
             <tbody>
-              <td className="onhover"id="show-all"> All </td>
-              <td className="onhover" id="emotion-chart"> Emotional </td>
-              <td className="onhover" id="language-chart"> Language </td>
-              <td className="onhover" id="social-chart"> Social </td>
+              <td className="onhover results-header blue" id="show-all"> All </td>
+              <td className="onhover results-header " id="emotion-chart"> Emotional </td>
+              <td className="onhover results-header " id="language-chart"> Language </td>
+              <td className="onhover results-header " id="social-chart"> Social </td>
             </tbody>
           </table>
         </div>
