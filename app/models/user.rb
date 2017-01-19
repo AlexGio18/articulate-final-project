@@ -9,6 +9,13 @@ class User < ApplicationRecord
 
   def move_to(user)
     user.speech_results.update_all(user_id: self.id)
+    kill_guest(user)
+  end
+
+  def kill_guest(user)
+    if user.guest? && user.speech_results.empty?
+      user.destroy
+    end
   end
 
   def speech_length

@@ -9,10 +9,12 @@ class User::RegistrationsController < Devise::RegistrationsController
     # POST /resource
     def create
       super
-      @user = User.find(session[:guest_user_id])
-      if current_user.move_to(@user)
-        session[:user_id] = current_user.id
-        session[:guest_user_id] = nil
+      if !current_user.guest?
+        @user = User.find(session[:guest_user_id])
+        if current_user.move_to(@user)
+          session[:user_id] = current_user.id
+          session[:guest_user_id] = nil
+        end
       end
     end
 
