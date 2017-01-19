@@ -10,7 +10,6 @@ class WebSpeech extends React.Component {
 
 
   componentDidMount() {
-    console.log("webspeech")
     let that = this
     let userID = this.props.currentUser.id
 
@@ -31,18 +30,20 @@ class WebSpeech extends React.Component {
       that.setState({
         display_booleans: true,
       })
-      $("#just-play").hide()
-      $("#text-analyzer").hide()
+
+      $('.welcome').hide()
       $("#recording-components").show()
+
       startTime = new Date().getTime()
       console.log("recording")
     }
 
     recognition.onend = function() {
       endTime = new Date().getTime()
-      $("#time").slideUp()
-      $(".btn-primary").slideUp()
-      $(".visualizer").slideUp()
+      $('#webspeech').slideUp('slow')
+
+      $( "<div class='loading'>Results are loading...</div>" ).appendTo('.wrapper')
+
       duration = endTime - startTime
       let data = {
         speech_result: {
@@ -61,8 +62,8 @@ class WebSpeech extends React.Component {
         }).done(function(response){
           //callback function setting response in parent
           that.props.results(response)
+          $('.loading').remove()
         })
-        $(resultsContainer).text(finalTranscript)
       }
       else{
         that.props.errorCheck("ERROR")
@@ -81,7 +82,6 @@ class WebSpeech extends React.Component {
           let interimTime = new Date().getTime()
           duration = interimTime - startTime
           finalTranscript += event.results[i][0].transcript
-          $('.wpmContainer').text("Current WPM: " + (finalTranscript.split(' ').length / (duration / 1000 / 60)))
         }
       }
     }
@@ -105,15 +105,10 @@ class WebSpeech extends React.Component {
 
   render() {
     return (
-      <div>
-      {this.state.display_booleans && <Timer />}
-      <h1 id="just-play">Just Press Start.</h1>
-      <a href="#textAnalyzer" id="text-analyzer"><p>You can also analyze text(below)</p></a>
-        <div>
-          <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
-          <div className="wpmContainer"></div>
-              {this.state.display_booleans && <AudioVisualizer  /> }
-        </div>
+      <div id="webspeech">
+        {this.state.display_booleans && <AudioVisualizer  /> }
+        <button className="btn btn-primary btn-lg record-button" id="startRec" ref="stopPlayButton">Start</button>
+        {this.state.display_booleans && <Timer />}
       </div>
     )
   }

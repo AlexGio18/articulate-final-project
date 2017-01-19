@@ -127,6 +127,24 @@ body {
   text-transform: uppercase;
 }
 
+.visualizer-wrapper {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotate(180deg) scaleX(-1); /* Standard syntax */
+  margin-top: -43px;
+  margin-bottom: 36px;
+}
+
+.loading {
+  font-size: 2.5em;
+}
+
+#timer h2 {
+  font-size:8em;
+  font-weight: 300;
+  color: #000051;
+}
+
 /* Not custom styles */
 
 div.wrapper {
