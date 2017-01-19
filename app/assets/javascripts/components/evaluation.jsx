@@ -4,6 +4,7 @@ class Evaluation extends React.Component {
   }
 
   emotionFeedback() {
+    debugger
     let anger = this.props.data.doc_emotion["anger"]
     if ((anger - this.props.data.user["average_emotions"]["anger_avg"]) > 0.5) {
       return (
