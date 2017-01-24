@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    super || guest_user
+    if !super.nil? && !super.destroyed?
+      super
+    else 
+      guest_user
+    end 
   end
 
   private
