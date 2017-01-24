@@ -5,11 +5,27 @@ class Index extends React.Component {
     this.state={
       resultData: false,
       errors: "",
-      speechInput: true
+      speechInput: true,
+      browserType: "",
     }
     this.webSpeechResults = this.webSpeechResults.bind(this)
     this.handleTranscriptErrors = this.handleTranscriptErrors.bind(this)
     this.handleInputType = this.handleInputType.bind(this)
+    this.handleBrowserType = this.handleBrowserType.bind(this)
+    // this.browserCheck = this.browserCheck.bind(this)
+  }
+
+  // browserCheck(){
+  //   var isChrome = !!window.chrome && !!window.chrome.webstore;
+  //   if(!isChrome){
+  //     this.handleBrowserType("true")
+  //   }
+  // }
+
+  handleBrowserType(notChrome){
+    this.setState({
+      browserType: notChrome,
+    })
   }
 
   webSpeechResults(data) {
@@ -40,11 +56,14 @@ class Index extends React.Component {
     }
   }
 
+  componentWillMount(){
+    // this.browserCheck()
+  }
+
   render(){
     return(
       <div className="starter-template container-padding">
         <div className="wrapper">
-
           <div className="welcome">
             <h1 id="just-play">Just Press Start.</h1>
             <a href="/" onClick={this.handleInputType}><p>(click here for text input instead)</p></a>
