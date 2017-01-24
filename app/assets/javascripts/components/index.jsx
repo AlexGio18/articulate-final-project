@@ -12,15 +12,15 @@ class Index extends React.Component {
     this.handleTranscriptErrors = this.handleTranscriptErrors.bind(this)
     this.handleInputType = this.handleInputType.bind(this)
     this.handleBrowserType = this.handleBrowserType.bind(this)
-    // this.browserCheck = this.browserCheck.bind(this)
+    this.browserCheck = this.browserCheck.bind(this)
   }
 
-  // browserCheck(){
-  //   var isChrome = !!window.chrome && !!window.chrome.webstore;
-  //   if(!isChrome){
-  //     this.handleBrowserType("true")
-  //   }
-  // }
+  browserCheck(){
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    if(!isChrome){
+      this.handleBrowserType("true")
+    } else {console.log("user is running chrome")}
+  }
 
   handleBrowserType(notChrome){
     this.setState({
@@ -57,7 +57,7 @@ class Index extends React.Component {
   }
 
   componentWillMount(){
-    // this.browserCheck()
+    this.browserCheck()
   }
 
   render(){
@@ -65,6 +65,7 @@ class Index extends React.Component {
       <div className="starter-template container-padding">
         <div className="wrapper">
           <div className="welcome">
+          {(this.state.browserType.length > 0) && <CheckBrowser />}
             <h1 id="just-play">Just Press Start.</h1>
             <a href="/" onClick={this.handleInputType}><p>(click here for text input instead)</p></a>
           </div>
