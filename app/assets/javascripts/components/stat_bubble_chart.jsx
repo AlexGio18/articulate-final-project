@@ -23,7 +23,7 @@ class BubbleChart extends React.Component {
        {
          type: "bubble",
          showInLegend: false,
-         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidency: {score}</strong><br/>",
+         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidence: {score}</strong><br/>",
          dataPoints: [
 
            { x: 9, y: 5, z:this.props.result_data.doc_social_tone.agreeableness*100, name: "Agreeableness", color: "#5AA85A", score:this.props.result_data.doc_social_tone.agreeableness },
@@ -58,7 +58,7 @@ class BubbleChart extends React.Component {
        {
          type: "bubble",
          showInLegend: false,
-         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidency: {score}</strong><br/>",
+         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidence: {score}</strong><br/>",
          dataPoints: [
 
            { x: 16, y: 25, z:this.props.result_data.doc_emotion.anger*100, name: "Anger", color: "#E5233F", score:this.props.result_data.doc_emotion.anger },
@@ -94,7 +94,7 @@ class BubbleChart extends React.Component {
        {
          type: "bubble",
          showInLegend: false,
-         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidency: {score}</strong><br/>",
+         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidence: {score}</strong><br/>",
          dataPoints: [
 
           { x: 10, y: 14, z:this.props.result_data.doc_language_tone.analytical *100, name: "Analytical", color: "#3189AF", score:this.props.result_data.doc_language_tone.analytical },
@@ -143,7 +143,7 @@ class BubbleChart extends React.Component {
      {
        type: "bubble",
        showInLegend: false,
-       toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidency: {score}</strong><br/>",
+       toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong>Confidence: {score}</strong><br/>",
        dataPoints: [
 
         { x: 16, y: 25, z:this.props.result_data.doc_emotion.anger*100, name: "Anger", color: "#E5233F", score:this.props.result_data.doc_emotion.anger },
